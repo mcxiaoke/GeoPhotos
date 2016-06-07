@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
+		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
+		AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
+		AAEAD4151D0698F600B7EF6B /* GeoPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4141D0698F600B7EF6B /* GeoPhotosTests.swift */; };
+		AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */; };
+		AAEAD4221D06991F00B7EF6B /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */; };
+		AAEAD4241D069A6200B7EF6B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAD4231D069A6200B7EF6B /* MapKit.framework */; };
+		AAEAD4261D069A6800B7EF6B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AAEAD4111D0698F600B7EF6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAEAD3F91D0698F600B7EF6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAEAD4001D0698F600B7EF6B;
+			remoteInfo = GeoPhotos;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AAEAD4061D0698F600B7EF6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAEAD4091D0698F600B7EF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		AAEAD40B1D0698F600B7EF6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAEAD4101D0698F600B7EF6B /* GeoPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAEAD4141D0698F600B7EF6B /* GeoPhotosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPhotosTests.swift; sourceTree = "<group>"; };
+		AAEAD4161D0698F600B7EF6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		AAEAD4231D069A6200B7EF6B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAEAD3FE1D0698F600B7EF6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAEAD4261D069A6800B7EF6B /* CoreLocation.framework in Frameworks */,
+				AAEAD4241D069A6200B7EF6B /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAEAD40D1D0698F600B7EF6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAEAD3F81D0698F600B7EF6B = {
+			isa = PBXGroup;
+			children = (
+				AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */,
+				AAEAD4231D069A6200B7EF6B /* MapKit.framework */,
+				AAEAD4031D0698F600B7EF6B /* GeoPhotos */,
+				AAEAD4131D0698F600B7EF6B /* GeoPhotosTests */,
+				AAEAD4021D0698F600B7EF6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAEAD4021D0698F600B7EF6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */,
+				AAEAD4101D0698F600B7EF6B /* GeoPhotosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAEAD4031D0698F600B7EF6B /* GeoPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */,
+				AAEAD4061D0698F600B7EF6B /* Assets.xcassets */,
+				AAEAD4081D0698F600B7EF6B /* MainMenu.xib */,
+				AAEAD40B1D0698F600B7EF6B /* Info.plist */,
+				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
+				AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */,
+			);
+			path = GeoPhotos;
+			sourceTree = "<group>";
+		};
+		AAEAD4131D0698F600B7EF6B /* GeoPhotosTests */ = {
+			isa = PBXGroup;
+			children = (
+				AAEAD4141D0698F600B7EF6B /* GeoPhotosTests.swift */,
+				AAEAD4161D0698F600B7EF6B /* Info.plist */,
+			);
+			path = GeoPhotosTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAEAD4001D0698F600B7EF6B /* GeoPhotos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotos" */;
+			buildPhases = (
+				AAEAD3FD1D0698F600B7EF6B /* Sources */,
+				AAEAD3FE1D0698F600B7EF6B /* Frameworks */,
+				AAEAD3FF1D0698F600B7EF6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeoPhotos;
+			productName = GeoPhotos;
+			productReference = AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AAEAD40F1D0698F600B7EF6B /* GeoPhotosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAEAD41C1D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosTests" */;
+			buildPhases = (
+				AAEAD40C1D0698F600B7EF6B /* Sources */,
+				AAEAD40D1D0698F600B7EF6B /* Frameworks */,
+				AAEAD40E1D0698F600B7EF6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AAEAD4121D0698F600B7EF6B /* PBXTargetDependency */,
+			);
+			name = GeoPhotosTests;
+			productName = GeoPhotosTests;
+			productReference = AAEAD4101D0698F600B7EF6B /* GeoPhotosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAEAD3F91D0698F600B7EF6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = mcxiaoke;
+				TargetAttributes = {
+					AAEAD4001D0698F600B7EF6B = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					AAEAD40F1D0698F600B7EF6B = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = AAEAD4001D0698F600B7EF6B;
+					};
+				};
+			};
+			buildConfigurationList = AAEAD3FC1D0698F600B7EF6B /* Build configuration list for PBXProject "GeoPhotos" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAEAD3F81D0698F600B7EF6B;
+			productRefGroup = AAEAD4021D0698F600B7EF6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAEAD4001D0698F600B7EF6B /* GeoPhotos */,
+				AAEAD40F1D0698F600B7EF6B /* GeoPhotosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAEAD3FF1D0698F600B7EF6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */,
+				AAEAD4221D06991F00B7EF6B /* MainWindowController.xib in Resources */,
+				AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAEAD40E1D0698F600B7EF6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAEAD3FD1D0698F600B7EF6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */,
+				AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAEAD40C1D0698F600B7EF6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAEAD4151D0698F600B7EF6B /* GeoPhotosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AAEAD4121D0698F600B7EF6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAEAD4001D0698F600B7EF6B /* GeoPhotos */;
+			targetProxy = AAEAD4111D0698F600B7EF6B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AAEAD4081D0698F600B7EF6B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAEAD4091D0698F600B7EF6B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AAEAD4171D0698F600B7EF6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AAEAD4181D0698F600B7EF6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AAEAD41A1D0698F600B7EF6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GeoPhotos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.osx.GeoPhotos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AAEAD41B1D0698F600B7EF6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GeoPhotos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.osx.GeoPhotos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AAEAD41D1D0698F600B7EF6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GeoPhotosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.osx.GeoPhotosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoPhotos.app/Contents/MacOS/GeoPhotos";
+			};
+			name = Debug;
+		};
+		AAEAD41E1D0698F600B7EF6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GeoPhotosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.osx.GeoPhotosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoPhotos.app/Contents/MacOS/GeoPhotos";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAEAD3FC1D0698F600B7EF6B /* Build configuration list for PBXProject "GeoPhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAEAD4171D0698F600B7EF6B /* Debug */,
+				AAEAD4181D0698F600B7EF6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAEAD41A1D0698F600B7EF6B /* Debug */,
+				AAEAD41B1D0698F600B7EF6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AAEAD41C1D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAEAD41D1D0698F600B7EF6B /* Debug */,
+				AAEAD41E1D0698F600B7EF6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAEAD3F91D0698F600B7EF6B /* Project object */;
+}
