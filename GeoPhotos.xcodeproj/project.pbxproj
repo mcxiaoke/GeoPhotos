@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		881410D0D21139B40F2F07AF /* Pods_GeoPhotosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */; };
 		9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */; };
+		AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
 		AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
 		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
 		AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
@@ -40,6 +41,7 @@
 		51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAEAD4061D0698F600B7EF6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */,
+				AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */,
 				AAEAD4371D06BD3800B7EF6B /* Constants.swift in Sources */,
 				AAEAD4301D06B4D500B7EF6B /* ExifUtils.swift in Sources */,
+				AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */,
 				AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

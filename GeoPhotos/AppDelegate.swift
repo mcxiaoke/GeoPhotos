@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var mainWindowController:MainWindowController?
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
     let mwc = MainWindowController()
     mwc.showWindow(self)
     self.mainWindowController = mwc

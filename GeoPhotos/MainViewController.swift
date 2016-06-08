@@ -8,10 +8,11 @@
 
 import Cocoa
 
-class MainViewController: NSViewController {
+class MainViewController: NSSplitViewController {
   
   @IBOutlet weak var tableView:NSTableView!
   
+  let sizeFormatter = NSByteCountFormatter()
   
   var rootURL:NSURL?
   var images:[ImageItem]?
@@ -22,7 +23,6 @@ class MainViewController: NSViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("viewDidLoad")
   }
   
   func openDocument(sender:AnyObject){
@@ -63,29 +63,40 @@ extension MainViewController: NSTableViewDelegate {
   func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
     guard let image = self.images?[row] else { return nil }
     var cellIdentifier = ""
-    var objectValue:AnyObject?
+    var stringValue:String = ""
     if tableColumn == tableView.tableColumnWithIdentifier("NameCell") {
       cellIdentifier = "NameCell"
-      objectValue = image.name
+      stringValue = image.name
     }else if tableColumn == tableView.tableColumnWithIdentifier("LatitudeCell") {
       cellIdentifier = "LatitudeCell"
-      objectValue = image.latitude
+      if let latitude = image.latitude {
+        stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
+      }
     }else if tableColumn == tableView.tableColumnWithIdentifier("LongitudeCell") {
       cellIdentifier = "LongitudeCell"
-      objectValue = image.longitude
+      if let longitude = image.longitude {
+        stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
+      }
+    }else if tableColumn == tableView.tableColumnWithIdentifier("AltitudeCell") {
+      cellIdentifier = "AltitudeCell"
+      if let altitude = image.altitude {
+        stringValue = String(format: "%.2fM", altitude)
+      }
     }else if tableColumn == tableView.tableColumnWithIdentifier("TimestampCell") {
       cellIdentifier = "TimestampCell"
-      objectValue = image.timestamp
+      if let dateTime = image.timestamp {
+        stringValue = DateFormatter.stringFromDate(dateTime)
+      }
     }else if tableColumn == tableView.tableColumnWithIdentifier("ModifiedCell") {
       cellIdentifier = "ModifiedCell"
-      objectValue = image.modifiedAt
+      stringValue = DateFormatter.stringFromDate(image.modifiedAt)
     }else if tableColumn == tableView.tableColumnWithIdentifier("SizeCell") {
       cellIdentifier = "SizeCell"
-      objectValue = NSNumber(unsignedLongLong:image.size)
+      stringValue = sizeFormatter.stringFromByteCount(Int64(image.size))
     }
     guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
-    cell.textField?.objectValue = objectValue
+    cell.textField?.stringValue = stringValue
     return cell
   }
 }

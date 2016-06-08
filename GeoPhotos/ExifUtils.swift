@@ -6,17 +6,10 @@
 //  Copyright © 2016年 mcxiaoke. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+import CoreLocation
 
 class ExifUtils {
-  
-  
-  private static var dateFormatter:NSDateFormatter {
-    let formatter =  NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier:"en_US")
-    formatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
-    return formatter
-  }
   
   class func diagnose(reason:String) -> Bool {
     print("guard return at \(#line) for \(reason)")
@@ -42,20 +35,10 @@ class ExifUtils {
     var images:[ImageItem] = []
     urls.forEach { (url) in
       if let image = parseURL(url) {
-        print(image)
         images.append(image)
       }
     }
     return images
-  }
-  
-  class func parseProperties(url:NSURL) {
-    guard let imageSource = CGImageSourceCreateWithURL(url, nil) else { return }
-    let value = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)
-    let a = value as? Dictionary<String,AnyObject>
-    let b = value as? Dictionary<NSError,AnyObject>
-    let c = value as? Dictionary<NSObject,AnyObject>
-    print("a=\(a) b=\(b) c=\(c)")
   }
 
   class func parseURL(url:NSURL) -> ImageItem? {
@@ -91,14 +74,46 @@ class ExifUtils {
       let altitude = gps[kCGImagePropertyGPSAltitude as String] as? Double
       let dateStr = gps[kCGImagePropertyGPSDateStamp as String] as? String
       let timeStr = gps[kCGImagePropertyGPSTimeStamp as String] as? String
-      let timestamp = dateFormatter.dateFromString("\(dateStr!) \(timeStr!)")
       item.latitude = latitude
       item.longitude = longitude
       item.altitude = altitude
-      item.timestamp = timestamp
+      if let dateStr = dateStr, let timeStr = timeStr {
+        let timestamp = DateFormatter.dateFromString("\(dateStr) \(timeStr)")
+        item.timestamp = timestamp
+      }
+      
     }
     return item
     
+  }
+  
+  class func formatDegreeValue(degree: Double, latitude:Bool) -> String {
+    var seconds = Int(degree * 3600)
+    let degrees = seconds / 3600
+    seconds = abs(seconds % 3600)
+    let minutes = seconds / 60
+    seconds %= 60
+    let direction:String
+    if latitude {
+      direction = degrees > 0 ? "E" : "W"
+    }else {
+      direction = degrees > 0 ? "N" : "S"
+    }
+    return "\(abs(degrees))°\(minutes)'\(seconds)\" \(direction)"
+  }
+  
+  class func formatCoordinate(coordinate:CLLocationCoordinate2D) -> String {
+    var latSeconds = Int(coordinate.latitude * 3600)
+    let latDegrees = latSeconds / 3600
+    latSeconds = abs(latSeconds % 3600)
+    let latMinutes = latSeconds / 60
+    latSeconds %= 60
+    var longSeconds = Int(coordinate.longitude * 3600)
+    let longDegrees = longSeconds / 3600
+    longSeconds = abs(longSeconds % 3600)
+    let longMinutes = longSeconds / 60
+    longSeconds %= 60
+    return "\(abs(latDegrees))°\(latMinutes)'\(latSeconds)\"\(latDegrees >= 0 ? "N" : "S") \(abs(longDegrees))°\(longMinutes)'\(longSeconds)\"\(longDegrees >= 0 ? "E" : "W")"
   }
 
   

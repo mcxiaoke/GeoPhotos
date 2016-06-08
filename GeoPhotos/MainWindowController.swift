@@ -16,7 +16,6 @@ class MainWindowController: NSWindowController {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    print("awakeFromNib")
     let viewController = MainViewController()
     self.contentViewController = viewController
   }
