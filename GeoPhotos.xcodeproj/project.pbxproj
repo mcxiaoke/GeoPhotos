@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881410D0D21139B40F2F07AF /* Pods_GeoPhotosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */; };
+		9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */; };
 		AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
 		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
 		AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos.release.xcconfig"; sourceTree = "<group>"; };
+		51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAEAD4061D0698F600B7EF6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +58,8 @@
 		AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExifUtils.swift; sourceTree = "<group>"; };
 		AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
 		AAEAD4361D06BD3800B7EF6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BFD6A398B0717E1DB72D2871 /* Pods-GeoPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
+		E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,7 @@
 			files = (
 				AAEAD4261D069A6800B7EF6B /* CoreLocation.framework in Frameworks */,
 				AAEAD4241D069A6200B7EF6B /* MapKit.framework in Frameworks */,
+				9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +77,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881410D0D21139B40F2F07AF /* Pods_GeoPhotosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C71280D2157EEAC2804EA0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */,
+				51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C5038BF21A12E376C90DD8E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */,
+				2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */,
+				9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */,
+				BFD6A398B0717E1DB72D2871 /* Pods-GeoPhotosTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AAEAD3F81D0698F600B7EF6B = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +112,8 @@
 				AAEAD4031D0698F600B7EF6B /* GeoPhotos */,
 				AAEAD4131D0698F600B7EF6B /* GeoPhotosTests */,
 				AAEAD4021D0698F600B7EF6B /* Products */,
+				9C5038BF21A12E376C90DD8E /* Pods */,
+				4C71280D2157EEAC2804EA0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,9 +185,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotos" */;
 			buildPhases = (
+				C831D4DDB6005BEEBE417BC5 /* [CP] Check Pods Manifest.lock */,
 				AAEAD3FD1D0698F600B7EF6B /* Sources */,
 				AAEAD3FE1D0698F600B7EF6B /* Frameworks */,
 				AAEAD3FF1D0698F600B7EF6B /* Resources */,
+				26EE03B7D502AEFBA8DA90C9 /* [CP] Embed Pods Frameworks */,
+				9E8FA5F795FD675AB8EF1C15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAEAD41C1D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosTests" */;
 			buildPhases = (
+				9FEE54F0B9469BB1C6D636E5 /* [CP] Check Pods Manifest.lock */,
 				AAEAD40C1D0698F600B7EF6B /* Sources */,
 				AAEAD40D1D0698F600B7EF6B /* Frameworks */,
 				AAEAD40E1D0698F600B7EF6B /* Resources */,
+				2F6EAB3926264C047E1C35DF /* [CP] Embed Pods Frameworks */,
+				1E86A6AC3CFC20C2BF40F3A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,6 +280,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E86A6AC3CFC20C2BF40F3A1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26EE03B7D502AEFBA8DA90C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F6EAB3926264C047E1C35DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E8FA5F795FD675AB8EF1C15 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FEE54F0B9469BB1C6D636E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C831D4DDB6005BEEBE417BC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AAEAD3FD1D0698F600B7EF6B /* Sources */ = {
@@ -372,6 +503,7 @@
 		};
 		AAEAD41A1D0698F600B7EF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -384,6 +516,7 @@
 		};
 		AAEAD41B1D0698F600B7EF6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -396,6 +529,7 @@
 		};
 		AAEAD41D1D0698F600B7EF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -409,6 +543,7 @@
 		};
 		AAEAD41E1D0698F600B7EF6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFD6A398B0717E1DB72D2871 /* Pods-GeoPhotosTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -439,6 +574,7 @@
 				AAEAD41B1D0698F600B7EF6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAEAD41C1D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosTests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +583,7 @@
 				AAEAD41E1D0698F600B7EF6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
