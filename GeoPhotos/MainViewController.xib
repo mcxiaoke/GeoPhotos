@@ -10,30 +10,37 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="GeoPhotos" customModuleProvider="target">
             <connections>
+                <outlet property="applyButton" destination="9yz-AL-hIM" id="MVg-5p-d16"/>
+                <outlet property="datePicker" destination="UPE-Zm-MNH" id="utT-5K-cUu"/>
+                <outlet property="infoButton" destination="ZH8-od-mEN" id="yXw-35-gPj"/>
+                <outlet property="mapView" destination="tt1-9d-Bsq" id="xnB-Nn-C6i"/>
                 <outlet property="tableView" destination="V4P-ql-lXU" id="cT4-cM-jk6"/>
+                <outlet property="textAltitude" destination="HxD-bp-OuR" id="mKS-qH-Oxl"/>
+                <outlet property="textLatitude" destination="XOT-Lt-0tG" id="rLp-A7-Uqz"/>
+                <outlet property="textLongitude" destination="kAh-WK-W3m" id="o2m-fq-pWP"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="721" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="751" height="480"/>
             <subviews>
                 <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxp-gU-BpQ">
-                    <rect key="frame" x="0.0" y="0.0" width="721" height="480"/>
+                    <rect key="frame" x="0.0" y="0.0" width="751" height="480"/>
                     <subviews>
-                        <customView id="3h8-jb-Rca">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <customView misplaced="YES" id="3h8-jb-Rca">
+                            <rect key="frame" x="0.0" y="0.0" width="510" height="480"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3W-mC-CTd">
-                                    <rect key="frame" x="0.0" y="0.0" width="2" height="16"/>
+                                <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3W-mC-CTd">
+                                    <rect key="frame" x="20" y="20" width="460" height="440"/>
                                     <clipView key="contentView" id="ml5-eH-UwH">
-                                        <rect key="frame" x="1" y="0.0" width="0.0" height="15"/>
+                                        <rect key="frame" x="1" y="0.0" width="458" height="424"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="6Pc-TI-dNJ" viewBased="YES" id="V4P-ql-lXU">
-                                                <rect key="frame" x="0.0" y="0.0" width="941" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="941" height="401"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -309,6 +316,7 @@
                                                     </tableColumn>
                                                 </tableColumns>
                                                 <connections>
+                                                    <action trigger="doubleAction" selector="doubleClickRow:" target="-2" id="yUZ-mf-Mhx"/>
                                                     <outlet property="dataSource" destination="-2" id="APf-ar-Map"/>
                                                     <outlet property="delegate" destination="-2" id="rBe-H4-oaK"/>
                                                 </connections>
@@ -317,11 +325,11 @@
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </clipView>
                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="DWB-cO-atm">
-                                        <rect key="frame" x="1" y="0.0" width="0.0" height="15"/>
+                                        <rect key="frame" x="1" y="424" width="458" height="15"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="fiN-r5-FGE">
-                                        <rect key="frame" x="-14" y="-7.5" width="15" height="0.0"/>
+                                        <rect key="frame" x="-14" y="7" width="15" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <tableHeaderView key="headerView" id="6Pc-TI-dNJ">
@@ -337,29 +345,38 @@
                                 <constraint firstItem="s3W-mC-CTd" firstAttribute="leading" secondItem="3h8-jb-Rca" secondAttribute="leading" constant="20" symbolic="YES" id="mYH-ms-Esr"/>
                             </constraints>
                         </customView>
-                        <customView id="qaL-u7-9At">
-                            <rect key="frame" x="481" y="0.0" width="240" height="480"/>
+                        <customView misplaced="YES" id="qaL-u7-9At">
+                            <rect key="frame" x="511" y="0.0" width="240" height="480"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <mapView mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tt1-9d-Bsq">
-                                    <rect key="frame" x="20" y="20" width="225" height="225"/>
+                                <mapView mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt1-9d-Bsq">
+                                    <rect key="frame" x="20" y="20" width="210" height="210"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="tt1-9d-Bsq" secondAttribute="height" multiplier="1:1" id="ebr-b7-Ikf"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="delegate" destination="-2" id="UOd-mc-Gj7"/>
+                                    </connections>
                                 </mapView>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9yz-AL-hIM">
-                                    <rect key="frame" x="176" y="432" width="75" height="32"/>
+                                    <rect key="frame" x="161" y="432" width="75" height="32"/>
                                     <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jJA-h4-9dZ">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="clickApplyButton:" target="-2" id="4AP-TU-OMJ"/>
+                                    </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZH8-od-mEN">
-                                    <rect key="frame" x="113" y="432" width="63" height="32"/>
+                                    <rect key="frame" x="98" y="432" width="63" height="32"/>
                                     <buttonCell key="cell" type="push" title="Info" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2lV-bH-69T">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="clickInfoButton:" target="-2" id="pbg-x3-sdg"/>
+                                    </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-UK-3tT">
                                     <rect key="frame" x="18" y="382" width="58" height="17"/>
@@ -385,32 +402,52 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lPr-XK-Iis">
+                                    <rect key="frame" x="18" y="301" width="38" height="17"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time:" placeholderString="" id="BC6-N8-oOx">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XOT-Lt-0tG">
-                                    <rect key="frame" x="108" y="379" width="137" height="22"/>
+                                    <rect key="frame" x="93" y="379" width="137" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="BMC-Cy-uNJ">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="mHo-JU-efF" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textLatitudeChanged:" target="-2" id="38n-3X-buB"/>
+                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-WK-W3m">
-                                    <rect key="frame" x="108" y="352" width="137" height="22"/>
+                                    <rect key="frame" x="93" y="352" width="137" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="qMj-DN-FYL">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="SGu-3F-zYW" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textLogitudeChanged:" target="-2" id="q0n-iX-YW7"/>
+                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HxD-bp-OuR">
-                                    <rect key="frame" x="108" y="325" width="137" height="22"/>
+                                    <rect key="frame" x="93" y="325" width="137" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cfi-XU-FPZ">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="eyt-dq-cHM" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textAltitudeChanged:" target="-2" id="ktA-XB-Bjo"/>
+                                    </connections>
                                 </textField>
-                                <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UPE-Zm-MNH">
-                                    <rect key="frame" x="108" y="299.5" width="139" height="22"/>
+                                <datePicker verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UPE-Zm-MNH">
+                                    <rect key="frame" x="93" y="299" width="139" height="22"/>
                                     <datePickerCell key="cell" controlSize="small" borderStyle="bezel" alignment="left" id="UQS-5O-Udp">
                                         <font key="font" metaFont="smallSystem"/>
                                         <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
@@ -421,15 +458,10 @@
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES"/>
                                     </datePickerCell>
+                                    <connections>
+                                        <action selector="chooseDate:" target="-2" id="yLT-Ak-W4i"/>
+                                    </connections>
                                 </datePicker>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lPr-XK-Iis">
-                                    <rect key="frame" x="18" y="301" width="38" height="17"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time:" id="BC6-N8-oOx">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="kAh-WK-W3m" firstAttribute="width" secondItem="XOT-Lt-0tG" secondAttribute="width" id="0PA-ca-FN5"/>
@@ -447,6 +479,7 @@
                                 <constraint firstItem="9yz-AL-hIM" firstAttribute="top" secondItem="qaL-u7-9At" secondAttribute="top" constant="20" symbolic="YES" id="YKb-GZ-EOu"/>
                                 <constraint firstAttribute="trailing" secondItem="tt1-9d-Bsq" secondAttribute="trailing" constant="20" symbolic="YES" id="YnY-Vs-fvi"/>
                                 <constraint firstItem="rc7-fz-bZK" firstAttribute="top" secondItem="0fo-gS-RpO" secondAttribute="bottom" constant="10" id="bvH-Hk-2GI"/>
+                                <constraint firstItem="kAh-WK-W3m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0fo-gS-RpO" secondAttribute="trailing" constant="8" symbolic="YES" id="dnb-71-EmZ"/>
                                 <constraint firstAttribute="trailing" secondItem="kAh-WK-W3m" secondAttribute="trailing" constant="20" symbolic="YES" id="f2j-Dh-YJZ"/>
                                 <constraint firstAttribute="trailing" secondItem="UPE-Zm-MNH" secondAttribute="trailing" constant="20" symbolic="YES" id="fFI-dE-S8d"/>
                                 <constraint firstItem="UPE-Zm-MNH" firstAttribute="width" secondItem="XOT-Lt-0tG" secondAttribute="width" id="h6F-Qc-CgU"/>

@@ -17,7 +17,7 @@ class ImageItem:NSObject {
   let createdAt:NSDate
   
   var modifiedAt: NSDate
-  
+  var mimeType: String?
   var latitude:Double?
   var longitude:Double?
   var altitude:Double?
@@ -36,8 +36,34 @@ class ImageItem:NSObject {
   }
   
   override var description: String{
-    return "ImageItem(name=\(name), type=\(type), size=\(size), url=\(url))"
+    return "ImageItem(name=\(name), type=\(mimeType), size=\(size), url=\(url))"
   }
   
+  func updateGPSInfo() -> Bool {
+    // image properties
+    guard let imageSource = CGImageSourceCreateWithURL(url, nil)
+      else { return false }
+    guard let propertiesValue = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)
+      else { return false }
+    guard let properties = propertiesValue as? NSDictionary else { return false }
+    
+    // gps properties
+    if let gps = properties[kCGImagePropertyGPSDictionary as String] {
+      let latitude = gps[kCGImagePropertyGPSLatitude as String] as? Double
+      let longitude = gps[kCGImagePropertyGPSLongitude as String] as? Double
+      let altitude = gps[kCGImagePropertyGPSAltitude as String] as? Double
+      let dateStr = gps[kCGImagePropertyGPSDateStamp as String] as? String
+      let timeStr = gps[kCGImagePropertyGPSTimeStamp as String] as? String
+      self.latitude = latitude
+      self.longitude = longitude
+      self.altitude = altitude
+      if let dateStr = dateStr, let timeStr = timeStr {
+        let timestamp = DateFormatter.dateFromString("\(dateStr) \(timeStr)")
+        self.timestamp = timestamp
+      }
+      return true
+    }
+    return false
+  }
   
 }

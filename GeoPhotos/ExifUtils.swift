@@ -66,7 +66,7 @@ class ExifUtils {
                          dimension: dimension,
                          createdAt: createdAt,
                          modifiedAt: modifiedAt)
-    
+    item.mimeType = CGImageSourceGetType(imageSource) as String?
     // gps properties
     if let gps = properties[kCGImagePropertyGPSDictionary as String] {
       let latitude = gps[kCGImagePropertyGPSLatitude as String] as? Double
@@ -81,7 +81,6 @@ class ExifUtils {
         let timestamp = DateFormatter.dateFromString("\(dateStr) \(timeStr)")
         item.timestamp = timestamp
       }
-      
     }
     return item
     

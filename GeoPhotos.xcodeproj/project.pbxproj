@@ -24,6 +24,8 @@
 		AAEAD4301D06B4D500B7EF6B /* ExifUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */; };
 		AAEAD4331D06BC5A00B7EF6B /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */; };
 		AAEAD4371D06BD3800B7EF6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4361D06BD3800B7EF6B /* Constants.swift */; };
+		AAEBF8E21D092CB40025D405 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */; };
+		AAEBF8E41D0946B20025D405 /* DecimalOnlyNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExifUtils.swift; sourceTree = "<group>"; };
 		AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
 		AAEAD4361D06BD3800B7EF6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalOnlyNumberFormatter.swift; sourceTree = "<group>"; };
 		BFD6A398B0717E1DB72D2871 /* Pods-GeoPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
 		E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +147,8 @@
 				AAEAD4271D06A42900B7EF6B /* MainViewController.swift */,
 				AAEAD4281D06A42900B7EF6B /* MainViewController.xib */,
 				AAEAD4361D06BD3800B7EF6B /* Constants.swift */,
+				AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */,
+				AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */,
 			);
 			path = GeoPhotos;
 			sourceTree = "<group>";
@@ -383,6 +389,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAEAD42D1D06B1F400B7EF6B /* ImageItem.swift in Sources */,
+				AAEBF8E21D092CB40025D405 /* ImageProcessor.swift in Sources */,
+				AAEBF8E41D0946B20025D405 /* DecimalOnlyNumberFormatter.swift in Sources */,
 				AAEAD4291D06A42900B7EF6B /* MainViewController.swift in Sources */,
 				AAEAD4331D06BC5A00B7EF6B /* NSURL+Extensions.swift in Sources */,
 				AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */,
