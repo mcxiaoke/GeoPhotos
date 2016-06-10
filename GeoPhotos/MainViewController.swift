@@ -40,10 +40,8 @@ class MainViewController: NSSplitViewController {
   @IBOutlet weak var infoButton:NSButton!
   @IBOutlet weak var applyButton:NSButton!
   
-  let mapAnnotationReuseId = "Pin"
   let processor = ImageProcessor()
   var mapInitialized:Bool = false
-  var location: CLLocation?
   var annotation:MKAnnotation?
 
   override var nibName: String?{
@@ -74,7 +72,9 @@ class MainViewController: NSSplitViewController {
   
   @IBAction func clickApplyButton(sender:AnyObject){
     print("clickApplyButton")
-    self.processor.saveWithCompletionHandler { (count) in
+    self.processor.altitude = self.textAltitude.doubleValue
+    self.processor.saveWithCompletionHandler { (count, message) in
+      print("saveWithCompletionHandler: \(count) \(message)")
       self.tableView?.reloadData()
     }
   }
@@ -157,26 +157,25 @@ class MainViewController: NSSplitViewController {
 
 extension MainViewController:MKMapViewDelegate {
   
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    guard annotation is MapPoint else { return nil }
-    var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(self.mapAnnotationReuseId)
-    if annotationView == nil {
-      annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: self.mapAnnotationReuseId)
-      annotationView?.draggable = true
-      annotationView?.canShowCallout = true
-    }else {
-      annotationView?.annotation = annotation
-    }
-    return annotationView
-  }
+//  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+//    guard annotation is MapPoint else { return nil }
+//    var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Pin")
+//    if annotationView == nil {
+//      annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+//      annotationView?.draggable = true
+//      annotationView?.canShowCallout = true
+//    }else {
+//      annotationView?.annotation = annotation
+//    }
+//    return annotationView
+//  }
   
   func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-    print("didUpdateUserLocation \(userLocation.location)")
+//    print("didUpdateUserLocation \(userLocation.location)")
     //    CLLocationCoordinate2D loc = userLocation.coordinate    //放大地图到自身的经纬度位置。
     //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
     //    [self.mapView setRegion:region animated:YES];
     let coordinate = userLocation.coordinate
-    self.location = userLocation.location
     if !self.mapInitialized {
       self.mapInitialized = true
       self.mapView.setCenterCoordinate(coordinate, animated: true)

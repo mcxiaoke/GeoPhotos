@@ -11,8 +11,8 @@ import Cocoa
 
 class DecimalOnlyNumberFormatter: NSNumberFormatter {
   
-  let latitudeRange  = -180.0...180.0
-  let longitudeRange = -90.0...90.0
+  let latitudeRange = -90.0...90.0
+  let longitudeRange  = -180.0...180.0
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -29,8 +29,8 @@ class DecimalOnlyNumberFormatter: NSNumberFormatter {
     guard let partialString = partialStringPtr.memory as? String else { return true }
     if partialString.isEmpty { return true }
     if let value = Double(partialString) {
-      return true
-//      return latitudeRange.contains(value)
+//      return true
+      return longitudeRange.contains(value)
     }else {
       return false
     }

@@ -94,9 +94,9 @@ class ExifUtils {
     seconds %= 60
     let direction:String
     if latitude {
-      direction = degrees > 0 ? "E" : "W"
-    }else {
       direction = degrees > 0 ? "N" : "S"
+    }else {
+      direction = degrees > 0 ? "E" : "W"
     }
     return "\(abs(degrees))°\(minutes)'\(seconds)\" \(direction)"
   }

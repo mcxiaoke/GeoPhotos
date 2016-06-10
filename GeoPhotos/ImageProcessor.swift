@@ -22,21 +22,24 @@ class ImageProcessor {
   var coordinate:CLLocationCoordinate2D?
   var altitude: Double?
   
-  func saveWithCompletionHandler(handler: (Int) -> Void){
-    guard self.rootURL != nil else { handler(-1); return  }
-    guard let coordinate = self.coordinate else { handler(-1); return }
-    guard let images = self.images else { handler(-1); return }
+  func saveWithCompletionHandler(handler: (Int, String) -> Void){
+    print("saveWithCompletionHandler timestamp:\(self.timestamp)")
+    print("saveWithCompletionHandler altitude:\(self.altitude)")
+    print("saveWithCompletionHandler coordinate:\(self.coordinate)")
+    guard self.rootURL != nil else { handler(-1, "rootURL is nil"); return  }
+    guard let coordinate = self.coordinate else { handler(-1, "coordinate is nil"); return }
+    guard let images = self.images else { handler(-1, "No images found"); return }
     let properties:[String:AnyObject] = [
       kCGImagePropertyGPSSpeed as String : 0,
       kCGImagePropertyGPSSpeedRef as String : "K",
-      kCGImagePropertyGPSAltitude as String : 0.0,
+      kCGImagePropertyGPSAltitude as String : self.altitude ?? 0.0,
       kCGImagePropertyGPSAltitudeRef as String : 0,
       kCGImagePropertyGPSImgDirection as String : 0.0,
       kCGImagePropertyGPSImgDirectionRef as String : "T",
-      kCGImagePropertyGPSLatitude as String : coordinate.latitude,
-      kCGImagePropertyGPSLatitudeRef as String : coordinate.latitude > 0 ? "E" : "W",
-      kCGImagePropertyGPSLongitude as String : coordinate.longitude,
-      kCGImagePropertyGPSLongitudeRef as String : coordinate.longitude > 0 ? "N" : "S",
+      kCGImagePropertyGPSLatitude as String : Double.abs(coordinate.latitude),
+      kCGImagePropertyGPSLatitudeRef as String : coordinate.latitude > 0 ? "N" : "S",
+      kCGImagePropertyGPSLongitude as String : Double.abs(coordinate.longitude),
+      kCGImagePropertyGPSLongitudeRef as String : coordinate.longitude > 0 ? "E" : "W",
     ]
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -64,7 +67,7 @@ class ImageProcessor {
         }
       })
       dispatch_async(dispatch_get_main_queue()){
-        handler(saveCount)
+        handler(saveCount, "OK")
       }
     }
   }
