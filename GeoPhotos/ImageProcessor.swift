@@ -10,7 +10,7 @@ import Cocoa
 import CoreLocation
 
 class ImageProcessor {
-  
+  let geocoder = CLGeocoder()
   let sizeFormatter = NSByteCountFormatter()
   let imageDirectionRef = "T"
   let imageDirection = 0
@@ -21,6 +21,14 @@ class ImageProcessor {
   var timestamp:NSDate?
   var coordinate:CLLocationCoordinate2D?
   var altitude: Double?
+  
+  func geocodeWithCompletionHandler(handler:(CLPlacemark?) -> Void) {
+    guard let coordinate = self.coordinate else { return }
+    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+      handler(placemarks?.first)
+    }
+  }
   
   func saveWithCompletionHandler(handler: (Int, String) -> Void){
     print("saveWithCompletionHandler timestamp:\(self.timestamp)")

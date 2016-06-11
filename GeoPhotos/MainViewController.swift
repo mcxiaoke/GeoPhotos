@@ -36,6 +36,7 @@ class MainViewController: NSSplitViewController {
   @IBOutlet weak var textLongitude:NSTextField!
   @IBOutlet weak var textAltitude:NSTextField!
   @IBOutlet weak var datePicker:NSDatePicker!
+  @IBOutlet weak var mapLabel:NSTextField!
   @IBOutlet weak var mapView:MKMapView!
   @IBOutlet weak var infoButton:NSButton!
   @IBOutlet weak var applyButton:NSButton!
@@ -61,10 +62,29 @@ class MainViewController: NSSplitViewController {
   @IBAction func doubleClickRow(sender:AnyObject){
     if self.tableView.selectedRow >= 0 {
       guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-      NSWorkspace.sharedWorkspace().openURL(image.url)
+      NSWorkspace.sharedWorkspace().selectFile(image.url.path, inFileViewerRootedAtPath: "")
     }
   }
   
+  
+  @IBAction func clickRevealActionButton(sender:AnyObject){
+    let row = self.tableView.rowForView(sender as! NSView)
+    if row >= 0 {
+      if let image = self.processor.images?[row] {
+        NSWorkspace.sharedWorkspace().activateFileViewerSelectingURLs([image.url])
+      }
+    }
+  }
+  
+  
+  @IBAction func clickInfoActionButton(sender:AnyObject){
+    let row = self.tableView.rowForView(sender as! NSView)
+    if row >= 0 {
+      if let image = self.processor.images?[row] {
+        NSWorkspace.sharedWorkspace().openURL(image.url)
+      }
+    }
+  }
   
   @IBAction func clickInfoButton(sender:AnyObject){
     print("clickInfoButton")
@@ -121,6 +141,13 @@ class MainViewController: NSSplitViewController {
     self.processor.coordinate = coordinate
     self.textLatitude.stringValue = ExifUtils.formatDegreeValue(coordinate.latitude, latitude: true)
     self.textLongitude.stringValue = ExifUtils.formatDegreeValue(coordinate.longitude, latitude: false)
+    self.processor.geocodeWithCompletionHandler { (placemark) in
+      let address = placemark?.name ?? ""
+//      let annotation = MapPoint(coordinate: self.annotation!.coordinate, title: address)
+//      self.mapView.addAnnotation(annotation)
+      self.mapLabel.stringValue = address
+      print("address: \(address)")
+    }
   }
   
 //  override func mouseDown(theEvent: NSEvent) {
@@ -212,7 +239,7 @@ extension MainViewController: NSTableViewDelegate {
     }else if tableColumn == tableView.tableColumnWithIdentifier("AltitudeCell") {
       cellIdentifier = "AltitudeCell"
       if let altitude = image.altitude {
-        stringValue = String(format: "%.2fM", altitude)
+        stringValue = String(format: "%.2f", altitude)
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("TimestampCell") {
       cellIdentifier = "TimestampCell"
@@ -225,6 +252,8 @@ extension MainViewController: NSTableViewDelegate {
     }else if tableColumn == tableView.tableColumnWithIdentifier("SizeCell") {
       cellIdentifier = "SizeCell"
       stringValue = self.processor.sizeFormatter.stringFromByteCount(Int64(image.size))
+    }else if tableColumn == tableView.tableColumnWithIdentifier("ActionCell") {
+      cellIdentifier = "ActionCell"
     }
     guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
