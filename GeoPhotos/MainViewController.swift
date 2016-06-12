@@ -36,13 +36,11 @@ class MainViewController: NSSplitViewController {
   @IBOutlet weak var textLongitude:NSTextField!
   @IBOutlet weak var textAltitude:NSTextField!
   @IBOutlet weak var datePicker:NSDatePicker!
-  @IBOutlet weak var mapLabel:NSTextField!
   @IBOutlet weak var mapView:MKMapView!
-  @IBOutlet weak var infoButton:NSButton!
-  @IBOutlet weak var applyButton:NSButton!
+  @IBOutlet weak var restoreButton:NSButton!
+  @IBOutlet weak var saveButton:NSButton!
   
   let processor = ImageProcessor()
-  var mapInitialized:Bool = false
   var annotation:MKAnnotation?
 
   override var nibName: String?{
@@ -51,9 +49,31 @@ class MainViewController: NSSplitViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    updateUI()
     self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
   }
   
+  func updateTableViewRows(index:Int){
+    let rowIndexes = NSIndexSet(indexesInRange: NSRange(location: max(index - 1, 0), length: 3))
+    let count = self.tableView.tableColumns.count
+    let columnIndexes = NSIndexSet(indexesInRange: NSRange(location: 0, length: count))
+    dispatch_async(dispatch_get_main_queue()){
+      self.tableView?.reloadDataForRowIndexes(rowIndexes, columnIndexes: columnIndexes)
+      self.tableView.scrollRowToVisible(index)
+    }
+  }
+  
+  func updateUI(){
+    let hasImages = self.processor.images?.count ?? 0 >= 0
+    self.saveButton.enabled = hasImages
+      && self.processor.coordinate != nil
+      && self.processor.savingIndex == nil
+      && self.processor.restoringIndex == nil
+    self.restoreButton.enabled = hasImages
+      && self.processor.hasBackup
+      && self.processor.savingIndex == nil
+      && self.processor.restoringIndex == nil
+  }
   
   func copy(sender:AnyObject?){
     guard self.tableView.selectedRow >= 0 else { return }
@@ -72,7 +92,7 @@ class MainViewController: NSSplitViewController {
       [NSURL.self],options: [NSPasteboardURLReadingFileURLsOnlyKey:true]) as? [NSURL]
     guard let path = objects?.first?.path else { return false }
     let rootURL = NSURL(fileURLWithPath:path)
-    self.processor.openWithCompletionHandler(rootURL, handler: { (success) in
+    self.processor.open(rootURL, completionHandler: { (success) in
       self.tableView?.reloadData()
     })
     return true
@@ -99,7 +119,10 @@ class MainViewController: NSSplitViewController {
       guard let rootURL = panel.URL else {
         return
       }
-      self.processor.openWithCompletionHandler(rootURL, handler: { (success) in
+//      self.progressBar.hidden = false
+      self.processor.open(rootURL, completionHandler: { (success) in
+//        self.progressBar.hidden = true
+        self.updateUI()
         self.tableView?.reloadData()
       })
     }
@@ -139,26 +162,104 @@ class MainViewController: NSSplitViewController {
     }
   }
   
-  @IBAction func clickInfoButton(sender:AnyObject){
-    print("clickInfoButton")
+  @IBAction func performRestore(sender:AnyObject){
+    print("performRestore")
+    restoreProperties()
   }
   
-  @IBAction func clickApplyButton(sender:AnyObject){
-    print("clickApplyButton")
-    self.processor.altitude = self.textAltitude.doubleValue
-    self.applyButton.enabled = false
-    self.processor.save({ (count, message) in
-      print("save: \(count) \(message)")
-      self.tableView?.reloadData()
-      self.applyButton.enabled = true
+  func restoreProperties(){
+    self.processor.restore({ (restoredCount, message) in
+      print("restoreProperties \(restoredCount) \(message)")
+      self.processor.reopen({ (success) in
+        self.updateUI()
+        self.tableView?.reloadData()
+        self.showRestoreSuccessAlert(restoredCount)
+      })
       }) { (image, index, total) in
-        let rowIndexes = NSIndexSet(indexesInRange: NSRange(location: max(index - 1, 0), length: 3))
-        let count = self.tableView.tableColumns.count
-        let columnIndexes = NSIndexSet(indexesInRange: NSRange(location: 0, length: count))
-        dispatch_async(dispatch_get_main_queue()){
-          self.tableView?.reloadDataForRowIndexes(rowIndexes, columnIndexes: columnIndexes)
-        }
+        self.updateTableViewRows(index)
     }
+  }
+  
+  func showRestoreSuccessAlert(count:Int){
+    let alert = NSAlert()
+    alert.alertStyle = .InformationalAlertStyle
+    alert.messageText = "Images Restored"
+    alert.informativeText = "Modified images have been restored using backup files, \(count) files affected."
+    alert.addButtonWithTitle("OK")
+    alert.beginSheetModalForWindow(self.view.window!) { (response) in
+      //
+    }
+  }
+  
+  @IBAction func performSave(sender:AnyObject){
+    print("performSave")
+    guard self.processor.coordinate != nil else {
+      showInvalidAlert()
+      return
+    }
+    showSaveAlert(nil)
+  }
+  
+  func showInvalidAlert(){
+    let alert = NSAlert()
+    alert.alertStyle = .WarningAlertStyle
+    alert.messageText = "GPS Properties Invalid"
+    alert.informativeText = "GPS coordinate is empty or invalid, please check again."
+    alert.addButtonWithTitle("OK")
+    alert.beginSheetModalForWindow(self.view.window!) { (response) in
+      
+    }
+  }
+  
+  func showSaveAlert(sender:AnyObject?){
+    let alert = NSAlert()
+    alert.alertStyle = .InformationalAlertStyle
+    alert.messageText = "Save GPS Properties"
+    var contentText = "GPS properties below will be written back to images, Please check:\n"
+    if let coordinate = self.processor.coordinate {
+      contentText += "Latitude:\(coordinate.latitude)\n"
+      contentText += "Longitude:\(coordinate.longitude)\n"
+    }
+    if let altitude = self.processor.altitude {
+      contentText += "Altitude:\(altitude)\n"
+    }
+    if let timestamp = self.processor.timestamp {
+      contentText += "Timestamp:\(DateFormatter.stringFromDate(timestamp))\n"
+    }
+    alert.informativeText = "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?"
+    alert.addButtonWithTitle("OK")
+    alert.addButtonWithTitle("Cancel")
+    alert.beginSheetModalForWindow(self.view.window!) { (response) in
+      if response == NSAlertFirstButtonReturn {
+        self.saveProperties()
+      }
+    }
+  }
+  
+  func showSaveSuccessAlert(count:Int){
+    let alert = NSAlert()
+    alert.alertStyle = .WarningAlertStyle
+    alert.messageText = "GPS Properties Saved"
+    alert.informativeText = "GPS properties have been written back to images, \(count) files affected."
+    alert.addButtonWithTitle("OK")
+    alert.beginSheetModalForWindow(self.view.window!) { (response) in
+      //
+    }
+  }
+  
+  func saveProperties(){
+    updateUI()
+    self.processor.altitude = self.textAltitude.doubleValue
+    self.processor.save(true,
+        completionHandler: { (count, message) in
+        print("saveProperties: \(count) \(message)")
+        self.updateUI()
+        self.tableView?.reloadData()
+        self.showSaveSuccessAlert(count)
+    },
+      processHandler: { (image, index, total) in
+        self.updateTableViewRows(index)
+    })
   }
   
   @IBAction func textLatitudeChanged(sender: NSTextField) {
@@ -181,16 +282,6 @@ class MainViewController: NSSplitViewController {
     self.processor.timestamp = sender.dateValue
   }
   
-  @IBAction func addAnnotation(sender:AnyObject){
-    let loc = CLLocationCoordinate2DMake(39.9994132, 116.1734272)
-    let title = "Lat:\(loc.latitude) Lon:\(loc.longitude)"
-    let point = MapPoint(coordinate: loc, title: title)
-    self.mapView.addAnnotation(point)
-    self.mapView.setCenterCoordinate(loc, animated: true)
-    //    let region = MKCoordinateRegionMakeWithDistance(loc, 1000, 1000)
-    //    self.mapView.setRegion(region, animated: true)
-  }
-  
   func makeAnnotationAt(coordinate: CLLocationCoordinate2D){
     let title = "Lat:\(coordinate.latitude) Lon:\(coordinate.longitude)"
     let newAnnotaion = MapPoint(coordinate: coordinate, title: title)
@@ -203,6 +294,7 @@ class MainViewController: NSSplitViewController {
     self.processor.coordinate = coordinate
     self.textLatitude.stringValue = "\(coordinate.latitude)"
     self.textLongitude.stringValue = "\(coordinate.longitude)"
+    updateUI()
 //    self.processor.geocodeWithCompletionHandler { (placemark) in
 //      let address = placemark?.name ?? ""
 ////      let annotation = MapPoint(coordinate: self.annotation!.coordinate, title: address)
@@ -222,7 +314,7 @@ class MainViewController: NSSplitViewController {
     // must use self.view, not self.mapView, or not working, don't known why
     let point = self.view.convertPoint(theEvent.locationInWindow, fromView: nil)
     let coordinate = self.mapView.convertPoint(point, toCoordinateFromView: self.view)
-    print("rightMouseDown x=\(point.x) y=\(point.y) \(coordinate.latitude) \(coordinate.longitude)")
+//    print("rightMouseDown x=\(point.x) y=\(point.y) \(coordinate.latitude) \(coordinate.longitude)")
     if theEvent.clickCount == 1 {
       makeAnnotationAt(coordinate)
       //      openMapForPlace(coordinate)
@@ -264,17 +356,17 @@ extension MainViewController:MKMapViewDelegate {
     //    CLLocationCoordinate2D loc = userLocation.coordinate    //放大地图到自身的经纬度位置。
     //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
     //    [self.mapView setRegion:region animated:YES];
-    let coordinate = userLocation.coordinate
-    if !self.mapInitialized {
-      self.mapInitialized = true
-      self.mapView.setCenterCoordinate(coordinate, animated: true)
-      //      let region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000)
-      //      self.mapView.setRegion(region, animated: true)
-    }
+//    let coordinate = userLocation.coordinate
+//    if !self.mapInitialized {
+//      self.mapInitialized = true
+//      self.mapView.setCenterCoordinate(coordinate, animated: true)
+//      //      let region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000)
+//      //      self.mapView.setRegion(region, animated: true)
+//    }
   }
   
   func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-    print("didAddAnnotationViews \(views.first)")
+//    print("didAddAnnotationViews \(views.first)")
   }
   
 }
@@ -335,9 +427,11 @@ extension MainViewController: NSTableViewDelegate {
     }
     cell.textField?.stringValue = stringValue
     
-    if self.processor.processingIndex == row {
+    if self.processor.savingIndex == row {
       cell.textField?.textColor = NSColor.blueColor()
-    }else {
+    } else if self.processor.restoringIndex == row{
+      cell.textField?.textColor = NSColor.redColor()
+    }  else {
       cell.textField?.textColor = nil
     }
     return cell

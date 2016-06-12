@@ -14,8 +14,8 @@ class MainWindowController: NSWindowController {
     return "MainWindowController"
   }
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  override func windowDidLoad() {
+    super.windowDidLoad()
     let viewController = MainViewController()
     self.contentViewController = viewController
   }

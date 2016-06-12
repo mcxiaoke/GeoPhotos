@@ -12,30 +12,28 @@ import CoreLocation
 class ImageProcessor {
   let geocoder = CLGeocoder()
   let sizeFormatter = NSByteCountFormatter()
-  let imageDirectionRef = "T"
-  let imageDirection = 0
-  let altitudeRef = 0
   
   var rootURL:NSURL?
   var images:[ImageItem]?
   var timestamp:NSDate?
   var coordinate:CLLocationCoordinate2D?
   var altitude: Double?
+  var savingIndex:Int?
+  var restoringIndex:Int?
+  var hasBackup = false
   
-  var processingIndex:Int?
-  
-  func geocodeWithCompletionHandler(handler:(CLPlacemark?) -> Void) {
+  func geocode(completionHandler:(CLPlacemark?) -> Void) {
     guard let coordinate = self.coordinate else { return }
     let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
     geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-      handler(placemarks?.first)
+      completionHandler(placemarks?.first)
     }
   }
   
-  func save(completionHandler: (Int, String) -> Void, processHandler:((ImageItem, Int, Int) -> Void)? = nil){
-    print("saveWithCompletionHandler timestamp:\(self.timestamp)")
-    print("saveWithCompletionHandler altitude:\(self.altitude)")
-    print("saveWithCompletionHandler coordinate:\(self.coordinate)")
+  func save(backupOriginal: Bool, completionHandler: (Int, String) -> Void, processHandler:((ImageItem, Int, Int) -> Void)? = nil){
+    print("save timestamp:\(self.timestamp)")
+    print("save altitude:\(self.altitude)")
+    print("save coordinate:\(self.coordinate)")
     guard self.rootURL != nil else { completionHandler(-1, "rootURL is nil"); return  }
     guard let coordinate = self.coordinate else { completionHandler(-1, "coordinate is nil"); return }
     guard let images = self.images else { completionHandler(-1, "No images found"); return }
@@ -56,12 +54,13 @@ class ImageProcessor {
     ]
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+      let fileManager = NSFileManager()
       let total = images.count
-      var saveCount = 0
-      self.processingIndex = nil
+      var savedCount = 0
+      self.savingIndex = nil
       images.enumerate().forEach({ (index, image) in
-        print("start processing \(image.url) at \(index)")
-        self.processingIndex = index
+        print("processing \(image.name) at \(index)")
+        self.savingIndex = index
         processHandler?(image, index, total)
         let date = self.timestamp ?? image.timestamp
           ?? image.exifDate ?? image.createdAt
@@ -78,32 +77,86 @@ class ImageProcessor {
         let metaData = [kCGImagePropertyGPSDictionary as String : gpsProperties]
         CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metaData)
         CGImageDestinationFinalize(imageDestination)
+        if backupOriginal {
+          let backupURL = image.url.URLByAppendingPathExtension("bak")
+          if let _ = try? fileManager.copyItemAtURL(image.url, toURL: backupURL){
+            print("backuped \(backupURL)")
+          }
+        }
         if let _ = try? data.writeToURL(image.url, options: NSDataWritingOptions.AtomicWrite) {
-          print("processed \(image.url)")
-          saveCount += 1
+          print("processed \(image.name)")
+          savedCount += 1
           image.updateProperties()
         }
       })
-      self.processingIndex = nil
+      self.savingIndex = nil
+      if backupOriginal {
+        self.hasBackup = true
+      }
       dispatch_async(dispatch_get_main_queue()){
-        completionHandler(saveCount, "OK")
+        completionHandler(savedCount, "OK")
       }
     }
   }
   
-  func openWithCompletionHandler(url:NSURL, handler: (success:Bool) -> Void){
-    self.loadImage(url, handler: handler)
+  func restore(completionHandler: (Int, String) -> Void,
+               processHandler:((ImageItem, Int, Int) -> Void)? = nil){
+    guard self.rootURL != nil else { completionHandler(-1, "ERROR"); return }
+    guard let images = self.images else { completionHandler(-1, "ERROR"); return }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+      let total = images.count
+      let fileManager = NSFileManager()
+      var restoredCount = 0
+      self.restoringIndex = nil
+      images.enumerate().forEach { (index, image) in
+        print("resotring \(image.name) at \(index)")
+        self.restoringIndex = index
+        processHandler?(image, index, total)
+        let backupURL = image.url.URLByAppendingPathExtension("bak")
+        let tempURL = image.url.URLByAppendingPathExtension("tmp")
+        var isDirectory = ObjCBool(false)
+        let fileExists = fileManager.fileExistsAtPath(backupURL.path!, isDirectory: &isDirectory)
+        if fileExists && !isDirectory.boolValue {
+          do{
+            try fileManager.moveItemAtURL(image.url, toURL: tempURL)
+            try fileManager.moveItemAtURL(backupURL, toURL: image.url)
+            try fileManager.removeItemAtURL(tempURL)
+            restoredCount += 1
+          }catch let error as NSError{
+            print("restore \(image.name): \(error)")
+          }
+        }
+        }
+        self.restoringIndex = nil
+        self.hasBackup = false
+        dispatch_async(dispatch_get_main_queue()){
+          completionHandler(restoredCount, "OK")
+      }
+    }
   }
   
-  func loadImage(url:NSURL, handler: (Bool) -> Void){
-    print("loadImage: \(url)")
+  func reopen(completionHandler: (Bool) -> Void){
+    print("reopen: \(self.rootURL)")
+    guard let url = self.rootURL else { completionHandler(false); return }
+    self.loadImage(url, completionHandler: completionHandler)
+  }
+  
+  func open(url:NSURL, completionHandler: (Bool) -> Void){
+    print("open: \(url)")
+    self.loadImage(url, completionHandler: completionHandler)
+  }
+  
+  func loadImage(url:NSURL, completionHandler: (Bool) -> Void){
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
       guard let urls = ExifUtils.parseFiles(url) else { return }
       let images = ExifUtils.parseURLs(urls).sort{ $0.name < $1.name }
       dispatch_async(dispatch_get_main_queue()){
+        self.savingIndex = nil
+        self.restoringIndex = nil
+        self.hasBackup = false
         self.rootURL = url
         self.images = images
-        handler(true)
+        completionHandler(true)
       }
     }
   }
