@@ -22,6 +22,8 @@ class ImageProcessor {
   var coordinate:CLLocationCoordinate2D?
   var altitude: Double?
   
+  var processingIndex:Int?
+  
   func geocodeWithCompletionHandler(handler:(CLPlacemark?) -> Void) {
     guard let coordinate = self.coordinate else { return }
     let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -30,31 +32,39 @@ class ImageProcessor {
     }
   }
   
-  func saveWithCompletionHandler(handler: (Int, String) -> Void){
+  func save(completionHandler: (Int, String) -> Void, processHandler:((ImageItem, Int, Int) -> Void)? = nil){
     print("saveWithCompletionHandler timestamp:\(self.timestamp)")
     print("saveWithCompletionHandler altitude:\(self.altitude)")
     print("saveWithCompletionHandler coordinate:\(self.coordinate)")
-    guard self.rootURL != nil else { handler(-1, "rootURL is nil"); return  }
-    guard let coordinate = self.coordinate else { handler(-1, "coordinate is nil"); return }
-    guard let images = self.images else { handler(-1, "No images found"); return }
+    guard self.rootURL != nil else { completionHandler(-1, "rootURL is nil"); return  }
+    guard let coordinate = self.coordinate else { completionHandler(-1, "coordinate is nil"); return }
+    guard let images = self.images else { completionHandler(-1, "No images found"); return }
+    let latitude = Double.abs(coordinate.latitude)
+    let longitude = Double.abs(coordinate.longitude)
+    let altitude = self.altitude ?? 0.0
     let properties:[String:AnyObject] = [
       kCGImagePropertyGPSSpeed as String : 0,
       kCGImagePropertyGPSSpeedRef as String : "K",
-      kCGImagePropertyGPSAltitude as String : self.altitude ?? 0.0,
+      kCGImagePropertyGPSAltitude as String : altitude,
       kCGImagePropertyGPSAltitudeRef as String : 0,
       kCGImagePropertyGPSImgDirection as String : 0.0,
       kCGImagePropertyGPSImgDirectionRef as String : "T",
-      kCGImagePropertyGPSLatitude as String : Double.abs(coordinate.latitude),
+      kCGImagePropertyGPSLatitude as String : latitude,
       kCGImagePropertyGPSLatitudeRef as String : coordinate.latitude > 0 ? "N" : "S",
-      kCGImagePropertyGPSLongitude as String : Double.abs(coordinate.longitude),
+      kCGImagePropertyGPSLongitude as String : longitude,
       kCGImagePropertyGPSLongitudeRef as String : coordinate.longitude > 0 ? "E" : "W",
     ]
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+      let total = images.count
       var saveCount = 0
-      images.forEach({ (image) in
-        print("process \(image.url)")
-        let date = self.timestamp ?? image.createdAt
+      self.processingIndex = nil
+      images.enumerate().forEach({ (index, image) in
+        print("start processing \(image.url) at \(index)")
+        self.processingIndex = index
+        processHandler?(image, index, total)
+        let date = self.timestamp ?? image.timestamp
+          ?? image.exifDate ?? image.createdAt
         var gpsProperties = properties
         let dateStr = DateFormatter.stringFromDate(date)
         let dateTime = dateStr.componentsSeparatedByString(" ")
@@ -69,13 +79,14 @@ class ImageProcessor {
         CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metaData)
         CGImageDestinationFinalize(imageDestination)
         if let _ = try? data.writeToURL(image.url, options: NSDataWritingOptions.AtomicWrite) {
-          print("save image \(image.url)")
+          print("processed \(image.url)")
           saveCount += 1
-          image.updateGPSInfo()
+          image.updateProperties()
         }
       })
+      self.processingIndex = nil
       dispatch_async(dispatch_get_main_queue()){
-        handler(saveCount, "OK")
+        completionHandler(saveCount, "OK")
       }
     }
   }

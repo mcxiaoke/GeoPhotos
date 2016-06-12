@@ -57,7 +57,7 @@ class ExifUtils {
     guard let properties = propertiesValue as? NSDictionary else { return nil }
     guard let width = properties[kCGImagePropertyPixelWidth as String] as? Int else { return nil }
     guard let height = properties[kCGImagePropertyPixelHeight as String] as? Int else { return nil }
-    let dimension = NSSize(width:width,height: height)
+    let dimension = NSSize(width: width, height: height)
     
     let item = ImageItem(url: url,
                          type: type,
@@ -67,29 +67,7 @@ class ExifUtils {
                          createdAt: createdAt,
                          modifiedAt: modifiedAt)
     item.mimeType = CGImageSourceGetType(imageSource) as String?
-    
-    
-    // exif properties
-    if let exif = properties[kCGImagePropertyExifDictionary as String]{
-      if let exifDateStr = exif[kCGImagePropertyExifDateTimeDigitized as String] as? String {
-        item.exifDate = DateFormatter.dateFromString(exifDateStr)
-      }
-    }
-    // gps properties
-    if let gps = properties[kCGImagePropertyGPSDictionary as String] {
-      let latitude = gps[kCGImagePropertyGPSLatitude as String] as? Double
-      let longitude = gps[kCGImagePropertyGPSLongitude as String] as? Double
-      let altitude = gps[kCGImagePropertyGPSAltitude as String] as? Double
-      let dateStr = gps[kCGImagePropertyGPSDateStamp as String] as? String
-      let timeStr = gps[kCGImagePropertyGPSTimeStamp as String] as? String
-      item.latitude = latitude
-      item.longitude = longitude
-      item.altitude = altitude
-      if let dateStr = dateStr, let timeStr = timeStr {
-        let timestamp = DateFormatter.dateFromString("\(dateStr) \(timeStr)")
-        item.timestamp = timestamp
-      }
-    }
+    item.updateProperties(properties)
     return item
     
   }

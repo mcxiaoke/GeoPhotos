@@ -51,7 +51,7 @@ class MainViewController: NSSplitViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.registerForDraggedTypes([NSFilenamesPboardType, NSStringPboardType])
+    self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
   }
   
   
@@ -146,9 +146,18 @@ class MainViewController: NSSplitViewController {
   @IBAction func clickApplyButton(sender:AnyObject){
     print("clickApplyButton")
     self.processor.altitude = self.textAltitude.doubleValue
-    self.processor.saveWithCompletionHandler { (count, message) in
-      print("saveWithCompletionHandler: \(count) \(message)")
+    self.applyButton.enabled = false
+    self.processor.save({ (count, message) in
+      print("save: \(count) \(message)")
       self.tableView?.reloadData()
+      self.applyButton.enabled = true
+      }) { (image, index, total) in
+        let rowIndexes = NSIndexSet(indexesInRange: NSRange(location: max(index - 1, 0), length: 3))
+        let count = self.tableView.tableColumns.count
+        let columnIndexes = NSIndexSet(indexesInRange: NSRange(location: 0, length: count))
+        dispatch_async(dispatch_get_main_queue()){
+          self.tableView?.reloadDataForRowIndexes(rowIndexes, columnIndexes: columnIndexes)
+        }
     }
   }
   
@@ -192,8 +201,8 @@ class MainViewController: NSSplitViewController {
     }
     self.annotation = newAnnotaion
     self.processor.coordinate = coordinate
-    self.textLatitude.stringValue = ExifUtils.formatDegreeValue(coordinate.latitude, latitude: true)
-    self.textLongitude.stringValue = ExifUtils.formatDegreeValue(coordinate.longitude, latitude: false)
+    self.textLatitude.stringValue = "\(coordinate.latitude)"
+    self.textLongitude.stringValue = "\(coordinate.longitude)"
 //    self.processor.geocodeWithCompletionHandler { (placemark) in
 //      let address = placemark?.name ?? ""
 ////      let annotation = MapPoint(coordinate: self.annotation!.coordinate, title: address)
@@ -282,14 +291,14 @@ extension MainViewController: NSTableViewDelegate {
     }else if tableColumn == tableView.tableColumnWithIdentifier("LatitudeCell") {
       cellIdentifier = "LatitudeCell"
       if let latitude = image.latitude {
-        stringValue = "\(latitude)"
-//        stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
+//        stringValue = "\(latitude)"
+        stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("LongitudeCell") {
       cellIdentifier = "LongitudeCell"
       if let longitude = image.longitude {
-        stringValue = "\(longitude)"
-//        stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
+//        stringValue = "\(longitude)"
+        stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("AltitudeCell") {
       cellIdentifier = "AltitudeCell"
@@ -316,11 +325,21 @@ extension MainViewController: NSTableViewDelegate {
       button.target = self
       button.action = #selector(self.revealInFinder(_:))
     }
+    if let button = cell.viewWithTag(0) as? NSButton {
+      button.target = self
+      button.action = #selector(self.revealInFinder(_:))
+    }
     if let button = cell.viewWithTag(1) as? NSButton {
       button.target = self
       button.action = #selector(self.openInPreview(_:))
     }
     cell.textField?.stringValue = stringValue
+    
+    if self.processor.processingIndex == row {
+      cell.textField?.textColor = NSColor.blueColor()
+    }else {
+      cell.textField?.textColor = nil
+    }
     return cell
   }
   

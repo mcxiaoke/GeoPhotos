@@ -22,15 +22,15 @@ class DecimalOnlyNumberFormatter: NSNumberFormatter {
   private func setUp(){
     self.allowsFloats = true
     self.numberStyle = NSNumberFormatterStyle.DecimalStyle
-    self.maximumFractionDigits = 10
+    self.maximumFractionDigits = 8
   }
   
   override func isPartialStringValid(partialStringPtr: AutoreleasingUnsafeMutablePointer<NSString?>, proposedSelectedRange proposedSelRangePtr: NSRangePointer, originalString origString: String, originalSelectedRange origSelRange: NSRange, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
     guard let partialString = partialStringPtr.memory as? String else { return true }
     if partialString.isEmpty { return true }
     if let value = Double(partialString) {
-//      return true
-      return longitudeRange.contains(value)
+      return true
+//      return longitudeRange.contains(value)
     }else {
       return false
     }

@@ -37,26 +37,26 @@ class ImageItem:NSObject {
   }
   
   override var description: String{
-    return "ImageItem(name=\(name), type=\(mimeType), size=\(size), url=\(url))"
+    return "ImageItem(name=\(name), latitude=\(latitude), longitude=\(longitude), timestamp=\(timestamp))"
   }
   
-  func updateGPSInfo() -> Bool {
-    // image properties
-    guard let imageSource = CGImageSourceCreateWithURL(url, nil)
-      else { return false }
-    guard let propertiesValue = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)
-      else { return false }
-    guard let properties = propertiesValue as? NSDictionary else { return false }
-    
+  func updateProperties(properties:NSDictionary) -> Bool {
+    if let exif = properties[kCGImagePropertyExifDictionary as String]{
+      if let exifDateStr = exif[kCGImagePropertyExifDateTimeDigitized as String] as? String {
+        self.exifDate = DateFormatter.dateFromString(exifDateStr)
+      }
+    }
     // gps properties
     if let gps = properties[kCGImagePropertyGPSDictionary as String] {
+      let latitudeRef = gps[kCGImagePropertyGPSLatitudeRef as String] as! String
       let latitude = gps[kCGImagePropertyGPSLatitude as String] as? Double
+      let longitudeRef = gps[kCGImagePropertyGPSLongitudeRef as String] as! String
       let longitude = gps[kCGImagePropertyGPSLongitude as String] as? Double
       let altitude = gps[kCGImagePropertyGPSAltitude as String] as? Double
       let dateStr = gps[kCGImagePropertyGPSDateStamp as String] as? String
       let timeStr = gps[kCGImagePropertyGPSTimeStamp as String] as? String
-      self.latitude = latitude
-      self.longitude = longitude
+      self.latitude = latitudeRef == "N" ? latitude! : -latitude!
+      self.longitude = longitudeRef == "E" ? longitude! : -longitude!
       self.altitude = altitude
       if let dateStr = dateStr, let timeStr = timeStr {
         let timestamp = DateFormatter.dateFromString("\(dateStr) \(timeStr)")
@@ -65,6 +65,15 @@ class ImageItem:NSObject {
       return true
     }
     return false
+  }
+  
+  func updateProperties() -> Bool {
+    guard let imageSource = CGImageSourceCreateWithURL(url, nil)
+      else { return false }
+    guard let propertiesValue = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)
+      else { return false }
+    guard let properties = propertiesValue as? NSDictionary else { return false }
+    return updateProperties(properties)
   }
   
 }
