@@ -53,9 +53,50 @@ class MainViewController: NSSplitViewController {
     super.viewDidLoad()
   }
   
-  func openDocument(sender:AnyObject){
-    self.processor.openWithCompletionHandler { (success) in
+  func copy(sender:AnyObject?){
+    guard self.tableView.selectedRow >= 0 else { return }
+    guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
+    let pb = NSPasteboard.generalPasteboard()
+    pb.clearContents()
+    pb.setString(image.url.path!, forType: NSPasteboardTypeString)
+  }
+  
+  func paste(sender:AnyObject?){
+//    guard self.processor.rootURL == nil else { return }
+    let pb = NSPasteboard.generalPasteboard()
+    let objects = pb.readObjectsForClasses(
+      [NSURL.self],options: [NSPasteboardURLReadingFileURLsOnlyKey:true]) as? [NSURL]
+    guard let path = objects?.first?.path else { return }
+    let rootURL = NSURL(fileURLWithPath:path)
+    self.processor.openWithCompletionHandler(rootURL, handler: { (success) in
       self.tableView?.reloadData()
+    })
+  }
+  
+  override func selectAll(sender: AnyObject?) {
+    print("do select all")
+  }
+  
+  func openDocument(sender:AnyObject){
+    showOpenPanel()
+  }
+  
+  private func showOpenPanel(){
+    let panel = NSOpenPanel()
+    panel.allowsMultipleSelection = false
+    panel.canChooseDirectories = true
+    panel.canCreateDirectories = false
+    panel.canChooseFiles = false
+    panel.beginWithCompletionHandler { (result) in
+      guard result == NSFileHandlingPanelOKButton else {
+        return
+      }
+      guard let rootURL = panel.URL else {
+        return
+      }
+      self.processor.openWithCompletionHandler(rootURL, handler: { (success) in
+        self.tableView?.reloadData()
+      })
     }
   }
   
@@ -67,7 +108,7 @@ class MainViewController: NSSplitViewController {
   }
   
   
-  @IBAction func clickRevealActionButton(sender:AnyObject){
+  @IBAction func revealInFinder(sender:AnyObject){
     let row = self.tableView.rowForView(sender as! NSView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
@@ -77,11 +118,18 @@ class MainViewController: NSSplitViewController {
   }
   
   
-  @IBAction func clickInfoActionButton(sender:AnyObject){
-    let row = self.tableView.rowForView(sender as! NSView)
+  @IBAction func openInPreview(sender:AnyObject){
+    guard let rowView = sender as? NSView else { return }
+    let row = self.tableView.rowForView(rowView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
-        NSWorkspace.sharedWorkspace().openURL(image.url)
+        let controller = ImagePreviewController()
+        controller.url = image.url
+        let pop = NSPopover()
+        pop.behavior = .Semitransient
+        pop.contentViewController = controller
+        pop.showRelativeToRect(rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX)
+//        NSWorkspace.sharedWorkspace().openURL(image.url)
       }
     }
   }
@@ -141,13 +189,13 @@ class MainViewController: NSSplitViewController {
     self.processor.coordinate = coordinate
     self.textLatitude.stringValue = ExifUtils.formatDegreeValue(coordinate.latitude, latitude: true)
     self.textLongitude.stringValue = ExifUtils.formatDegreeValue(coordinate.longitude, latitude: false)
-    self.processor.geocodeWithCompletionHandler { (placemark) in
-      let address = placemark?.name ?? ""
-//      let annotation = MapPoint(coordinate: self.annotation!.coordinate, title: address)
-//      self.mapView.addAnnotation(annotation)
-      self.mapLabel.stringValue = address
-      print("address: \(address)")
-    }
+//    self.processor.geocodeWithCompletionHandler { (placemark) in
+//      let address = placemark?.name ?? ""
+////      let annotation = MapPoint(coordinate: self.annotation!.coordinate, title: address)
+////      self.mapView.addAnnotation(annotation)
+//      self.mapLabel.stringValue = address
+//      print("address: \(address)")
+//    }
   }
   
 //  override func mouseDown(theEvent: NSEvent) {
@@ -229,12 +277,14 @@ extension MainViewController: NSTableViewDelegate {
     }else if tableColumn == tableView.tableColumnWithIdentifier("LatitudeCell") {
       cellIdentifier = "LatitudeCell"
       if let latitude = image.latitude {
-        stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
+        stringValue = "\(latitude)"
+//        stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("LongitudeCell") {
       cellIdentifier = "LongitudeCell"
       if let longitude = image.longitude {
-        stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
+        stringValue = "\(longitude)"
+//        stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("AltitudeCell") {
       cellIdentifier = "AltitudeCell"
@@ -248,7 +298,7 @@ extension MainViewController: NSTableViewDelegate {
       }
     }else if tableColumn == tableView.tableColumnWithIdentifier("ModifiedCell") {
       cellIdentifier = "ModifiedCell"
-      stringValue = DateFormatter.stringFromDate(image.modifiedAt)
+      stringValue = DateFormatter.stringFromDate(image.exifDate ?? image.modifiedAt)
     }else if tableColumn == tableView.tableColumnWithIdentifier("SizeCell") {
       cellIdentifier = "SizeCell"
       stringValue = self.processor.sizeFormatter.stringFromByteCount(Int64(image.size))
@@ -257,6 +307,14 @@ extension MainViewController: NSTableViewDelegate {
     }
     guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
+    if let button = cell.viewWithTag(0) as? NSButton {
+      button.target = self
+      button.action = #selector(self.revealInFinder(_:))
+    }
+    if let button = cell.viewWithTag(1) as? NSButton {
+      button.target = self
+      button.action = #selector(self.openInPreview(_:))
+    }
     cell.textField?.stringValue = stringValue
     return cell
   }

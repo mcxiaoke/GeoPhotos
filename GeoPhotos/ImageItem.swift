@@ -22,6 +22,7 @@ class ImageItem:NSObject {
   var longitude:Double?
   var altitude:Double?
   var timestamp:NSDate?
+  var exifDate:NSDate?
   
   init(url:NSURL, type:String, name:String,
        size:UInt64, dimension:NSSize,

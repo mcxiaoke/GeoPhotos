@@ -26,7 +26,7 @@ class ExifUtils {
         return url.isTypeRegularFile() && ImageExtensions.contains(url.pathExtension?.lowercaseString ?? "")
       })
     } catch let error as NSError {
-      print(error.localizedDescription)
+      print("parseFiles:", error.localizedDescription)
     }
     return fileUrls
   }
@@ -67,6 +67,14 @@ class ExifUtils {
                          createdAt: createdAt,
                          modifiedAt: modifiedAt)
     item.mimeType = CGImageSourceGetType(imageSource) as String?
+    
+    
+    // exif properties
+    if let exif = properties[kCGImagePropertyExifDictionary as String]{
+      if let exifDateStr = exif[kCGImagePropertyExifDateTimeDigitized as String] as? String {
+        item.exifDate = DateFormatter.dateFromString(exifDateStr)
+      }
+    }
     // gps properties
     if let gps = properties[kCGImagePropertyGPSDictionary as String] {
       let latitude = gps[kCGImagePropertyGPSLatitude as String] as? Double

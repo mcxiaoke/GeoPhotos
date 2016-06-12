@@ -80,36 +80,17 @@ class ImageProcessor {
     }
   }
   
-  func openWithCompletionHandler(handler: (success:Bool) -> Void){
-    showOpenPanel(handler)
-  }
-  
-  private func showOpenPanel(handler: (Bool) -> Void){
-    let panel = NSOpenPanel()
-    panel.allowsMultipleSelection = false
-    panel.canChooseDirectories = true
-    panel.canCreateDirectories = false
-    panel.canChooseFiles = false
-    panel.beginWithCompletionHandler { (result) in
-      guard result == NSFileHandlingPanelOKButton else {
-        handler(false)
-        return
-      }
-      guard let rootURL = panel.URL else {
-        handler(false)
-        return
-      }
-      self.loadImage(rootURL, handler: handler)
-    }
+  func openWithCompletionHandler(url:NSURL, handler: (success:Bool) -> Void){
+    self.loadImage(url, handler: handler)
   }
   
   func loadImage(url:NSURL, handler: (Bool) -> Void){
     print("loadImage: \(url)")
-    self.rootURL = url
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
       guard let urls = ExifUtils.parseFiles(url) else { return }
-      let images = ExifUtils.parseURLs(urls)
+      let images = ExifUtils.parseURLs(urls).sort{ $0.name < $1.name }
       dispatch_async(dispatch_get_main_queue()){
+        self.rootURL = url
         self.images = images
         handler(true)
       }
