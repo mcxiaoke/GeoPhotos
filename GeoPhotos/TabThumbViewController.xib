@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TabThumbViewController" customModule="ExifViewer" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="Kdt-Ws-7iU" id="j26-bQ-O1z"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kdt-Ws-7iU">
+                    <rect key="frame" x="17" y="17" width="446" height="238"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="photo" id="47q-bm-CZp"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Kdt-Ws-7iU" secondAttribute="trailing" constant="20" symbolic="YES" id="CJl-5p-pPY"/>
+                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="GAj-P9-qRb"/>
+                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="aCh-Te-oGZ"/>
+                <constraint firstAttribute="bottom" secondItem="Kdt-Ws-7iU" secondAttribute="bottom" constant="20" symbolic="YES" id="mOY-2n-UCK"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

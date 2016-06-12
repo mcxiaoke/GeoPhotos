@@ -31,6 +31,7 @@ class MapPoint: NSObject,MKAnnotation {
 
 class MainViewController: NSSplitViewController {
   
+  @IBOutlet weak var progressBar:NSProgressIndicator!
   @IBOutlet weak var tableView:NSTableView!
   @IBOutlet weak var textLatitude:NSTextField!
   @IBOutlet weak var textLongitude:NSTextField!
@@ -151,13 +152,16 @@ class MainViewController: NSSplitViewController {
     let row = self.tableView.rowForView(rowView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
-        let controller = ImagePreviewController()
-        controller.url = image.url
-        let pop = NSPopover()
-        pop.behavior = .Semitransient
-        pop.contentViewController = controller
-        pop.showRelativeToRect(rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX)
-//        NSWorkspace.sharedWorkspace().openURL(image.url)
+          let viewController = DetailTabViewController()
+          viewController.imageURL = image.url
+          self.presentViewController(viewController, asPopoverRelativeToRect: rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX, behavior: NSPopoverBehavior.Semitransient)
+        
+//        let controller = ImagePreviewController()
+//        controller.url = image.url
+//        let pop = NSPopover()
+//        pop.behavior = .Semitransient
+//        pop.contentViewController = controller
+//        pop.showRelativeToRect(rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX)
       }
     }
   }

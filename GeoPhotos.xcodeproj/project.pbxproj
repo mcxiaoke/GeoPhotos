@@ -10,7 +10,13 @@
 		881410D0D21139B40F2F07AF /* Pods_GeoPhotosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */; };
 		9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */; };
 		AA2A36C31D0D063C008C6231 /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */; };
-		AA3CB69E1D0D2E2E001BAF16 /* ImageItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB69D1D0D2E2E001BAF16 /* ImageItemRowView.swift */; };
+		AA3CB6B41D0D6A17001BAF16 /* DetailTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */; };
+		AA3CB6B51D0D6A17001BAF16 /* ImagePropertyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */; };
+		AA3CB6B61D0D6A17001BAF16 /* TabInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */; };
+		AA3CB6B71D0D6A17001BAF16 /* TabInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */; };
+		AA3CB6B81D0D6A17001BAF16 /* TabThumbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */; };
+		AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */; };
+		AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */; };
 		AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
 		AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
 		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
@@ -46,7 +52,13 @@
 		9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewController.swift; sourceTree = "<group>"; };
-		AA3CB69D1D0D2E2E001BAF16 /* ImageItemRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageItemRowView.swift; path = ../ImageItemRowView.swift; sourceTree = "<group>"; };
+		AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTabViewController.swift; sourceTree = "<group>"; };
+		AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertyItem.swift; sourceTree = "<group>"; };
+		AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabInfoViewController.swift; sourceTree = "<group>"; };
+		AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabInfoViewController.xib; sourceTree = "<group>"; };
+		AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabThumbViewController.swift; sourceTree = "<group>"; };
+		AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabThumbViewController.xib; sourceTree = "<group>"; };
+		AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +126,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AA3CB69F1D0D6981001BAF16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */,
+				AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */,
+				AAEAD4271D06A42900B7EF6B /* MainViewController.swift */,
+				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
+				AAEAD4281D06A42900B7EF6B /* MainViewController.xib */,
+				AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */,
+				AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */,
+				AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */,
+				AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */,
+				AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */,
+				AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */,
+				AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		AAEAD3F81D0698F600B7EF6B = {
 			isa = PBXGroup;
 			children = (
@@ -139,18 +170,13 @@
 		AAEAD4031D0698F600B7EF6B /* GeoPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				AA3CB69F1D0D6981001BAF16 /* Controllers */,
 				AAEAD40B1D0698F600B7EF6B /* Info.plist */,
 				AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */,
 				AAEAD4361D06BD3800B7EF6B /* Constants.swift */,
 				AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */,
-				AA3CB69D1D0D2E2E001BAF16 /* ImageItemRowView.swift */,
-				AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */,
 				AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */,
-				AAEAD4271D06A42900B7EF6B /* MainViewController.swift */,
-				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
 				AAEAD4061D0698F600B7EF6B /* Assets.xcassets */,
-				AAEAD4281D06A42900B7EF6B /* MainViewController.xib */,
-				AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */,
 				AAEAD4311D06BC4900B7EF6B /* Extensions */,
 				AAEAD4081D0698F600B7EF6B /* MainMenu.xib */,
 				AAEAD42B1D06B1A800B7EF6B /* Models */,
@@ -284,6 +310,8 @@
 				AAEAD4221D06991F00B7EF6B /* MainWindowController.xib in Resources */,
 				AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */,
 				AAEAD42A1D06A42900B7EF6B /* MainViewController.xib in Resources */,
+				AA3CB6B71D0D6A17001BAF16 /* TabInfoViewController.xib in Resources */,
+				AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,15 +425,19 @@
 				AAEAD42D1D06B1F400B7EF6B /* ImageItem.swift in Sources */,
 				AAEBF8E21D092CB40025D405 /* ImageProcessor.swift in Sources */,
 				AAEBF8E41D0946B20025D405 /* DecimalOnlyNumberFormatter.swift in Sources */,
+				AA3CB6B51D0D6A17001BAF16 /* ImagePropertyItem.swift in Sources */,
 				AAEAD4291D06A42900B7EF6B /* MainViewController.swift in Sources */,
 				AAEAD4331D06BC5A00B7EF6B /* NSURL+Extensions.swift in Sources */,
+				AA3CB6B41D0D6A17001BAF16 /* DetailTabViewController.swift in Sources */,
 				AA2A36C31D0D063C008C6231 /* ImagePreviewController.swift in Sources */,
 				AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */,
 				AAEAD4371D06BD3800B7EF6B /* Constants.swift in Sources */,
 				AAEAD4301D06B4D500B7EF6B /* ExifUtils.swift in Sources */,
 				AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */,
-				AA3CB69E1D0D2E2E001BAF16 /* ImageItemRowView.swift in Sources */,
+				AA3CB6B61D0D6A17001BAF16 /* TabInfoViewController.swift in Sources */,
+				AA3CB6B81D0D6A17001BAF16 /* TabThumbViewController.swift in Sources */,
 				AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */,
+				AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
