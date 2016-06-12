@@ -51,7 +51,9 @@ class MainViewController: NSSplitViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.tableView.registerForDraggedTypes([NSFilenamesPboardType, NSStringPboardType])
   }
+  
   
   func copy(sender:AnyObject?){
     guard self.tableView.selectedRow >= 0 else { return }
@@ -62,15 +64,18 @@ class MainViewController: NSSplitViewController {
   }
   
   func paste(sender:AnyObject?){
-//    guard self.processor.rootURL == nil else { return }
-    let pb = NSPasteboard.generalPasteboard()
+    readFromPasteboard(NSPasteboard.generalPasteboard())
+  }
+  
+  func readFromPasteboard(pb:NSPasteboard) -> Bool{
     let objects = pb.readObjectsForClasses(
       [NSURL.self],options: [NSPasteboardURLReadingFileURLsOnlyKey:true]) as? [NSURL]
-    guard let path = objects?.first?.path else { return }
+    guard let path = objects?.first?.path else { return false }
     let rootURL = NSURL(fileURLWithPath:path)
     self.processor.openWithCompletionHandler(rootURL, handler: { (success) in
       self.tableView?.reloadData()
     })
+    return true
   }
   
   override func selectAll(sender: AnyObject?) {
@@ -317,6 +322,18 @@ extension MainViewController: NSTableViewDelegate {
     }
     cell.textField?.stringValue = stringValue
     return cell
+  }
+  
+  // drag and drop
+  // http://stackoverflow.com/questions/4839561/nstableview-drop-app-file-whats-going-wrong
+  
+  func tableView(tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    return NSDragOperation.Copy
+  }
+  
+  func tableView(tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+    print("acceptDrop row=\(row) info=\(info)")
+    return readFromPasteboard(info.draggingPasteboard())
   }
 }
 

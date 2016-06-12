@@ -8,7 +8,7 @@
 
 import Cocoa
 
-private let imageDisplayMaxWidth:CGFloat = 480
+private let imageDisplayMaxWidth:CGFloat = 320
 
 class ImagePreviewController: NSViewController {
   
