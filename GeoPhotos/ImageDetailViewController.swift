@@ -126,7 +126,7 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
       guard let props  = imageProperties as? Dictionary<String,AnyObject> else { return }
       let width = props[kCGImagePropertyPixelWidth as String] as! Int
       let height = props[kCGImagePropertyPixelHeight as String] as! Int
-      let properties = ImagePropertyItem.parse(props).sort { $0.key < $1.key }
+      let properties = ImagePropertyItem.parse(props)
       dispatch_async(dispatch_get_main_queue(), {
         self.properties = properties
       })

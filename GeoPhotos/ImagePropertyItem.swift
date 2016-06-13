@@ -114,15 +114,16 @@ class ImagePropertyItem : NSObject {
   
   class func parse(properties: Dictionary<String,AnyObject>, category:String? = nil) -> [ImagePropertyItem]{
     var items:[ImagePropertyItem] = []
+    var subItems:[ImagePropertyItem] = []
     properties.forEach { (key, value) in
       if let child  = value as? Dictionary<String,AnyObject> {
-        items += parse(child, category: key)
+        subItems += parse(child, category: key)
       }else {
         let newItem = ImagePropertyItem(rawKey: key, rawValue: value, rawCat: category)
         items.append(newItem)
       }
     }
-    return items
+    return items.sort { $0.key < $1.key } + subItems.sort{ $0.key < $1.key }
   }
   
   class func getObjectValue(item:ImagePropertyItem, value:String) -> AnyObject {
