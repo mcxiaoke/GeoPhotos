@@ -44,11 +44,16 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
   }
   
   func copy(sender:AnyObject?){
-    guard let item = self.arrayController.selectedObjects.first as? ImagePropertyItem else { return }
-    let textValue = "\(ImagePropertyItem.getImageIOLocalizedString(item.rawKey)) = \(item.textValue)"
-    let pb = NSPasteboard.generalPasteboard()
-    pb.clearContents()
-    pb.setString(textValue, forType: NSPasteboardTypeString)
+    guard let items = self.arrayController.selectedObjects as? [ImagePropertyItem] else { return }
+    var textValue = ""
+    items.forEach { (item) in
+      textValue = "\(ImagePropertyItem.getImageIOLocalizedString(item.rawKey)) = \(item.textValue)\n"
+    }
+    if !textValue.isEmpty {
+      let pb = NSPasteboard.generalPasteboard()
+      pb.clearContents()
+      pb.setString(textValue, forType: NSPasteboardTypeString)
+    }
   }
   
   func addChangedProperty(item: ImagePropertyItem){

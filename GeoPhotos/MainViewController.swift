@@ -10,6 +10,15 @@ import Cocoa
 import CoreLocation
 import MapKit
 
+private let kActionCell = "ActionCell"
+private let kNameCell = "NameCell"
+private let kLatitudeCell = "LatitudeCell"
+private let kLongitudeCell = "LongitudeCell"
+private let kAltitudeCell = "AltitudeCell"
+private let kTimestampCell = "TimestampCell"
+private let kModifiedCell = "ModifiedCell"
+private let kSizeCell = "SizeCell"
+
 let GPSEditablePropertyDictionary:[String:AnyObject] = [
   kCGImagePropertyGPSLatitude as String: 0.0,
   kCGImagePropertyGPSLongitude as String: 0.0,
@@ -51,8 +60,32 @@ class MainViewController: NSSplitViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateUI()
-    self.tableView.becomeFirstResponder()
     self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
+    self.addSortDescriptorsForTableView()
+  }
+  
+  func addSortDescriptorsForTableView(){
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kNameCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "name", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kLatitudeCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "latitude", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kLongitudeCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "longitude", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kAltitudeCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "altitude", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kTimestampCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "timestamp", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kModifiedCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "modifiedAt", ascending: true)
+    }
+    if let tableColumn = self.tableView.tableColumnWithIdentifier(kSizeCell) {
+      tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "size", ascending: true)
+    }
   }
   
   func updateTableViewRows(index:Int){
@@ -123,18 +156,6 @@ class MainViewController: NSSplitViewController {
         self.updateUI()
         self.tableView?.reloadData()
       })
-    }
-  }
-  
-  func tableViewSelectionDidChange(notification: NSNotification) {
-    if self.tableView.selectedRow >= 0 {
-      guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-      if self.textLatitude.stringValue.isEmpty &&
-        self.textLongitude.stringValue.isEmpty {
-        self.textLatitude.objectValue = image.latitude
-        self.textLongitude.objectValue = image.longitude
-        self.textAltitude.objectValue = image.altitude
-      }
     }
   }
   
@@ -384,39 +405,39 @@ extension MainViewController: NSTableViewDelegate {
     guard let image = self.processor.images?[row] else { return nil }
     var cellIdentifier = ""
     var stringValue:String = ""
-    if tableColumn == tableView.tableColumnWithIdentifier("NameCell") {
-      cellIdentifier = "NameCell"
+    if tableColumn == tableView.tableColumnWithIdentifier(kNameCell) {
+      cellIdentifier = kNameCell
       stringValue = image.name
-    }else if tableColumn == tableView.tableColumnWithIdentifier("LatitudeCell") {
-      cellIdentifier = "LatitudeCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kLatitudeCell) {
+      cellIdentifier = kLatitudeCell
       if let latitude = image.latitude {
 //        stringValue = "\(latitude)"
         stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier("LongitudeCell") {
-      cellIdentifier = "LongitudeCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kLongitudeCell) {
+      cellIdentifier = kLongitudeCell
       if let longitude = image.longitude {
 //        stringValue = "\(longitude)"
         stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier("AltitudeCell") {
-      cellIdentifier = "AltitudeCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kAltitudeCell) {
+      cellIdentifier = kAltitudeCell
       if let altitude = image.altitude {
         stringValue = String(format: "%.2f", altitude)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier("TimestampCell") {
-      cellIdentifier = "TimestampCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kTimestampCell) {
+      cellIdentifier = kTimestampCell
       if let dateTime = image.timestamp {
         stringValue = DateFormatter.stringFromDate(dateTime)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier("ModifiedCell") {
-      cellIdentifier = "ModifiedCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kModifiedCell) {
+      cellIdentifier = kModifiedCell
       stringValue = DateFormatter.stringFromDate(image.exifDate ?? image.modifiedAt)
-    }else if tableColumn == tableView.tableColumnWithIdentifier("SizeCell") {
-      cellIdentifier = "SizeCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kSizeCell) {
+      cellIdentifier = kSizeCell
       stringValue = self.processor.sizeFormatter.stringFromByteCount(Int64(image.size))
-    }else if tableColumn == tableView.tableColumnWithIdentifier("ActionCell") {
-      cellIdentifier = "ActionCell"
+    }else if tableColumn == tableView.tableColumnWithIdentifier(kActionCell) {
+      cellIdentifier = kActionCell
     }
     guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
@@ -455,9 +476,38 @@ extension MainViewController: NSTableViewDelegate {
     print("acceptDrop row=\(row) info=\(info)")
     return readFromPasteboard(info.draggingPasteboard())
   }
+  
+  
+  func tableViewSelectionDidChange(notification: NSNotification) {
+    if self.tableView.selectedRow >= 0 {
+      guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
+      guard let latitude = image.latitude,
+        let longitude = image.longitude,
+        let altitude = image.altitude else { return }
+      if self.textLatitude.stringValue.isEmpty &&
+        self.textLongitude.stringValue.isEmpty {
+        self.textLatitude.objectValue = latitude
+        self.textLongitude.objectValue = longitude
+        self.textAltitude.objectValue = altitude
+        self.processor.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.processor.altitude = altitude
+      }
+    }
+  }
+  
 }
 
 extension MainViewController: NSTableViewDataSource {
+  
+  func tableView(tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+    if let images = self.processor.images{
+      if let sortedImages = (images as NSArray).sortedArrayUsingDescriptors(tableView.sortDescriptors) as? [ImageItem] {
+        self.processor.images = sortedImages
+        tableView.reloadData()
+      }
+    }
+  }
+  
   func numberOfRowsInTableView(tableView: NSTableView) -> Int {
     return self.processor.images?.count ?? 0
   }
