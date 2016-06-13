@@ -18,6 +18,8 @@
 		AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */; };
 		AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */; };
 		AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
+		AA900EE81D0E5A89003FE31E /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */; };
+		AA900EE91D0E5A89003FE31E /* ImageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA900EE71D0E5A89003FE31E /* ImageDetailViewController.xib */; };
 		AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
 		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
 		AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
@@ -60,6 +62,8 @@
 		AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabThumbViewController.xib; sourceTree = "<group>"; };
 		AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		AA900EE71D0E5A89003FE31E /* ImageDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageDetailViewController.xib; sourceTree = "<group>"; };
 		AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAEAD4061D0698F600B7EF6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,18 +133,18 @@
 		AA3CB69F1D0D6981001BAF16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */,
 				AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */,
 				AAEAD4271D06A42900B7EF6B /* MainViewController.swift */,
-				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
 				AAEAD4281D06A42900B7EF6B /* MainViewController.xib */,
+				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
 				AAEAD4201D06991F00B7EF6B /* MainWindowController.xib */,
-				AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */,
-				AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */,
 				AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */,
 				AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */,
 				AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */,
 				AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */,
+				AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */,
+				AA900EE71D0E5A89003FE31E /* ImageDetailViewController.xib */,
+				AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +201,7 @@
 		AAEAD42B1D06B1A800B7EF6B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */,
 				AAEAD42C1D06B1F400B7EF6B /* ImageItem.swift */,
 			);
 			name = Models;
@@ -205,6 +210,7 @@
 		AAEAD42E1D06B4C400B7EF6B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */,
 				AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */,
 			);
 			name = Utils;
@@ -307,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */,
+				AA900EE91D0E5A89003FE31E /* ImageDetailViewController.xib in Resources */,
 				AAEAD4221D06991F00B7EF6B /* MainWindowController.xib in Resources */,
 				AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */,
 				AAEAD42A1D06A42900B7EF6B /* MainViewController.xib in Resources */,
@@ -436,6 +443,7 @@
 				AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */,
 				AA3CB6B61D0D6A17001BAF16 /* TabInfoViewController.swift in Sources */,
 				AA3CB6B81D0D6A17001BAF16 /* TabThumbViewController.swift in Sources */,
+				AA900EE81D0E5A89003FE31E /* ImageDetailViewController.swift in Sources */,
 				AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */,
 				AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */,
 			);

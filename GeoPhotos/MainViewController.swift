@@ -51,6 +51,7 @@ class MainViewController: NSSplitViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateUI()
+    self.tableView.becomeFirstResponder()
     self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
   }
   
@@ -99,10 +100,6 @@ class MainViewController: NSSplitViewController {
     return true
   }
   
-  override func selectAll(sender: AnyObject?) {
-    print("do select all")
-  }
-  
   func openDocument(sender:AnyObject){
     showOpenPanel()
   }
@@ -129,10 +126,22 @@ class MainViewController: NSSplitViewController {
     }
   }
   
+  func tableViewSelectionDidChange(notification: NSNotification) {
+    if self.tableView.selectedRow >= 0 {
+      guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
+      if self.textLatitude.stringValue.isEmpty &&
+        self.textLongitude.stringValue.isEmpty {
+        self.textLatitude.objectValue = image.latitude
+        self.textLongitude.objectValue = image.longitude
+        self.textAltitude.objectValue = image.altitude
+      }
+    }
+  }
+  
   @IBAction func doubleClickRow(sender:AnyObject){
     if self.tableView.selectedRow >= 0 {
       guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-      NSWorkspace.sharedWorkspace().selectFile(image.url.path, inFileViewerRootedAtPath: "")
+      NSWorkspace.sharedWorkspace().openURL(image.url)
     }
   }
   
@@ -152,16 +161,10 @@ class MainViewController: NSSplitViewController {
     let row = self.tableView.rowForView(rowView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
-          let viewController = DetailTabViewController()
-          viewController.imageURL = image.url
-          self.presentViewController(viewController, asPopoverRelativeToRect: rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX, behavior: NSPopoverBehavior.Semitransient)
-        
-//        let controller = ImagePreviewController()
-//        controller.url = image.url
-//        let pop = NSPopover()
-//        pop.behavior = .Semitransient
-//        pop.contentViewController = controller
-//        pop.showRelativeToRect(rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX)
+        let controller = ImageDetailViewController()
+        controller.imageURL = image.url
+        self.presentViewController(controller, asPopoverRelativeToRect: rowView.bounds,
+                                   ofView: rowView, preferredEdge: NSRectEdge.MaxX, behavior: .Semitransient)
       }
     }
   }

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TabThumbViewController" customModule="ExifViewer" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="TabThumbViewController" customModule="GeoPhotos" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="Kdt-Ws-7iU" id="j26-bQ-O1z"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -18,15 +18,15 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kdt-Ws-7iU">
-                    <rect key="frame" x="17" y="17" width="446" height="238"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="photo" id="47q-bm-CZp"/>
+                    <rect key="frame" x="2" y="2" width="476" height="272"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="47q-bm-CZp"/>
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Kdt-Ws-7iU" secondAttribute="trailing" constant="20" symbolic="YES" id="CJl-5p-pPY"/>
-                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="GAj-P9-qRb"/>
-                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="aCh-Te-oGZ"/>
-                <constraint firstAttribute="bottom" secondItem="Kdt-Ws-7iU" secondAttribute="bottom" constant="20" symbolic="YES" id="mOY-2n-UCK"/>
+                <constraint firstAttribute="trailing" secondItem="Kdt-Ws-7iU" secondAttribute="trailing" constant="5" id="CJl-5p-pPY"/>
+                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="1" id="GAj-P9-qRb"/>
+                <constraint firstItem="Kdt-Ws-7iU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="aCh-Te-oGZ"/>
+                <constraint firstAttribute="bottom" secondItem="Kdt-Ws-7iU" secondAttribute="bottom" constant="5" id="mOY-2n-UCK"/>
             </constraints>
         </customView>
     </objects>
