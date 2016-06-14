@@ -87,6 +87,7 @@ class ImageProcessor {
           print("processed \(image.name)")
           savedCount += 1
           image.updateProperties()
+          image.modified = true
         }
       })
       self.savingIndex = nil
@@ -122,15 +123,16 @@ class ImageProcessor {
             try fileManager.moveItemAtURL(backupURL, toURL: image.url)
             try fileManager.removeItemAtURL(tempURL)
             restoredCount += 1
+            image.modified = false
           }catch let error as NSError{
             print("restore \(image.name): \(error)")
           }
         }
-        }
-        self.restoringIndex = nil
-        self.hasBackup = false
-        dispatch_async(dispatch_get_main_queue()){
-          completionHandler(restoredCount, "OK")
+      }
+      self.restoringIndex = nil
+      self.hasBackup = false
+      dispatch_async(dispatch_get_main_queue()){
+        completionHandler(restoredCount, "OK")
       }
     }
   }

@@ -204,7 +204,7 @@ class MainViewController: NSSplitViewController {
         self.showRestoreSuccessAlert(restoredCount)
       })
       }) { (image, index, total) in
-        self.updateTableViewRows(index)
+        //self.updateTableViewRows(index)
     }
   }
   
@@ -459,11 +459,11 @@ extension MainViewController: NSTableViewDelegate {
     cell.textField?.stringValue = stringValue
     
     if self.processor.savingIndex == row {
-      cell.textField?.textColor = NSColor.blueColor()
+      cell.textField?.textColor = NSColor.redColor()
     } else if self.processor.restoringIndex == row{
       cell.textField?.textColor = NSColor.redColor()
     }  else {
-      cell.textField?.textColor = nil
+      cell.textField?.textColor = image.modified ? NSColor.blueColor() : NSColor.blackColor()
     }
     return cell
   }

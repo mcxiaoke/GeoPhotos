@@ -24,6 +24,8 @@ class ImageItem:NSObject {
   var timestamp:NSDate?
   var exifDate:NSDate?
   
+  var modified = false
+  
   init(url:NSURL, type:String, name:String,
        size:UInt64, dimension:NSSize,
        createdAt:NSDate, modifiedAt:NSDate){
