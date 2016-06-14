@@ -211,9 +211,10 @@ class MainViewController: NSSplitViewController {
   func showRestoreSuccessAlert(count:Int){
     let alert = NSAlert()
     alert.alertStyle = .InformationalAlertStyle
-    alert.messageText = "Images Restored"
-    alert.informativeText = "Modified images have been restored using backup files, \(count) files affected."
-    alert.addButtonWithTitle("OK")
+    alert.messageText = NSLocalizedString("RESTORE_SUCCESS_ALERT_MESSAGE_TEXT", comment: "Image Properties Restored")
+    let format = NSLocalizedString("RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT", comment: "Modified images have been restored using backup files, count files affected.")
+    alert.informativeText = String(format: format, count)
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       //
     }
@@ -231,9 +232,9 @@ class MainViewController: NSSplitViewController {
   func showInvalidAlert(){
     let alert = NSAlert()
     alert.alertStyle = .WarningAlertStyle
-    alert.messageText = "GPS Properties Invalid"
-    alert.informativeText = "GPS coordinate is empty or invalid, please check again."
-    alert.addButtonWithTitle("OK")
+    alert.messageText = NSLocalizedString("SAVE_INVALID_ALERT_MESSAGE_TEXT", comment: "GPS Properties Invalid")
+    alert.informativeText = NSLocalizedString("SAVE_INVALID_ALERT_INFORMATIVE_TEXT", comment: "GPS coordinate is empty or invalid, please check again.")
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       
     }
@@ -242,21 +243,22 @@ class MainViewController: NSSplitViewController {
   func showSaveAlert(sender:AnyObject?){
     let alert = NSAlert()
     alert.alertStyle = .InformationalAlertStyle
-    alert.messageText = "Save GPS Properties"
-    var contentText = "GPS properties below will be written back to images, Please check:\n"
+    alert.messageText = NSLocalizedString("SAVE_ALERT_MESSAGE_TEXT", comment: "Save GPS Properties")
+    var contentText = "\n"
     if let coordinate = self.processor.coordinate {
-      contentText += "Latitude:\(coordinate.latitude)\n"
-      contentText += "Longitude:\(coordinate.longitude)\n"
+      contentText += NSLocalizedString("LATITUDE", comment: "Latitude:") + "\t\(coordinate.latitude)\n"
+      contentText += NSLocalizedString("LONGITUDE", comment: "Longitude:") + "\t\(coordinate.longitude)\n"
     }
     if let altitude = self.processor.altitude {
-      contentText += "Altitude:\(altitude)\n"
+      contentText += NSLocalizedString("ALTITUDE", comment: "Altitude:") + "\t\(altitude)\n"
     }
     if let timestamp = self.processor.timestamp {
-      contentText += "Timestamp:\(DateFormatter.stringFromDate(timestamp))\n"
+      contentText += NSLocalizedString("TIMESTAMP", comment: "Timestamp:") + "\t\(DateFormatter.stringFromDate(timestamp))\n"
     }
-    alert.informativeText = "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?"
-    alert.addButtonWithTitle("OK")
-    alert.addButtonWithTitle("Cancel")
+    let formatText = NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT", comment: "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?")
+    alert.informativeText = contentText + formatText
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "CANCEL"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       if response == NSAlertFirstButtonReturn {
         self.saveProperties()
@@ -267,9 +269,10 @@ class MainViewController: NSSplitViewController {
   func showSaveSuccessAlert(count:Int){
     let alert = NSAlert()
     alert.alertStyle = .WarningAlertStyle
-    alert.messageText = "GPS Properties Saved"
-    alert.informativeText = "GPS properties have been written back to images, \(count) files affected."
-    alert.addButtonWithTitle("OK")
+    alert.messageText = NSLocalizedString("SAVE_SUCCESS_ALERT_MESSAGE_TEXT", comment: "GPS Properties Saved")
+    let format = NSLocalizedString("SAVE_SUCCESS_ALERT_INFORMATIVE_TEXT", comment: "GPS properties have been written back to images, count files affected.")
+    alert.informativeText = String(format: format, count)
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       //
     }

@@ -1,0 +1,42 @@
+﻿/* CANCEL */
+"BUTTON_CANCEL" = "Cancel";
+
+/* OK */
+"BUTTON_OK" = "OK";
+
+/* Modified images have been restored using backup files, count files affected. */
+"RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT" = "Modified images have been restored using backup files, %d files affected.";
+
+/* GPS Properties Restored */
+"RESTORE_SUCCESS_ALERT_MESSAGE_TEXT" = "GPS Properties Restored";
+
+/* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
+"SAVE_ALERT_INFORMATIVE_TEXT" = "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?\n";
+
+/* Save GPS Properties */
+"SAVE_ALERT_MESSAGE_TEXT" = "Save GPS Properties";
+
+/* GPS coordinate is empty or invalid, please check again. */
+"SAVE_INVALID_ALERT_INFORMATIVE_TEXT" = "GPS coordinate is empty or invalid, please check again.";
+
+/* GPS Properties Invalid */
+"SAVE_INVALID_ALERT_MESSAGE_TEXT" = "GPS Properties Invalid";
+
+/* GPS properties have been written back to images, count files affected. */
+"SAVE_SUCCESS_ALERT_INFORMATIVE_TEXT" = "GPS properties have been written back to images, %d files affected.";
+
+/* GPS Properties Saved */
+"SAVE_SUCCESS_ALERT_MESSAGE_TEXT" = "GPS Properties Saved";
+
+/* Altitude: */
+"ALTITUDE" = "Altitude:";
+
+/* Latitude: */
+"LATITUDE" = "Latitude:";
+
+/* Longitude: */
+"LONGITUDE" = "Longitude:";
+
+/* Timestamp: */
+"TIMESTAMP" = "Timestamp:";
+

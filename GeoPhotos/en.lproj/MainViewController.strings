@@ -1,0 +1,87 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1Rk-W4-v32"; */
+"1Rk-W4-v32.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Altitude:"; ObjectID = "1ts-57-DsP"; */
+"1ts-57-DsP.title" = "Altitude:";
+
+/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "2lV-bH-69T"; */
+"2lV-bH-69T.title" = "Restore";
+
+/* Class = "NSTableColumn"; headerCell.title = "Longitude"; ObjectID = "3Dw-Mr-x1d"; */
+"3Dw-Mr-x1d.headerCell.title" = "Longitude";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "3QZ-Ek-0ij"; */
+"3QZ-Ek-0ij.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "4Gh-1x-MEJ"; */
+"4Gh-1x-MEJ.title" = "Table View Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "5dk-rF-AaK"; */
+"5dk-rF-AaK.headerCell.title" = "Name";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "A38-K5-pxU"; */
+"A38-K5-pxU.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Size"; ObjectID = "ACy-KR-mwq"; */
+"ACy-KR-mwq.headerCell.title" = "Size";
+
+/* Class = "NSTextFieldCell"; title = "Time:"; ObjectID = "BC6-N8-oOx"; */
+"BC6-N8-oOx.title" = "Time:";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "IBg-BC-5S9"; */
+"IBg-BC-5S9.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Ie4-AN-Rib"; */
+"Ie4-AN-Rib.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Im8-BO-Vh8"; */
+"Im8-BO-Vh8.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NlK-kC-bXL"; */
+"NlK-kC-bXL.title" = "Table View Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "QdH-Mc-Hkd"; */
+"QdH-Mc-Hkd.headerCell.title" = "Action";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Rui-IH-0Cy"; */
+"Rui-IH-0Cy.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Longitude:"; ObjectID = "Uns-ne-N3g"; */
+"Uns-ne-N3g.title" = "Longitude:";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WXO-69-Xgb"; */
+"WXO-69-Xgb.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Modified"; ObjectID = "XFG-ay-MKp"; */
+"XFG-ay-MKp.headerCell.title" = "Modified";
+
+/* Class = "NSTableColumn"; headerCell.title = "Altitude"; ObjectID = "YMc-YW-VgZ"; */
+"YMc-YW-VgZ.headerCell.title" = "Altitude";
+
+/* Class = "NSTableColumn"; headerCell.title = "Latitude"; ObjectID = "ZmH-v5-fxh"; */
+"ZmH-v5-fxh.headerCell.title" = "Latitude";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "f6V-Gg-OV3"; */
+"f6V-Gg-OV3.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ix4-fm-C4r"; */
+"ix4-fm-C4r.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Timestamp"; ObjectID = "jCG-BM-kkk"; */
+"jCG-BM-kkk.headerCell.title" = "Timestamp";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "jJA-h4-9dZ"; */
+"jJA-h4-9dZ.title" = "Save";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "nae-Vz-jQq"; */
+"nae-Vz-jQq.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Latitude:"; ObjectID = "pHD-Do-MK9"; */
+"pHD-Do-MK9.title" = "Latitude:";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "wUi-bB-ylQ"; */
+"wUi-bB-ylQ.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wZK-bK-Trl"; */
+"wZK-bK-Trl.title" = "Text Cell";

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TabInfoViewController" customModule="ExifViewer" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="TabInfoViewController" customModule="GeoPhotos" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="jps-mH-9io" id="MqR-Ne-e5W"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>

@@ -129,8 +129,6 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
       guard let imageSource = CGImageSourceCreateWithURL(url, nil) else { return }
       guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? else { return }
       guard let props  = imageProperties as? Dictionary<String,AnyObject> else { return }
-      let width = props[kCGImagePropertyPixelWidth as String] as! Int
-      let height = props[kCGImagePropertyPixelHeight as String] as! Int
       let properties = ImagePropertyItem.parse(props)
       dispatch_async(dispatch_get_main_queue(), {
         self.properties = properties

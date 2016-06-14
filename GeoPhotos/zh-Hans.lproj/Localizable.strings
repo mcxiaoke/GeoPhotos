@@ -1,0 +1,42 @@
+﻿/* CANCEL */
+"BUTTON_CANCEL" = "取消";
+
+/* OK */
+"BUTTON_OK" = "确认";
+
+/* Modified images have been restored using backup files, count files affected. */
+"RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT" = "已使用备份文件复原之前所做的修改，%d 个文件已复原。";
+
+/* Image Properties Restored */
+"RESTORE_SUCCESS_ALERT_MESSAGE_TEXT" = "修改已复原";
+
+/* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
+"SAVE_ALERT_INFORMATIVE_TEXT" = "\n这些属性将会写入并覆盖原文件，原始文件会自动备份，确认继续操作？\n";
+
+/* Save GPS Properties */
+"SAVE_ALERT_MESSAGE_TEXT" = "确认保存修改";
+
+/* GPS coordinate is empty or invalid, please check again. */
+"SAVE_INVALID_ALERT_INFORMATIVE_TEXT" = "GPS坐标为空或超出范围，无法保存修改，请检查后重试。";
+
+/* GPS Properties Invalid */
+"SAVE_INVALID_ALERT_MESSAGE_TEXT" = "无法保存修改";
+
+/* GPS properties have been written back to images, count files affected. */
+"SAVE_SUCCESS_ALERT_INFORMATIVE_TEXT" = "修改已写入到原文件，%d 个文件已保存。";
+
+/* GPS Properties Saved */
+"SAVE_SUCCESS_ALERT_MESSAGE_TEXT" = "修改已保存";
+
+/* Altitude: */
+"ALTITUDE" = "海拔:";
+
+/* Latitude: */
+"LATITUDE" = "纬度:";
+
+/* Longitude: */
+"LONGITUDE" = "经度:";
+
+/* Timestamp: */
+"TIMESTAMP" = "时间:";
+

@@ -1,0 +1,21 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "H2g-wA-IVJ"; */
+"H2g-wA-IVJ.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Mbb-V2-nhT"; */
+"Mbb-V2-nhT.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "Q4P-Nl-mgE"; */
+"Q4P-Nl-mgE.headerCell.title" = "Key";
+
+/* Class = "NSTextFieldCell"; title = "Image Exif Properties"; ObjectID = "Qkq-GH-eDt"; */
+"Qkq-GH-eDt.title" = "EXIF 信息";
+
+/* Class = "NSTextFieldCell"; title = "Value Cell"; ObjectID = "ayp-Ha-duR"; */
+"ayp-Ha-duR.title" = "Value Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Value"; ObjectID = "lbF-A6-6j2"; */
+"lbF-A6-6j2.headerCell.title" = "Value";
+
+/* Class = "NSTextFieldCell"; title = "Key Cell"; ObjectID = "xg4-CT-jjm"; */
+"xg4-CT-jjm.title" = "Key Cell";

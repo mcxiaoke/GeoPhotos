@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <plugIn identifier="com.apple.MapKitIBPlugin" version="10117"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="GeoPhotos" customModuleProvider="target">
@@ -28,7 +29,7 @@
                 <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxp-gU-BpQ">
                     <rect key="frame" x="0.0" y="0.0" width="751" height="480"/>
                     <subviews>
-                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="s3W-mC-CTd">
+                        <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="s3W-mC-CTd">
                             <rect key="frame" x="0.0" y="0.0" width="510" height="480"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <clipView key="contentView" id="ml5-eH-UwH">
@@ -516,6 +517,9 @@
                             </constraints>
                         </customView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="s3W-mC-CTd" firstAttribute="width" relation="greaterThanOrEqual" secondItem="qaL-u7-9At" secondAttribute="width" multiplier="2" id="xga-xG-HRZ"/>
+                    </constraints>
                     <holdingPriorities>
                         <real value="250"/>
                         <real value="251"/>
