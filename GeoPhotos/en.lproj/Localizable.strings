@@ -13,6 +13,9 @@
 /* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
 "SAVE_ALERT_INFORMATIVE_TEXT" = "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?\n";
 
+/* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
+"SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP" = "\nThese properties will override existing properties, orignal files will be overrided, would you confirm and continue?\n";
+
 /* Save GPS Properties */
 "SAVE_ALERT_MESSAGE_TEXT" = "Save GPS Properties";
 

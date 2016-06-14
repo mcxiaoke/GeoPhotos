@@ -49,6 +49,7 @@ class MainViewController: NSSplitViewController {
   @IBOutlet weak var mapView:MKMapView!
   @IBOutlet weak var restoreButton:NSButton!
   @IBOutlet weak var saveButton:NSButton!
+  @IBOutlet weak var backupCheckBox:NSButton!
   
   let processor = ImageProcessor()
   var annotation:MKAnnotation?
@@ -241,6 +242,7 @@ class MainViewController: NSSplitViewController {
   }
   
   func showSaveAlert(sender:AnyObject?){
+    let backup = self.backupCheckBox.state == NSOnState
     let alert = NSAlert()
     alert.alertStyle = .InformationalAlertStyle
     alert.messageText = NSLocalizedString("SAVE_ALERT_MESSAGE_TEXT", comment: "Save GPS Properties")
@@ -255,13 +257,14 @@ class MainViewController: NSSplitViewController {
     if let timestamp = self.processor.timestamp {
       contentText += NSLocalizedString("TIMESTAMP", comment: "Timestamp:") + "\t\(DateFormatter.stringFromDate(timestamp))\n"
     }
-    let formatText = NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT", comment: "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?")
+    let formatText = backup ? NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT", comment: "") : NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP", comment: "")
     alert.informativeText = contentText + formatText
     alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
     alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "CANCEL"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       if response == NSAlertFirstButtonReturn {
-        self.saveProperties()
+        
+        self.saveProperties(backup)
       }
     }
   }
@@ -278,10 +281,11 @@ class MainViewController: NSSplitViewController {
     }
   }
   
-  func saveProperties(){
+  func saveProperties(backup:Bool){
+    print("saveProperties backup=\(backup)")
     updateUI()
     self.processor.altitude = self.textAltitude.doubleValue
-    self.processor.save(true,
+    self.processor.save(backup,
         completionHandler: { (count, message) in
         print("saveProperties: \(count) \(message)")
         self.updateUI()
@@ -323,8 +327,8 @@ class MainViewController: NSSplitViewController {
     }
     self.annotation = newAnnotaion
     self.processor.coordinate = coordinate
-    self.textLatitude.stringValue = "\(coordinate.latitude)"
-    self.textLongitude.stringValue = "\(coordinate.longitude)"
+    self.textLatitude.objectValue = coordinate.latitude
+    self.textLongitude.objectValue = coordinate.longitude
     updateUI()
 //    self.processor.geocodeWithCompletionHandler { (placemark) in
 //      let address = placemark?.name ?? ""
@@ -486,14 +490,15 @@ extension MainViewController: NSTableViewDelegate {
       guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
       guard let latitude = image.latitude,
         let longitude = image.longitude,
-        let altitude = image.altitude else { return }
+        let altitude = image.altitude,
+        let timestamp = image.timestamp else { return }
       if self.textLatitude.stringValue.isEmpty &&
         self.textLongitude.stringValue.isEmpty {
-        self.textLatitude.objectValue = latitude
-        self.textLongitude.objectValue = longitude
         self.textAltitude.objectValue = altitude
-        self.processor.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.datePicker.dateValue = timestamp
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.processor.altitude = altitude
+        makeAnnotationAt(coordinate)
       }
     }
   }

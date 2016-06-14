@@ -25,6 +25,7 @@ class ImageItem:NSObject {
   var exifDate:NSDate?
   
   var modified = false
+  var backuped = false
   
   init(url:NSURL, type:String, name:String,
        size:UInt64, dimension:NSSize,

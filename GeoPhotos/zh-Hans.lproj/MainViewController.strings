@@ -6,7 +6,7 @@
 "1ts-57-DsP.title" = "海拔:";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "2lV-bH-69T"; */
-"2lV-bH-69T.title" = "还原";
+"2lV-bH-69T.title" = "复原";
 
 /* Class = "NSTableColumn"; headerCell.title = "Longitude"; ObjectID = "3Dw-Mr-x1d"; */
 "3Dw-Mr-x1d.headerCell.title" = "经度";

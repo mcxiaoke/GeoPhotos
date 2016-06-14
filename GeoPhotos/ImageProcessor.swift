@@ -80,6 +80,7 @@ class ImageProcessor {
         if backupOriginal {
           let backupURL = image.url.URLByAppendingPathExtension("bak")
           if let _ = try? fileManager.copyItemAtURL(image.url, toURL: backupURL){
+            image.backuped = true
             print("backuped \(backupURL)")
           }
         }
@@ -123,6 +124,7 @@ class ImageProcessor {
             try fileManager.moveItemAtURL(backupURL, toURL: image.url)
             try fileManager.removeItemAtURL(tempURL)
             restoredCount += 1
+            image.backuped = false
             image.modified = false
           }catch let error as NSError{
             print("restore \(image.name): \(error)")

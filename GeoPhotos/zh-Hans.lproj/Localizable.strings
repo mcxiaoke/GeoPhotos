@@ -11,7 +11,9 @@
 "RESTORE_SUCCESS_ALERT_MESSAGE_TEXT" = "修改已复原";
 
 /* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
-"SAVE_ALERT_INFORMATIVE_TEXT" = "\n这些属性将会写入并覆盖原文件，原始文件会自动备份，确认继续操作？\n";
+"SAVE_ALERT_INFORMATIVE_TEXT" = "\n这些属性将会写入原文件，原始文件会自动备份，确认继续操作？\n";
+
+"SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP" = "\n这些属性将会覆盖原文件，原始文件无法复原，确认继续操作？\n";
 
 /* Save GPS Properties */
 "SAVE_ALERT_MESSAGE_TEXT" = "确认保存修改";

@@ -10,6 +10,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="GeoPhotos" customModuleProvider="target">
             <connections>
+                <outlet property="backupCheckBox" destination="FWO-60-PTD" id="dlp-dM-alo"/>
                 <outlet property="datePicker" destination="UPE-Zm-MNH" id="utT-5K-cUu"/>
                 <outlet property="mapView" destination="58B-rt-T3X" id="5cy-ge-wgt"/>
                 <outlet property="restoreButton" destination="ZH8-od-mEN" id="XSE-CV-5MN"/>
@@ -401,7 +402,7 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-UK-3tT">
-                                    <rect key="frame" x="18" y="382" width="58" height="17"/>
+                                    <rect key="frame" x="18" y="378" width="58" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Latitude:" id="pHD-Do-MK9">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -409,7 +410,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0fo-gS-RpO">
-                                    <rect key="frame" x="18" y="355" width="69" height="17"/>
+                                    <rect key="frame" x="18" y="351" width="69" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Longitude:" id="Uns-ne-N3g">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -417,7 +418,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rc7-fz-bZK">
-                                    <rect key="frame" x="18" y="328" width="55" height="17"/>
+                                    <rect key="frame" x="18" y="324" width="55" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Altitude:" id="1ts-57-DsP">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -425,7 +426,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lPr-XK-Iis">
-                                    <rect key="frame" x="18" y="301" width="38" height="17"/>
+                                    <rect key="frame" x="18" y="297" width="38" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time:" placeholderString="" id="BC6-N8-oOx">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -433,7 +434,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XOT-Lt-0tG">
-                                    <rect key="frame" x="96" y="379" width="124" height="22"/>
+                                    <rect key="frame" x="96" y="375" width="124" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="BMC-Cy-uNJ">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="mHo-JU-efF" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
@@ -442,7 +443,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-WK-W3m">
-                                    <rect key="frame" x="96" y="352" width="124" height="22"/>
+                                    <rect key="frame" x="96" y="348" width="124" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="qMj-DN-FYL">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="SGu-3F-zYW" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
@@ -451,7 +452,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HxD-bp-OuR">
-                                    <rect key="frame" x="96" y="325" width="124" height="22"/>
+                                    <rect key="frame" x="96" y="321" width="124" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="cfi-XU-FPZ">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="eyt-dq-cHM" customClass="DecimalOnlyNumberFormatter" customModule="GeoPhotos" customModuleProvider="target"/>
                                         <font key="font" metaFont="system"/>
@@ -460,7 +461,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UPE-Zm-MNH">
-                                    <rect key="frame" x="96" y="300" width="124" height="19"/>
+                                    <rect key="frame" x="96" y="296" width="124" height="19"/>
                                     <datePickerCell key="cell" controlSize="small" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="UQS-5O-Udp">
                                         <font key="font" metaFont="smallSystem"/>
                                         <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
@@ -484,9 +485,18 @@
                                         <outlet property="delegate" destination="-2" id="Kwm-Re-yJy"/>
                                     </connections>
                                 </mapView>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="FWO-60-PTD">
+                                    <rect key="frame" x="104" y="413" width="118" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Backup Original" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rDW-yU-Sr1">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="kAh-WK-W3m" firstAttribute="width" secondItem="XOT-Lt-0tG" secondAttribute="width" id="0PA-ca-FN5"/>
+                                <constraint firstItem="FWO-60-PTD" firstAttribute="trailing" secondItem="9yz-AL-hIM" secondAttribute="trailing" id="4LU-q2-yNj"/>
+                                <constraint firstItem="pjI-UK-3tT" firstAttribute="top" secondItem="FWO-60-PTD" secondAttribute="bottom" constant="20" id="5UW-Yk-Rxh"/>
                                 <constraint firstAttribute="bottom" secondItem="58B-rt-T3X" secondAttribute="bottom" constant="20" symbolic="YES" id="87s-WN-8nT"/>
                                 <constraint firstItem="HxD-bp-OuR" firstAttribute="width" secondItem="XOT-Lt-0tG" secondAttribute="width" id="BE7-bM-mHY"/>
                                 <constraint firstItem="rc7-fz-bZK" firstAttribute="leading" secondItem="qaL-u7-9At" secondAttribute="leading" constant="20" symbolic="YES" id="GOQ-xY-nJ2"/>
@@ -504,6 +514,7 @@
                                 <constraint firstAttribute="trailing" secondItem="kAh-WK-W3m" secondAttribute="trailing" constant="20" symbolic="YES" id="f2j-Dh-YJZ"/>
                                 <constraint firstAttribute="trailing" secondItem="UPE-Zm-MNH" secondAttribute="trailing" constant="20" symbolic="YES" id="fFI-dE-S8d"/>
                                 <constraint firstItem="UPE-Zm-MNH" firstAttribute="width" secondItem="XOT-Lt-0tG" secondAttribute="width" id="h6F-Qc-CgU"/>
+                                <constraint firstItem="FWO-60-PTD" firstAttribute="top" secondItem="9yz-AL-hIM" secondAttribute="bottom" constant="10" id="ird-Jc-BCt"/>
                                 <constraint firstItem="XOT-Lt-0tG" firstAttribute="centerY" secondItem="pjI-UK-3tT" secondAttribute="centerY" id="k7e-2t-8vy"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="m8D-Ck-YnW"/>
                                 <constraint firstItem="pjI-UK-3tT" firstAttribute="leading" secondItem="qaL-u7-9At" secondAttribute="leading" constant="20" symbolic="YES" id="mh2-wd-p9d"/>
@@ -511,7 +522,6 @@
                                 <constraint firstItem="lPr-XK-Iis" firstAttribute="top" secondItem="rc7-fz-bZK" secondAttribute="bottom" constant="10" id="oRZ-9G-496"/>
                                 <constraint firstItem="lPr-XK-Iis" firstAttribute="leading" secondItem="qaL-u7-9At" secondAttribute="leading" constant="20" symbolic="YES" id="qjg-pE-Brd"/>
                                 <constraint firstItem="58B-rt-T3X" firstAttribute="leading" secondItem="qaL-u7-9At" secondAttribute="leading" constant="20" symbolic="YES" id="ufg-xj-wF6"/>
-                                <constraint firstItem="pjI-UK-3tT" firstAttribute="top" secondItem="9yz-AL-hIM" secondAttribute="bottom" constant="40" id="vVA-fC-L2H"/>
                                 <constraint firstItem="kAh-WK-W3m" firstAttribute="centerY" secondItem="0fo-gS-RpO" secondAttribute="centerY" id="xIG-xz-lcx"/>
                                 <constraint firstAttribute="trailing" secondItem="HxD-bp-OuR" secondAttribute="trailing" constant="20" symbolic="YES" id="zQj-E7-KKJ"/>
                             </constraints>
