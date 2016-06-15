@@ -440,6 +440,9 @@
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textLatitudeChanged:" target="-2" id="ZC7-ET-u3C"/>
+                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-WK-W3m">
                                     <rect key="frame" x="96" y="348" width="124" height="22"/>
@@ -449,6 +452,9 @@
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textLogitudeChanged:" target="-2" id="mBE-qu-d1P"/>
+                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HxD-bp-OuR">
                                     <rect key="frame" x="96" y="321" width="124" height="22"/>
@@ -458,6 +464,9 @@
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="textAltitudeChanged:" target="-2" id="SQP-6F-Rwh"/>
+                                    </connections>
                                 </textField>
                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UPE-Zm-MNH">
                                     <rect key="frame" x="96" y="296" width="124" height="19"/>
@@ -475,7 +484,7 @@
                                         <action selector="chooseDate:" target="-2" id="yLT-Ak-W4i"/>
                                     </connections>
                                 </datePicker>
-                                <mapView mapType="standard" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58B-rt-T3X">
+                                <mapView mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="58B-rt-T3X">
                                     <rect key="frame" x="20" y="20" width="200" height="200"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="58B-rt-T3X" secondAttribute="height" multiplier="1:1" id="XD0-Bx-j8v"/>

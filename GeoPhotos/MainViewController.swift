@@ -100,7 +100,7 @@ class MainViewController: NSSplitViewController {
   }
   
   func updateUI(){
-    let hasImages = self.processor.images?.count ?? 0 >= 0
+    let hasImages = self.processor.images?.count != nil
     self.saveButton.enabled = hasImages
       && self.processor.coordinate != nil
       && self.processor.savingIndex == nil
@@ -310,17 +310,25 @@ class MainViewController: NSSplitViewController {
     })
   }
   
+  func coordinateChanged(sender:AnyObject){
+    print("double value \(sender.doubleValue)")
+    guard let latitude = self.textLatitude.objectValue as? Double,
+      let longitude = self.textLongitude.objectValue as? Double else { return }
+    guard latitudeRange.contains(latitude) && longitudeRange.contains(longitude) else { return }
+    let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    makeAnnotationAt(coordinate)
+  }
+  
   @IBAction func textLatitudeChanged(sender: NSTextField) {
-    print("textLatitudeChanged")
+    coordinateChanged(sender)
   }
   
   @IBAction func textLogitudeChanged(sender: NSTextField) {
-    print("textLogitudeChanged")
+    coordinateChanged(sender)
   }
   
   
   @IBAction func textAltitudeChanged(sender: NSTextField) {
-    print("textAltitudeChanged")
     self.processor.altitude = sender.doubleValue
   }
   
@@ -332,6 +340,7 @@ class MainViewController: NSSplitViewController {
   
   func makeAnnotationAt(coordinate: CLLocationCoordinate2D){
     let title = "Lat:\(coordinate.latitude) Lon:\(coordinate.longitude)"
+    print("makeAnnotation at \(title)")
     let newAnnotaion = MapPoint(coordinate: coordinate, title: title)
     self.mapView.addAnnotation(newAnnotaion)
     self.mapView.setCenterCoordinate(coordinate, animated: true)

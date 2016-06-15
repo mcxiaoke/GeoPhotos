@@ -11,9 +11,6 @@ import Cocoa
 
 class DecimalOnlyNumberFormatter: NSNumberFormatter {
   
-  let latitudeRange = -90.0...90.0
-  let longitudeRange  = -180.0...180.0
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     self.setUp()
@@ -27,13 +24,7 @@ class DecimalOnlyNumberFormatter: NSNumberFormatter {
   
   override func isPartialStringValid(partialStringPtr: AutoreleasingUnsafeMutablePointer<NSString?>, proposedSelectedRange proposedSelRangePtr: NSRangePointer, originalString origString: String, originalSelectedRange origSelRange: NSRange, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
     guard let partialString = partialStringPtr.memory as? String else { return true }
-    if partialString.isEmpty { return true }
-    if let value = Double(partialString) {
-      return true
-//      return longitudeRange.contains(value)
-    }else {
-      return false
-    }
+    return !partialString.isEmpty && Double(partialString) != nil
   }
 
 }

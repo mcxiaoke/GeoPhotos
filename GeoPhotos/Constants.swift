@@ -11,6 +11,10 @@ import Foundation
 let DateFormatter = NSDateFormatter(dateFormat:"yyyy:MM:dd HH:mm:ss")
 let ImageExtensions = ["jpg", "jpeg", "png", "gif"]
 
+
+let latitudeRange = -90.0...90.0
+let longitudeRange  = -180.0...180.0
+
 let kCGImagePropertyCommonDictionary = "{Info}"
 
 let ImageCategoryPrefixKeys:[String:String] = [
