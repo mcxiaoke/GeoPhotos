@@ -4,6 +4,12 @@
 /* OK */
 "BUTTON_OK" = "确认";
 
+/* Are you sure restore to backuped original files? */
+"RESTORE_ALERT_INFORMATIVE_TEXT" = "你确定要丢弃对GPS属性的修改，使用备份文件恢复到原始状态？";
+
+/* Restore Properties */
+"RESTORE_ALERT_MESSAGE_TEXT" = "复原修改";
+
 /* Modified images have been restored using backup files, count files affected. */
 "RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT" = "已使用备份文件复原之前所做的修改，%d 个文件已复原。";
 
@@ -16,7 +22,7 @@
 "SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP" = "\n这些属性将会覆盖原文件，原始文件无法复原，确认继续操作？\n";
 
 /* Save GPS Properties */
-"SAVE_ALERT_MESSAGE_TEXT" = "确认保存修改";
+"SAVE_ALERT_MESSAGE_TEXT" = "保存修改";
 
 /* GPS coordinate is empty or invalid, please check again. */
 "SAVE_INVALID_ALERT_INFORMATIVE_TEXT" = "GPS坐标为空或超出范围，无法保存修改，请检查后重试。";

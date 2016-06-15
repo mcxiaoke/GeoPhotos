@@ -79,9 +79,14 @@ class ImageProcessor {
         CGImageDestinationFinalize(imageDestination)
         if backupOriginal {
           let backupURL = image.url.URLByAppendingPathExtension("bak")
-          if let _ = try? fileManager.copyItemAtURL(image.url, toURL: backupURL){
+          let backupName = backupURL.lastPathComponent ?? ""
+          do{
+            try fileManager.replaceItemAtURL(backupURL, withItemAtURL: image.url,
+              backupItemName: nil, options: .WithoutDeletingBackupItem, resultingItemURL: nil)
             image.backuped = true
-            print("backuped \(backupURL)")
+            print("backup \(backupName)")
+          }catch let error as NSError {
+              print("backup \(error)")
           }
         }
         if let _ = try? data.writeToURL(image.url, options: NSDataWritingOptions.AtomicWrite) {
@@ -111,23 +116,21 @@ class ImageProcessor {
       var restoredCount = 0
       self.restoringIndex = nil
       images.enumerate().forEach { (index, image) in
-        print("resotring \(image.name) at \(index)")
         self.restoringIndex = index
         processHandler?(image, index, total)
         let backupURL = image.url.URLByAppendingPathExtension("bak")
-        let tempURL = image.url.URLByAppendingPathExtension("tmp")
         var isDirectory = ObjCBool(false)
         let fileExists = fileManager.fileExistsAtPath(backupURL.path!, isDirectory: &isDirectory)
         if fileExists && !isDirectory.boolValue {
           do{
-            try fileManager.moveItemAtURL(image.url, toURL: tempURL)
-            try fileManager.moveItemAtURL(backupURL, toURL: image.url)
-            try fileManager.removeItemAtURL(tempURL)
+            try fileManager.replaceItemAtURL(image.url, withItemAtURL: backupURL,
+              backupItemName: nil, options: .WithoutDeletingBackupItem, resultingItemURL: nil)
             restoredCount += 1
             image.backuped = false
             image.modified = false
+            print("restore \(image.name)")
           }catch let error as NSError{
-            print("restore \(image.name): \(error)")
+            print("restore \(error)")
           }
         }
       }

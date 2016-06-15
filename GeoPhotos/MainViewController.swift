@@ -192,8 +192,21 @@ class MainViewController: NSSplitViewController {
   }
   
   @IBAction func performRestore(sender:AnyObject){
-    print("performRestore")
-    restoreProperties()
+    showRestoreAlert()
+  }
+  
+  func showRestoreAlert(){
+    let alert = NSAlert()
+    alert.alertStyle = .WarningAlertStyle
+    alert.messageText = NSLocalizedString("RESTORE_ALERT_MESSAGE_TEXT", comment: "Restore Properties")
+    alert.informativeText = NSLocalizedString("RESTORE_ALERT_INFORMATIVE_TEXT", comment: "Are you sure restore to backuped original files?")
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
+    alert.beginSheetModalForWindow(self.view.window!) { (response) in
+      if response == NSAlertFirstButtonReturn {
+        self.restoreProperties()
+      }
+    }
   }
   
   func restoreProperties(){
@@ -260,7 +273,7 @@ class MainViewController: NSSplitViewController {
     let formatText = backup ? NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT", comment: "") : NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP", comment: "")
     alert.informativeText = contentText + formatText
     alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "CANCEL"))
+    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
     alert.beginSheetModalForWindow(self.view.window!) { (response) in
       if response == NSAlertFirstButtonReturn {
         

@@ -85,3 +85,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wZK-bK-Trl"; */
 "wZK-bK-Trl.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Backup Original"; ObjectID = "rDW-yU-Sr1"; */
+"rDW-yU-Sr1.title" = "备份原始文件";

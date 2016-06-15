@@ -4,6 +4,12 @@
 /* OK */
 "BUTTON_OK" = "OK";
 
+/* Are you sure restore to backuped original files? */
+"RESTORE_ALERT_INFORMATIVE_TEXT" = "Are you sure discard modifications and restore to original files?";
+
+/* Restore Properties */
+"RESTORE_ALERT_MESSAGE_TEXT" = "Restore Properties";
+
 /* Modified images have been restored using backup files, count files affected. */
 "RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT" = "Modified images have been restored using backup files, %d files affected.";
 
