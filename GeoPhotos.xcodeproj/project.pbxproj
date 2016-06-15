@@ -19,7 +19,6 @@
 		AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */; };
 		AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
 		AA900EE81D0E5A89003FE31E /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */; };
-		AAE931651D0FF55E00A7238F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE931671D0FF55E00A7238F /* MainViewController.xib */; };
 		AAE9316C1D0FF56C00A7238F /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */; };
 		AAE931731D0FF57C00A7238F /* ImageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE931751D0FF57C00A7238F /* ImageDetailViewController.xib */; };
 		AAE9317C1D0FFA3900A7238F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAE9317E1D0FFA3900A7238F /* Localizable.strings */; };
@@ -27,10 +26,9 @@
 		AAEAD4071D0698F600B7EF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
 		AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
 		AAEAD4151D0698F600B7EF6B /* GeoPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4141D0698F600B7EF6B /* GeoPhotosTests.swift */; };
-		AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */; };
 		AAEAD4241D069A6200B7EF6B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAD4231D069A6200B7EF6B /* MapKit.framework */; };
 		AAEAD4261D069A6800B7EF6B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */; };
-		AAEAD4291D06A42900B7EF6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4271D06A42900B7EF6B /* MainViewController.swift */; };
+		AAEAD4291D06A42900B7EF6B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4271D06A42900B7EF6B /* MainWindowController.swift */; };
 		AAEAD42D1D06B1F400B7EF6B /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD42C1D06B1F400B7EF6B /* ImageItem.swift */; };
 		AAEAD4301D06B4D500B7EF6B /* ExifUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */; };
 		AAEAD4331D06BC5A00B7EF6B /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */; };
@@ -64,11 +62,8 @@
 		AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
-		AAAC96291D10F38800387EE9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainViewController.strings"; sourceTree = "<group>"; };
 		AAE931621D0FF54800A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		AAE931641D0FF54A00A7238F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
-		AAE931661D0FF55E00A7238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainViewController.xib; sourceTree = "<group>"; };
-		AAE931691D0FF56100A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainViewController.strings; sourceTree = "<group>"; };
 		AAE9316D1D0FF56C00A7238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindowController.xib; sourceTree = "<group>"; };
 		AAE931701D0FF56E00A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainWindowController.strings; sourceTree = "<group>"; };
 		AAE931721D0FF57000A7238F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainWindowController.strings"; sourceTree = "<group>"; };
@@ -86,10 +81,9 @@
 		AAEAD4101D0698F600B7EF6B /* GeoPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEAD4141D0698F600B7EF6B /* GeoPhotosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPhotosTests.swift; sourceTree = "<group>"; };
 		AAEAD4161D0698F600B7EF6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		AAEAD4231D069A6200B7EF6B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		AAEAD4271D06A42900B7EF6B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AAEAD4271D06A42900B7EF6B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		AAEAD42C1D06B1F400B7EF6B /* ImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExifUtils.swift; sourceTree = "<group>"; };
 		AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
@@ -146,9 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */,
-				AAEAD4271D06A42900B7EF6B /* MainViewController.swift */,
-				AAE931671D0FF55E00A7238F /* MainViewController.xib */,
-				AAEAD41F1D06991F00B7EF6B /* MainWindowController.swift */,
+				AAEAD4271D06A42900B7EF6B /* MainWindowController.swift */,
 				AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */,
 				AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */,
 				AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */,
@@ -331,7 +323,6 @@
 				AAE931731D0FF57C00A7238F /* ImageDetailViewController.xib in Resources */,
 				AAE9316C1D0FF56C00A7238F /* MainWindowController.xib in Resources */,
 				AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */,
-				AAE931651D0FF55E00A7238F /* MainViewController.xib in Resources */,
 				AAE9317C1D0FFA3900A7238F /* Localizable.strings in Resources */,
 				AA3CB6B71D0D6A17001BAF16 /* TabInfoViewController.xib in Resources */,
 				AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */,
@@ -449,11 +440,10 @@
 				AAEBF8E21D092CB40025D405 /* ImageProcessor.swift in Sources */,
 				AAEBF8E41D0946B20025D405 /* DecimalOnlyNumberFormatter.swift in Sources */,
 				AA3CB6B51D0D6A17001BAF16 /* ImagePropertyItem.swift in Sources */,
-				AAEAD4291D06A42900B7EF6B /* MainViewController.swift in Sources */,
+				AAEAD4291D06A42900B7EF6B /* MainWindowController.swift in Sources */,
 				AAEAD4331D06BC5A00B7EF6B /* NSURL+Extensions.swift in Sources */,
 				AA3CB6B41D0D6A17001BAF16 /* DetailTabViewController.swift in Sources */,
 				AA2A36C31D0D063C008C6231 /* ImagePreviewController.swift in Sources */,
-				AAEAD4211D06991F00B7EF6B /* MainWindowController.swift in Sources */,
 				AAEAD4371D06BD3800B7EF6B /* Constants.swift in Sources */,
 				AAEAD4301D06B4D500B7EF6B /* ExifUtils.swift in Sources */,
 				AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */,
@@ -484,16 +474,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AAE931671D0FF55E00A7238F /* MainViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AAE931661D0FF55E00A7238F /* Base */,
-				AAE931691D0FF56100A7238F /* en */,
-				AAAC96291D10F38800387EE9 /* zh-Hans */,
-			);
-			name = MainViewController.xib;
-			sourceTree = "<group>";
-		};
 		AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

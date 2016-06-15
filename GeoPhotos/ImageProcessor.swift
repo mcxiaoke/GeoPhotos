@@ -26,6 +26,7 @@ class ImageProcessor {
     guard let coordinate = self.coordinate else { return }
     let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
     geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+      print("geo code \(error)")
       completionHandler(placemarks?.first)
     }
   }
@@ -37,19 +38,15 @@ class ImageProcessor {
     guard self.rootURL != nil else { completionHandler(-1, "rootURL is nil"); return  }
     guard let coordinate = self.coordinate else { completionHandler(-1, "coordinate is nil"); return }
     guard let images = self.images else { completionHandler(-1, "No images found"); return }
-    let latitude = Double.abs(coordinate.latitude)
-    let longitude = Double.abs(coordinate.longitude)
-    let altitude = self.altitude ?? 0.0
     let properties:[String:AnyObject] = [
       kCGImagePropertyGPSSpeed as String : 0,
       kCGImagePropertyGPSSpeedRef as String : "K",
-      kCGImagePropertyGPSAltitude as String : altitude,
       kCGImagePropertyGPSAltitudeRef as String : 0,
       kCGImagePropertyGPSImgDirection as String : 0.0,
       kCGImagePropertyGPSImgDirectionRef as String : "T",
-      kCGImagePropertyGPSLatitude as String : latitude,
+      kCGImagePropertyGPSLatitude as String : Double.abs(coordinate.latitude),
       kCGImagePropertyGPSLatitudeRef as String : coordinate.latitude > 0 ? "N" : "S",
-      kCGImagePropertyGPSLongitude as String : longitude,
+      kCGImagePropertyGPSLongitude as String : Double.abs(coordinate.longitude),
       kCGImagePropertyGPSLongitudeRef as String : coordinate.longitude > 0 ? "E" : "W",
     ]
     
@@ -69,6 +66,9 @@ class ImageProcessor {
         let dateTime = dateStr.componentsSeparatedByString(" ")
         gpsProperties[kCGImagePropertyGPSDateStamp as String] = dateTime[0]
         gpsProperties[kCGImagePropertyGPSTimeStamp as String] = dateTime[1]
+        if let altitude = self.altitude {
+          gpsProperties[kCGImagePropertyGPSAltitude as String] = altitude
+        }
         guard let imageSource = CGImageSourceCreateWithURL(image.url, nil) else { return }
         let imageType = CGImageSourceGetType(imageSource)!
 //        let imageType = image.mimeType ?? ""
