@@ -1,3 +1,99 @@
 
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "1Ls-8A-oR6"; */
+"1Ls-8A-oR6.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "3fo-2r-PKf"; */
+"3fo-2r-PKf.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "3po-gg-e4g"; */
+"3po-gg-e4g.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Altitude:"; ObjectID = "9VW-BO-irW"; */
+"9VW-BO-irW.title" = "海拔:";
+
+/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "BzJ-Q7-NSt"; */
+"BzJ-Q7-NSt.title" = "复原";
+
+/* Class = "NSTableColumn"; headerCell.title = "Size"; ObjectID = "EXQ-QQ-ZgO"; */
+"EXQ-QQ-ZgO.headerCell.title" = "文件大小";
+
+/* Class = "NSButtonCell"; title = "Backup Original"; ObjectID = "Eso-5Z-ksb"; */
+"Eso-5Z-ksb.title" = "备份原始文件";
+
 /* Class = "NSWindow"; title = "Geo Photos"; ObjectID = "F0z-JX-Cv5"; */
 "F0z-JX-Cv5.title" = "Geo Photos";
+
+/* Class = "NSTableColumn"; headerCell.title = "Latitude"; ObjectID = "FFb-n6-YLs"; */
+"FFb-n6-YLs.headerCell.title" = "纬度";
+
+/* Class = "NSTableColumn"; headerCell.title = "Modified"; ObjectID = "GLQ-nf-htY"; */
+"GLQ-nf-htY.headerCell.title" = "修改时间";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "JIu-80-SK9"; */
+"JIu-80-SK9.title" = "保存";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Li8-81-7UN"; */
+"Li8-81-7UN.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MwB-oZ-TUs"; */
+"MwB-oZ-TUs.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Timestamp"; ObjectID = "PTx-9F-FIu"; */
+"PTx-9F-FIu.headerCell.title" = "时间戳";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "QNn-hN-INA"; */
+"QNn-hN-INA.headerCell.title" = "操作";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Rt8-Ra-O56"; */
+"Rt8-Ra-O56.title" = "Table View Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "Uwh-vt-5UO"; */
+"Uwh-vt-5UO.headerCell.title" = "文件名";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "W1A-CP-NFC"; */
+"W1A-CP-NFC.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "WEr-cB-UmY"; */
+"WEr-cB-UmY.title" = "Table View Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Altitude"; ObjectID = "cMG-i9-cjl"; */
+"cMG-i9-cjl.headerCell.title" = "海拔高度";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dgS-Me-sef"; */
+"dgS-Me-sef.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; placeholderString = "-180.0 ~ 180.0"; ObjectID = "fDA-EQ-smW"; */
+"fDA-EQ-smW.placeholderString" = "-180.0 ~ 180.0";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "hSS-h7-rkb"; */
+"hSS-h7-rkb.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Time:"; ObjectID = "iyE-9u-Z4x"; */
+"iyE-9u-Z4x.title" = "日期:";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "j5U-MZ-9lK"; */
+"j5U-MZ-9lK.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "jJg-A6-ite"; */
+"jJg-A6-ite.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Longitude:"; ObjectID = "mmV-XV-jes"; */
+"mmV-XV-jes.title" = "经度:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "-90.0 ~ 90.0"; ObjectID = "nFj-h3-tAI"; */
+"nFj-h3-tAI.placeholderString" = "-90.0 ~ 90.0";
+
+/* Class = "NSTableColumn"; headerCell.title = "Longitude"; ObjectID = "oi1-Fc-XBz"; */
+"oi1-Fc-XBz.headerCell.title" = "经度";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "pVa-S2-NeB"; */
+"pVa-S2-NeB.title" = "Table View Cell";
+
+/* Class = "NSTextFieldCell"; title = "Latitude:"; ObjectID = "qWC-s0-PIs"; */
+"qWC-s0-PIs.title" = "纬度:";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qgG-48-kzt"; */
+"qgG-48-kzt.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "uAY-ui-Zea"; */
+"uAY-ui-Zea.title" = "Table View Cell";
