@@ -10,9 +10,9 @@ import Cocoa
 
 class ImageHelper {
   
-  class func thumbFromImage(url: NSURL) -> NSImage {
+  class func thumbFromImage(url: NSURL, height:CGFloat = 100.0) -> NSImage {
     let image = NSImage(contentsOfURL: url)!
-    let targetHeight: CGFloat = 160.0
+    let targetHeight: CGFloat = height
     let imageSize = image.size
     let smallerSize = NSSize(width: targetHeight * imageSize.width / imageSize.height, height: targetHeight)
     return NSImage(size: smallerSize, flipped: false) { (rect) -> Bool in

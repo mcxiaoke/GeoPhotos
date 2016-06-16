@@ -17,10 +17,10 @@
 "RESTORE_SUCCESS_ALERT_MESSAGE_TEXT" = "GPS Properties Restored";
 
 /* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
-"SAVE_ALERT_INFORMATIVE_TEXT" = "\nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue?\n";
+"SAVE_ALERT_INFORMATIVE_TEXT" = "\nThese changed properties will write to images, orignal files will be backuped, would you confirm and continue?\n";
 
 /* \nThese properties will override existing properties, orignal files will be backuped, would you confirm and continue? */
-"SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP" = "\nThese properties will override existing properties, orignal files will be overrided, would you confirm and continue?\n";
+"SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP" = "\nThese changed properties will override existing properties, orignal files will be overrided, would you confirm and continue?\n";
 
 /* Save GPS Properties */
 "SAVE_ALERT_MESSAGE_TEXT" = "Save GPS Properties";

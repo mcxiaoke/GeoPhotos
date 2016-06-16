@@ -13,6 +13,7 @@
                 <outlet property="mapView" destination="8Tx-l9-rmT" id="8vC-f3-Ugw"/>
                 <outlet property="restoreButton" destination="Dr9-fo-qni" id="T4z-Az-660"/>
                 <outlet property="saveButton" destination="sJM-dH-9vU" id="osF-eE-6u3"/>
+                <outlet property="splitView" destination="FVw-7X-yDP" id="GFl-vH-t42"/>
                 <outlet property="tableView" destination="sPh-hE-H8h" id="FND-EK-r1a"/>
                 <outlet property="textAltitude" destination="nbQ-1G-fPD" id="bMu-18-MJ9"/>
                 <outlet property="textLatitude" destination="IxG-jg-Evm" id="3hS-Eu-tso"/>
@@ -38,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="471" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="DfD-Jb-zoD">
-                                    <rect key="frame" x="1" y="23" width="469" height="441"/>
+                                    <rect key="frame" x="1" y="0.0" width="469" height="464"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="0NN-TR-cR6" viewBased="YES" id="sPh-hE-H8h">

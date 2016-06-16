@@ -31,6 +31,7 @@ class MapPoint: NSObject,MKAnnotation {
   var coordinate: CLLocationCoordinate2D
   var title: String?
   var subtitle: String?
+  var image:ImageItem?
   
   init(coordinate: CLLocationCoordinate2D, title:String?, subtitle:String? = nil) {
     self.coordinate = coordinate
@@ -47,6 +48,7 @@ class MapPoint: NSObject,MKAnnotation {
 class MainWindowController: NSWindowController {
   
   @IBOutlet weak var view:NSView!
+  @IBOutlet weak var splitView:NSSplitView!
   @IBOutlet weak var progressBar:NSProgressIndicator!
   @IBOutlet weak var tableView:NSTableView!
   @IBOutlet weak var textLatitude:NSTextField!
@@ -60,6 +62,7 @@ class MainWindowController: NSWindowController {
   
   let processor = ImageProcessor()
   var annotation:MKAnnotation?
+  var imageAnnotaion:MKAnnotation?
 
   override var windowNibName: String?{
     return "MainWindowController"
@@ -68,6 +71,7 @@ class MainWindowController: NSWindowController {
   override func windowDidLoad() {
     super.windowDidLoad()
     self.window?.delegate = self
+    self.datePicker.dateValue = NSDate()
     self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
     self.addSortDescriptorsForTableView()
     updateUI()
@@ -138,6 +142,9 @@ class MainWindowController: NSWindowController {
     let rootURL = NSURL(fileURLWithPath:path)
     self.processor.open(rootURL, completionHandler: { (success) in
       self.tableView?.reloadData()
+      if let annotation = self.imageAnnotaion {
+        self.mapView.removeAnnotation(annotation)
+      }
     })
     return true
   }
@@ -265,6 +272,9 @@ class MainWindowController: NSWindowController {
   }
   
   func showSaveAlert(sender:AnyObject?){
+    if self.textAltitude.objectValue != nil {
+      self.processor.altitude = self.textAltitude.doubleValue
+    }
     let backup = self.backupCheckBox.state == NSOnState
     let alert = NSAlert()
     alert.alertStyle = .InformationalAlertStyle
@@ -307,9 +317,6 @@ class MainWindowController: NSWindowController {
   func saveProperties(backup:Bool){
     print("saveProperties backup=\(backup)")
     updateUI()
-    if self.textAltitude.objectValue != nil {
-      self.processor.altitude = self.textAltitude.doubleValue
-    }
     self.processor.save(backup,
         completionHandler: { (count, message) in
         print("saveProperties: \(count) \(message)")
@@ -349,7 +356,7 @@ class MainWindowController: NSWindowController {
     self.processor.timestamp = sender.dateValue
   }
   
-  func createAnnotation(coordinate: CLLocationCoordinate2D) -> MKAnnotation {
+  func createAnnotation(coordinate: CLLocationCoordinate2D) -> MapPoint {
     let subtitle = String(format: "Lat:%.4f, Lon:%.4f", coordinate.latitude, coordinate.longitude)
     return MapPoint(coordinate: coordinate, title: "Point", subtitle: subtitle)
   }
@@ -375,6 +382,19 @@ class MainWindowController: NSWindowController {
     updateUI()
 //    decodeCoordinate()
     return newAnnotaion
+  }
+  
+  func makeImageAnnotation(image: ImageItem){
+    guard let latitude = image.latitude,
+      let longitude = image.longitude else { return }
+    let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    print("makeImageAnnotation for \(image.name)")
+    let newAnnotaion = createAnnotation(coordinate)
+    newAnnotaion.image = image
+    if let oldAnnotation = self.imageAnnotaion {
+      self.mapView.removeAnnotation(oldAnnotation)
+    }
+    self.mapView.addAnnotation(newAnnotaion)
   }
   
   func decodeCoordinate(){
@@ -412,14 +432,28 @@ class MainWindowController: NSWindowController {
 extension MainWindowController:MKMapViewDelegate {
   
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    guard annotation is MapPoint else { return nil }
-    var annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Pin")
-    if annotationView == nil {
-      annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
-      annotationView?.draggable = true
-      annotationView?.canShowCallout = true
-    }else {
-      annotationView?.annotation = annotation
+    guard let annotation = annotation as? MapPoint else { return nil }
+    var annotationView:MKAnnotationView?
+    if let image = annotation.image {
+      annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Image")
+      if annotationView == nil {
+        annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Image")
+        annotationView?.draggable = false
+        annotationView?.canShowCallout = true
+      }else {
+        annotationView?.annotation = annotation
+      }
+      annotationView?.centerOffset = NSPoint(x: -50, y: -50)
+      annotationView?.image = ImageHelper.thumbFromImage(image.url, height: 30.0)
+    }else{
+      annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Pin")
+      if annotationView == nil {
+        annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+        annotationView?.draggable = true
+        annotationView?.canShowCallout = true
+      }else {
+        annotationView?.annotation = annotation
+      }
     }
     return annotationView
   }
@@ -443,14 +477,6 @@ extension MainWindowController:MKMapViewDelegate {
     if self.annotation == nil {
       makeAnnotationAt(mapView.centerCoordinate, updateMapView: true, centerInMap: true)
     }
-  }
-  
-  func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-    print("didSelectAnnotationView \(view.annotation?.coordinate)")
-  }
-  
-  func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-//    print("didAddAnnotationViews \(views.first)")
   }
   
   func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
@@ -544,20 +570,13 @@ extension MainWindowController: NSTableViewDelegate {
   
   
   func tableViewSelectionDidChange(notification: NSNotification) {
-    if self.tableView.selectedRow >= 0 {
-      guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-      guard let latitude = image.latitude,
-        let longitude = image.longitude,
-        let altitude = image.altitude,
-        let timestamp = image.timestamp else { return }
-      if self.textLatitude.stringValue.isEmpty &&
-        self.textLongitude.stringValue.isEmpty {
-        self.textAltitude.objectValue = altitude
-        self.datePicker.dateValue = timestamp
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        self.processor.altitude = altitude
-        makeAnnotationAt(coordinate, updateMapView: true)
-      }
+    if let annotation = self.imageAnnotaion {
+      self.mapView.removeAnnotation(annotation)
+    }
+    let row = self.tableView.selectedRow
+    if row >= 0 {
+      guard let image = self.processor.images?[row] else { return }
+//      makeImageAnnotation(image)
     }
   }
   
@@ -582,5 +601,9 @@ extension MainWindowController: NSTableViewDataSource {
 extension MainWindowController:NSWindowDelegate {
   
   func windowDidResize(notification: NSNotification) {
+  }
+  
+  func windowShouldClose(sender: AnyObject) -> Bool {
+    return true
   }
 }
