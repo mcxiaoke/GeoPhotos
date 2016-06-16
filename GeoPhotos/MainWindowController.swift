@@ -227,6 +227,7 @@ class MainWindowController: NSWindowController {
   }
   
   func restoreProperties(){
+    self.restoreButton.enabled = false
     self.processor.restore({ (restoredCount, message) in
       print("restoreProperties \(restoredCount) \(message)")
       self.processor.reopen({ (success) in
@@ -296,7 +297,6 @@ class MainWindowController: NSWindowController {
     alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
     alert.beginSheetModalForWindow(self.window!) { (response) in
       if response == NSAlertFirstButtonReturn {
-        
         self.saveProperties(backup)
       }
     }
@@ -317,15 +317,26 @@ class MainWindowController: NSWindowController {
   func saveProperties(backup:Bool){
     print("saveProperties backup=\(backup)")
     updateUI()
+    self.saveButton.enabled = false
+    let progress = ProgressWindowController()
+    progress.showProgressAt(self.window!, completionHandler: nil)
     self.processor.save(backup,
         completionHandler: { (count, message) in
         print("saveProperties: \(count) \(message)")
+        progress.dismissProgressAt(self.window!)
         self.updateUI()
         self.tableView?.reloadData()
         self.showSaveSuccessAlert(count)
     },
       processHandler: { (image, index, total) in
-        self.updateTableViewRows(index)
+        dispatch_async(dispatch_get_main_queue()){
+          let titleFormat = NSLocalizedString("SAVE_PROGRESS_TITLE_FORMAT", comment: "")
+          let title = String(format: titleFormat, index+1, total)
+          progress.updateProgress(title, subtitle: image.name)
+          self.tableView?.reloadData()
+        }
+//        self.updateTableViewRows(index)
+
     })
   }
   
@@ -473,7 +484,6 @@ extension MainWindowController:MKMapViewDelegate {
   }
   
   func mapViewDidFinishLoadingMap(mapView: MKMapView) {
-    print("mapViewDidFinishLoadingMap")
     if self.annotation == nil {
       makeAnnotationAt(mapView.centerCoordinate, updateMapView: true, centerInMap: true)
     }
@@ -593,6 +603,7 @@ extension MainWindowController: NSTableViewDataSource {
     }
   }
   
+  
   func numberOfRowsInTableView(tableView: NSTableView) -> Int {
     return self.processor.images?.count ?? 0
   }
@@ -604,6 +615,6 @@ extension MainWindowController:NSWindowDelegate {
   }
   
   func windowShouldClose(sender: AnyObject) -> Bool {
-    return true
+    return self.processor.savingIndex == nil && self.processor.restoringIndex == nil
   }
 }

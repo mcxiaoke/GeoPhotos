@@ -48,3 +48,4 @@
 /* Timestamp: */
 "TIMESTAMP" = "时间:";
 
+"SAVE_PROGRESS_TITLE_FORMAT" = "正在保存 (%d/%d)";

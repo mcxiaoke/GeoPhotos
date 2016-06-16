@@ -10,6 +10,8 @@
 		881410D0D21139B40F2F07AF /* Pods_GeoPhotosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */; };
 		9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */; };
 		AA2A36C31D0D063C008C6231 /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */; };
+		AA3B12D51D12507D009ABDD5 /* ProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B12D31D12507D009ABDD5 /* ProgressWindowController.swift */; };
+		AA3B12DA1D1271D4009ABDD5 /* ProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3B12DC1D1271D4009ABDD5 /* ProgressWindowController.xib */; };
 		AA3CB6B41D0D6A17001BAF16 /* DetailTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */; };
 		AA3CB6B51D0D6A17001BAF16 /* ImagePropertyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */; };
 		AA3CB6B61D0D6A17001BAF16 /* TabInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */; };
@@ -53,6 +55,8 @@
 		9FB8962CF26D0B06A4AF9EA8 /* Pods-GeoPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewController.swift; sourceTree = "<group>"; };
+		AA3B12D31D12507D009ABDD5 /* ProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressWindowController.swift; sourceTree = "<group>"; };
+		AA3B12DB1D1271D4009ABDD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProgressWindowController.xib; sourceTree = "<group>"; };
 		AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTabViewController.swift; sourceTree = "<group>"; };
 		AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertyItem.swift; sourceTree = "<group>"; };
 		AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabInfoViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +140,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AA3B12D71D125E84009ABDD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		AA3CB69F1D0D6981001BAF16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +160,8 @@
 				AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */,
 				AAE931751D0FF57C00A7238F /* ImageDetailViewController.xib */,
 				AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */,
+				AA3B12D31D12507D009ABDD5 /* ProgressWindowController.swift */,
+				AA3B12DC1D1271D4009ABDD5 /* ProgressWindowController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -178,6 +191,7 @@
 		AAEAD4031D0698F600B7EF6B /* GeoPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				AA3B12D71D125E84009ABDD5 /* Views */,
 				AAE9317E1D0FFA3900A7238F /* Localizable.strings */,
 				AA3CB69F1D0D6981001BAF16 /* Controllers */,
 				AAEAD40B1D0698F600B7EF6B /* Info.plist */,
@@ -325,6 +339,7 @@
 				AAEAD40A1D0698F600B7EF6B /* MainMenu.xib in Resources */,
 				AAE9317C1D0FFA3900A7238F /* Localizable.strings in Resources */,
 				AA3CB6B71D0D6A17001BAF16 /* TabInfoViewController.xib in Resources */,
+				AA3B12DA1D1271D4009ABDD5 /* ProgressWindowController.xib in Resources */,
 				AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +464,7 @@
 				AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */,
 				AA3CB6B61D0D6A17001BAF16 /* TabInfoViewController.swift in Sources */,
 				AA3CB6B81D0D6A17001BAF16 /* TabThumbViewController.swift in Sources */,
+				AA3B12D51D12507D009ABDD5 /* ProgressWindowController.swift in Sources */,
 				AA900EE81D0E5A89003FE31E /* ImageDetailViewController.swift in Sources */,
 				AAEAD4051D0698F600B7EF6B /* AppDelegate.swift in Sources */,
 				AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */,
@@ -474,6 +490,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		AA3B12DC1D1271D4009ABDD5 /* ProgressWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA3B12DB1D1271D4009ABDD5 /* Base */,
+			);
+			name = ProgressWindowController.xib;
+			sourceTree = "<group>";
+		};
 		AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

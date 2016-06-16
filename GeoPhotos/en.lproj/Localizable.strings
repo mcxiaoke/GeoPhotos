@@ -49,3 +49,4 @@
 /* Timestamp: */
 "TIMESTAMP" = "Timestamp:";
 
+"SAVE_PROGRESS_TITLE_FORMAT" = "Saving Properties (%d/%d)";
