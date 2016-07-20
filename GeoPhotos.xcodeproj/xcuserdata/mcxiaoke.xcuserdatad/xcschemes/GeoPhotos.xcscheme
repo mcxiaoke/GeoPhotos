@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AAEAD4001D0698F600B7EF6B"
-               BuildableName = "GeoPhotos.app"
-               BlueprintName = "GeoPhotos"
+               BuildableName = "GeoPhotosDev.app"
+               BlueprintName = "GeoPhotosDev"
                ReferencedContainer = "container:GeoPhotos.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AAEAD4001D0698F600B7EF6B"
-            BuildableName = "GeoPhotos.app"
-            BlueprintName = "GeoPhotos"
+            BuildableName = "GeoPhotosDev.app"
+            BlueprintName = "GeoPhotosDev"
             ReferencedContainer = "container:GeoPhotos.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AAEAD4001D0698F600B7EF6B"
-            BuildableName = "GeoPhotos.app"
-            BlueprintName = "GeoPhotos"
+            BuildableName = "GeoPhotosDev.app"
+            BlueprintName = "GeoPhotosDev"
             ReferencedContainer = "container:GeoPhotos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AAEAD4001D0698F600B7EF6B"
-            BuildableName = "GeoPhotos.app"
-            BlueprintName = "GeoPhotos"
+            BuildableName = "GeoPhotosDev.app"
+            BlueprintName = "GeoPhotosDev"
             ReferencedContainer = "container:GeoPhotos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
