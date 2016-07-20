@@ -66,6 +66,7 @@
 		AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		AAA575301D3F213600584BEC /* GeoPhotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GeoPhotos.entitlements; sourceTree = "<group>"; };
 		AAAC964A1D11593F00387EE9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainWindowController.strings"; sourceTree = "<group>"; };
 		AAAC964D1D11595800387EE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainWindowController.strings; sourceTree = "<group>"; };
 		AAE931621D0FF54800A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		AAEAD4031D0698F600B7EF6B /* GeoPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				AAA575301D3F213600584BEC /* GeoPhotos.entitlements */,
 				AA3B12D71D125E84009ABDD5 /* Views */,
 				AAE9317E1D0FFA3900A7238F /* Localizable.strings */,
 				AA3CB69F1D0D6981001BAF16 /* Controllers */,
@@ -301,6 +303,11 @@
 					AAEAD4001D0698F600B7EF6B = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5R8HH5SP77;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					AAEAD40F1D0698F600B7EF6B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -628,6 +635,7 @@
 			baseConfigurationReference = E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GeoPhotos/GeoPhotos.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -645,6 +653,7 @@
 			baseConfigurationReference = 2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GeoPhotos/GeoPhotos.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
