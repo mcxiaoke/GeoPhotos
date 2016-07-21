@@ -6,34 +6,28 @@ Pods/
 
 #ios
 .DS_Store
+*~
+project.xcworkspace/
 *.xccheckout
+xcuserdata/
 .svn
 .idea
 .ropeproject
 .venv
 
+# CocoaPods
+Pods
+
 #CrashMonkey
 instrumentscli*.trace/
 crash_monkey_result/
 
-# Xcode
+# Docs
+docs/_build
+reports
 
-## Build generated
-build/
-DerivedData/
+# chruby
+.ruby-version
 
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
+# for xctool generated deriveddata path
+build

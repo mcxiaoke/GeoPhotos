@@ -19,37 +19,9 @@
 		AA3CB6B81D0D6A17001BAF16 /* TabThumbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */; };
 		AA3CB6B91D0D6A17001BAF16 /* TabThumbViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */; };
 		AA3CB6BB1D0D6A4F001BAF16 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */; };
-		AA58BD811D3F326F005E69BB /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD42C1D06B1F400B7EF6B /* ImageItem.swift */; };
-		AA58BD821D3F326F005E69BB /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */; };
-		AA58BD831D3F326F005E69BB /* DecimalOnlyNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */; };
-		AA58BD841D3F326F005E69BB /* ImagePropertyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AF1D0D6A17001BAF16 /* ImagePropertyItem.swift */; };
-		AA58BD851D3F326F005E69BB /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4271D06A42900B7EF6B /* MainWindowController.swift */; };
-		AA58BD861D3F326F005E69BB /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4321D06BC5A00B7EF6B /* NSURL+Extensions.swift */; };
-		AA58BD871D3F326F005E69BB /* DetailTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6AE1D0D6A17001BAF16 /* DetailTabViewController.swift */; };
-		AA58BD881D3F326F005E69BB /* ImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2A36C11D0D063C008C6231 /* ImagePreviewController.swift */; };
-		AA58BD891D3F326F005E69BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4361D06BD3800B7EF6B /* Constants.swift */; };
-		AA58BD8A1D3F326F005E69BB /* ExifUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD42F1D06B4D500B7EF6B /* ExifUtils.swift */; };
-		AA58BD8B1D3F326F005E69BB /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
-		AA58BD8C1D3F326F005E69BB /* TabInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B01D0D6A17001BAF16 /* TabInfoViewController.swift */; };
-		AA58BD8D1D3F326F005E69BB /* TabThumbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */; };
-		AA58BD8E1D3F326F005E69BB /* ProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B12D31D12507D009ABDD5 /* ProgressWindowController.swift */; };
-		AA58BD8F1D3F326F005E69BB /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */; };
-		AA58BD901D3F326F005E69BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD4041D0698F600B7EF6B /* AppDelegate.swift */; };
-		AA58BD911D3F326F005E69BB /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */; };
-		AA58BD931D3F326F005E69BB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */; };
-		AA58BD941D3F326F005E69BB /* Pods_GeoPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */; };
-		AA58BD961D3F326F005E69BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4061D0698F600B7EF6B /* Assets.xcassets */; };
-		AA58BD971D3F326F005E69BB /* ImageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE931751D0FF57C00A7238F /* ImageDetailViewController.xib */; };
-		AA58BD981D3F326F005E69BB /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */; };
-		AA58BD991D3F326F005E69BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAEAD4081D0698F600B7EF6B /* MainMenu.xib */; };
-		AA58BD9A1D3F326F005E69BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAE9317E1D0FFA3900A7238F /* Localizable.strings */; };
-		AA58BD9B1D3F326F005E69BB /* TabInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B11D0D6A17001BAF16 /* TabInfoViewController.xib */; };
-		AA58BD9C1D3F326F005E69BB /* ProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3B12DC1D1271D4009ABDD5 /* ProgressWindowController.xib */; };
-		AA58BD9D1D3F326F005E69BB /* TabThumbViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */; };
-		AA58BDA71D3F3291005E69BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58BDA61D3F3291005E69BB /* MapKit.framework */; };
-		AA58BDA81D3F3393005E69BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58BDA61D3F3291005E69BB /* MapKit.framework */; };
 		AA6A00F21D0820AD0058E72F /* NSDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */; };
 		AA900EE81D0E5A89003FE31E /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */; };
+		AAE3656F1D40744500E0C479 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE3656E1D40744500E0C479 /* MapKit.framework */; };
 		AAE9316C1D0FF56C00A7238F /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE9316E1D0FF56C00A7238F /* MainWindowController.xib */; };
 		AAE931731D0FF57C00A7238F /* ImageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE931751D0FF57C00A7238F /* ImageDetailViewController.xib */; };
 		AAE9317C1D0FFA3900A7238F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAE9317E1D0FFA3900A7238F /* Localizable.strings */; };
@@ -92,15 +64,12 @@
 		AA3CB6B21D0D6A17001BAF16 /* TabThumbViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabThumbViewController.swift; sourceTree = "<group>"; };
 		AA3CB6B31D0D6A17001BAF16 /* TabThumbViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabThumbViewController.xib; sourceTree = "<group>"; };
 		AA3CB6BA1D0D6A4F001BAF16 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
-		AA58BDA31D3F326F005E69BB /* GeoPhotosStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPhotosStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA58BDA41D3F326F005E69BB /* GeoPhotosDev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GeoPhotosDev copy-Info.plist"; path = "/Users/mcxiaoke/projects/GeoPhotos/GeoPhotosDev copy-Info.plist"; sourceTree = "<absolute>"; };
-		AA58BDA51D3F327E005E69BB /* GeoPhotosStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GeoPhotosStore.entitlements; sourceTree = "<group>"; };
-		AA58BDA61D3F3291005E69BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AA6A00F11D0820AD0058E72F /* NSDateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		AA900EE61D0E5A89003FE31E /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		AAA575301D3F213600584BEC /* GeoPhotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GeoPhotos.entitlements; sourceTree = "<group>"; };
 		AAAC964A1D11593F00387EE9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainWindowController.strings"; sourceTree = "<group>"; };
 		AAAC964D1D11595800387EE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainWindowController.strings; sourceTree = "<group>"; };
+		AAE3656E1D40744500E0C479 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AAE931621D0FF54800A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		AAE931641D0FF54A00A7238F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		AAE9316D1D0FF56C00A7238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindowController.xib; sourceTree = "<group>"; };
@@ -131,22 +100,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA58BD921D3F326F005E69BB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA58BD931D3F326F005E69BB /* CoreLocation.framework in Frameworks */,
-				AA58BDA71D3F3291005E69BB /* MapKit.framework in Frameworks */,
-				AA58BD941D3F326F005E69BB /* Pods_GeoPhotos.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AAEAD3FE1D0698F600B7EF6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA58BDA81D3F3393005E69BB /* MapKit.framework in Frameworks */,
 				AAEAD4261D069A6800B7EF6B /* CoreLocation.framework in Frameworks */,
+				AAE3656F1D40744500E0C479 /* MapKit.framework in Frameworks */,
 				9C7C644AD9A2B0231132EBEA /* Pods_GeoPhotos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,7 +124,7 @@
 		4C71280D2157EEAC2804EA0F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA58BDA61D3F3291005E69BB /* MapKit.framework */,
+				AAE3656E1D40744500E0C479 /* MapKit.framework */,
 				A11B2908224394312F19F73D /* Pods_GeoPhotos.framework */,
 				51F1B064005A2A89D105C0A8 /* Pods_GeoPhotosTests.framework */,
 			);
@@ -212,14 +171,12 @@
 		AAEAD3F81D0698F600B7EF6B = {
 			isa = PBXGroup;
 			children = (
-				AA58BDA51D3F327E005E69BB /* GeoPhotosStore.entitlements */,
 				AAEAD4251D069A6800B7EF6B /* CoreLocation.framework */,
 				AAEAD4031D0698F600B7EF6B /* GeoPhotos */,
 				AAEAD4131D0698F600B7EF6B /* GeoPhotosTests */,
 				AAEAD4021D0698F600B7EF6B /* Products */,
 				9C5038BF21A12E376C90DD8E /* Pods */,
 				4C71280D2157EEAC2804EA0F /* Frameworks */,
-				AA58BDA41D3F326F005E69BB /* GeoPhotosDev copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -228,7 +185,6 @@
 			children = (
 				AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */,
 				AAEAD4101D0698F600B7EF6B /* GeoPhotosTests.xctest */,
-				AA58BDA31D3F326F005E69BB /* GeoPhotosStore.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,29 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA58BD7E1D3F326F005E69BB /* GeoPhotosStore */ = {
+		AAEAD4001D0698F600B7EF6B /* GeoPhotos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA58BDA01D3F326F005E69BB /* Build configuration list for PBXNativeTarget "GeoPhotosStore" */;
-			buildPhases = (
-				AA58BD7F1D3F326F005E69BB /* [CP] Check Pods Manifest.lock */,
-				AA58BD801D3F326F005E69BB /* Sources */,
-				AA58BD921D3F326F005E69BB /* Frameworks */,
-				AA58BD951D3F326F005E69BB /* Resources */,
-				AA58BD9E1D3F326F005E69BB /* [CP] Embed Pods Frameworks */,
-				AA58BD9F1D3F326F005E69BB /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GeoPhotosStore;
-			productName = GeoPhotos;
-			productReference = AA58BDA31D3F326F005E69BB /* GeoPhotosStore.app */;
-			productType = "com.apple.product-type.application";
-		};
-		AAEAD4001D0698F600B7EF6B /* GeoPhotosDev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosDev" */;
+			buildConfigurationList = AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotos" */;
 			buildPhases = (
 				C831D4DDB6005BEEBE417BC5 /* [CP] Check Pods Manifest.lock */,
 				AAEAD3FD1D0698F600B7EF6B /* Sources */,
@@ -328,7 +264,7 @@
 			);
 			dependencies = (
 			);
-			name = GeoPhotosDev;
+			name = GeoPhotos;
 			productName = GeoPhotos;
 			productReference = AAEAD4011D0698F600B7EF6B /* GeoPhotos.app */;
 			productType = "com.apple.product-type.application";
@@ -364,26 +300,15 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = mcxiaoke;
 				TargetAttributes = {
-					AA58BD7E1D3F326F005E69BB = {
-						DevelopmentTeam = 5R8HH5SP77;
-						SystemCapabilities = {
-							com.apple.Maps.Mac = {
-								enabled = 1;
-							};
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
-					};
 					AAEAD4001D0698F600B7EF6B = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5R8HH5SP77;
 						SystemCapabilities = {
 							com.apple.Maps.Mac = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -407,29 +332,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AAEAD4001D0698F600B7EF6B /* GeoPhotosDev */,
-				AA58BD7E1D3F326F005E69BB /* GeoPhotosStore */,
+				AAEAD4001D0698F600B7EF6B /* GeoPhotos */,
 				AAEAD40F1D0698F600B7EF6B /* GeoPhotosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AA58BD951D3F326F005E69BB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA58BD961D3F326F005E69BB /* Assets.xcassets in Resources */,
-				AA58BD971D3F326F005E69BB /* ImageDetailViewController.xib in Resources */,
-				AA58BD981D3F326F005E69BB /* MainWindowController.xib in Resources */,
-				AA58BD991D3F326F005E69BB /* MainMenu.xib in Resources */,
-				AA58BD9A1D3F326F005E69BB /* Localizable.strings in Resources */,
-				AA58BD9B1D3F326F005E69BB /* TabInfoViewController.xib in Resources */,
-				AA58BD9C1D3F326F005E69BB /* ProgressWindowController.xib in Resources */,
-				AA58BD9D1D3F326F005E69BB /* TabThumbViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AAEAD3FF1D0698F600B7EF6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,51 +439,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AA58BD7F1D3F326F005E69BB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AA58BD9E1D3F326F005E69BB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA58BD9F1D3F326F005E69BB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C831D4DDB6005BEEBE417BC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -593,30 +457,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AA58BD801D3F326F005E69BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA58BD811D3F326F005E69BB /* ImageItem.swift in Sources */,
-				AA58BD821D3F326F005E69BB /* ImageProcessor.swift in Sources */,
-				AA58BD831D3F326F005E69BB /* DecimalOnlyNumberFormatter.swift in Sources */,
-				AA58BD841D3F326F005E69BB /* ImagePropertyItem.swift in Sources */,
-				AA58BD851D3F326F005E69BB /* MainWindowController.swift in Sources */,
-				AA58BD861D3F326F005E69BB /* NSURL+Extensions.swift in Sources */,
-				AA58BD871D3F326F005E69BB /* DetailTabViewController.swift in Sources */,
-				AA58BD881D3F326F005E69BB /* ImagePreviewController.swift in Sources */,
-				AA58BD891D3F326F005E69BB /* Constants.swift in Sources */,
-				AA58BD8A1D3F326F005E69BB /* ExifUtils.swift in Sources */,
-				AA58BD8B1D3F326F005E69BB /* NSDateFormatter+Extensions.swift in Sources */,
-				AA58BD8C1D3F326F005E69BB /* TabInfoViewController.swift in Sources */,
-				AA58BD8D1D3F326F005E69BB /* TabThumbViewController.swift in Sources */,
-				AA58BD8E1D3F326F005E69BB /* ProgressWindowController.swift in Sources */,
-				AA58BD8F1D3F326F005E69BB /* ImageDetailViewController.swift in Sources */,
-				AA58BD901D3F326F005E69BB /* AppDelegate.swift in Sources */,
-				AA58BD911D3F326F005E69BB /* ImageHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AAEAD3FD1D0698F600B7EF6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -654,7 +494,7 @@
 /* Begin PBXTargetDependency section */
 		AAEAD4121D0698F600B7EF6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AAEAD4001D0698F600B7EF6B /* GeoPhotosDev */;
+			target = AAEAD4001D0698F600B7EF6B /* GeoPhotos */;
 			targetProxy = AAEAD4111D0698F600B7EF6B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -711,42 +551,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AA58BDA11D3F326F005E69BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = GeoPhotosStore.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "GeoPhotosDev copy-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.geophotos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-			};
-			name = Debug;
-		};
-		AA58BDA21D3F326F005E69BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = GeoPhotosStore.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "GeoPhotosDev copy-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcxiaoke.geophotos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
 		AAEAD4171D0698F600B7EF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -834,7 +638,8 @@
 			baseConfigurationReference = E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = GeoPhotos/GeoPhotos.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = GeoPhotos/Info.plist;
@@ -851,7 +656,8 @@
 			baseConfigurationReference = 2BCFD4076B2247311CD1E2E6 /* Pods-GeoPhotos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = GeoPhotos/GeoPhotos.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = GeoPhotos/Info.plist;
@@ -894,15 +700,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA58BDA01D3F326F005E69BB /* Build configuration list for PBXNativeTarget "GeoPhotosStore" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA58BDA11D3F326F005E69BB /* Debug */,
-				AA58BDA21D3F326F005E69BB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AAEAD3FC1D0698F600B7EF6B /* Build configuration list for PBXProject "GeoPhotos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -912,7 +709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotosDev" */ = {
+		AAEAD4191D0698F600B7EF6B /* Build configuration list for PBXNativeTarget "GeoPhotos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAEAD41A1D0698F600B7EF6B /* Debug */,
