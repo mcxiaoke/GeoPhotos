@@ -70,8 +70,6 @@
 		AAAC964A1D11593F00387EE9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainWindowController.strings"; sourceTree = "<group>"; };
 		AAAC964D1D11595800387EE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainWindowController.strings; sourceTree = "<group>"; };
 		AAE3656E1D40744500E0C479 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AAE931621D0FF54800A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		AAE931641D0FF54A00A7238F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		AAE9316D1D0FF56C00A7238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindowController.xib; sourceTree = "<group>"; };
 		AAE931741D0FF57C00A7238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImageDetailViewController.xib; sourceTree = "<group>"; };
 		AAE931771D0FF57E00A7238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImageDetailViewController.strings; sourceTree = "<group>"; };
@@ -95,6 +93,8 @@
 		AAEAD4361D06BD3800B7EF6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AAEBF8E11D092CB40025D405 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		AAEBF8E31D0946B20025D405 /* DecimalOnlyNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalOnlyNumberFormatter.swift; sourceTree = "<group>"; };
+		AAFFB0EC1D655B0D0025AA87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		AAFFB0EE1D655B100025AA87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		BFD6A398B0717E1DB72D2871 /* Pods-GeoPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotosTests/Pods-GeoPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
 		E496B3011E1FF1A07661CC81 /* Pods-GeoPhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPhotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoPhotos/Pods-GeoPhotos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -542,8 +542,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				AAEAD4091D0698F600B7EF6B /* Base */,
-				AAE931621D0FF54800A7238F /* en */,
-				AAE931641D0FF54A00A7238F /* zh-Hans */,
+				AAFFB0EC1D655B0D0025AA87 /* en */,
+				AAFFB0EE1D655B100025AA87 /* zh-Hans */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
