@@ -12,7 +12,7 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
   
   let saveProperties = NSMutableDictionary()
   
-  var imageURL:NSURL?
+  var imageURL:URL?
   dynamic var image:NSImage?
   dynamic var properties: [ImagePropertyItem] = []
   
@@ -35,31 +35,31 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
     }
   }
   
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     if theEvent.keyCode == 53 {
       self.dismissViewController(self)
     }else {
-      super.keyDown(theEvent)
+      super.keyDown(with: theEvent)
     }
   }
   
-  func copy(sender:AnyObject?){
+  func copy(_ sender:AnyObject?){
     guard let items = self.arrayController.selectedObjects as? [ImagePropertyItem] else { return }
     var textValue = ""
     items.forEach { (item) in
       textValue = "\(ImagePropertyItem.getImageIOLocalizedString(item.rawKey)) = \(item.textValue)\n"
     }
     if !textValue.isEmpty {
-      let pb = NSPasteboard.generalPasteboard()
+      let pb = NSPasteboard.general()
       pb.clearContents()
       pb.setString(textValue, forType: NSPasteboardTypeString)
     }
   }
   
-  func addChangedProperty(item: ImagePropertyItem){
+  func addChangedProperty(_ item: ImagePropertyItem){
     let key = item.rawKey
     let value = item.objectValue
-    print("addChangedProperty: \(key)=\(value) Type:\(value.dynamicType)")
+    print("addChangedProperty: \(key)=\(value) Type:\(type(of: value))")
     if ExifPropertyKeys.contains(key){
       let exifDict = saveProperties[kCGImagePropertyExifDictionary as String] as? NSMutableDictionary ?? NSMutableDictionary()
       exifDict[key] = value
@@ -73,11 +73,11 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
     }
   }
   
-  @IBAction func textValueDidChange(sender: NSTextField) {
+  @IBAction func textValueDidChange(_ sender: NSTextField) {
     let row  = self.tableView.selectedRow
     guard let object = self.arrayController.selectedObjects.first as? ImagePropertyItem else { return }
     guard ImagePropertyItem.normalizeValue(object.rawValue) != sender.stringValue else {
-      saveProperties.removeObjectForKey(object.rawKey)
+      saveProperties.removeObject(forKey: object.rawKey)
       updateModifiedRowColor(row, modified: false)
       return
     }
@@ -89,23 +89,23 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
     updateModifiedRowColor(row, modified: true)
   }
   
-  @IBAction func closeMe(sender:AnyObject){
+  @IBAction func closeMe(_ sender:AnyObject){
       self.dismissViewController(self)
   }
   
-  func updateModifiedRowColor(row:Int, modified:Bool){
-    let newColor = modified ? NSColor.redColor() : NSColor.blackColor()
-    let keyView = self.tableView.viewAtColumn(0, row: row, makeIfNecessary: false)
+  func updateModifiedRowColor(_ row:Int, modified:Bool){
+    let newColor = modified ? NSColor.red : NSColor.black
+    let keyView = self.tableView.view(atColumn: 0, row: row, makeIfNecessary: false)
     if let keyTextField = keyView?.subviews[0] as? NSTextField {
       keyTextField.textColor = newColor
     }
-    let valueView = self.tableView.viewAtColumn(1, row: row, makeIfNecessary: false)
+    let valueView = self.tableView.view(atColumn: 1, row: row, makeIfNecessary: false)
     if let valueTextField = valueView?.subviews[0] as? NSTextField {
       valueTextField.textColor = newColor
     }
   }
   
-  func tableViewSelectionDidChange(notification: NSNotification) {
+  func tableViewSelectionDidChange(_ notification: Notification) {
     //    guard let object = self.arrayController.selectedObjects.first as? ImagePropertyItem else { return }
     //    let row  = self.tableView.selectedRow
     //let view = self.tableView.viewAtColumn(1, row: row, makeIfNecessary: false)
@@ -115,32 +115,32 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
     //      print("tableViewSelectionDidChange row =\(row) obj=\(object)")
   }
   
-  func loadImageThumb(url:NSURL){
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+  func loadImageThumb(_ url:URL){
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
       let image = ImageHelper.thumbFromImage(url)
-      dispatch_async(dispatch_get_main_queue(), {
+      DispatchQueue.main.async(execute: {
         self.image = image
       })
     }
   }
   
-  func loadImageProperties(url: NSURL){
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-      guard let imageSource = CGImageSourceCreateWithURL(url, nil) else { return }
+  func loadImageProperties(_ url: URL){
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+      guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else { return }
       guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? else { return }
       guard let props  = imageProperties as? Dictionary<String,AnyObject> else { return }
       let properties = ImagePropertyItem.parse(props)
-      dispatch_async(dispatch_get_main_queue(), {
+      DispatchQueue.main.async(execute: {
         self.properties = properties
       })
     }
   }
   
-  func saveDocument(sender:AnyObject){
+  func saveDocument(_ sender:AnyObject){
     saveDocumentAs(sender)
   }
   
-  func saveDocumentAs(sender:AnyObject){
+  func saveDocumentAs(_ sender:AnyObject){
     print("saveDocumentAs")
     guard let url = imageURL else { return }
     guard saveProperties.count > 0 else { return }
@@ -151,10 +151,10 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
       infoText += "\(key)=\(value)\n"
     })
     alert.informativeText = infoText
-    alert.addButtonWithTitle("Save")
-    alert.addButtonWithTitle("Override")
-    alert.addButtonWithTitle("Cancel")
-    alert.beginSheetModalForWindow(self.view.window!, completionHandler: { (response) in
+    alert.addButton(withTitle: "Save")
+    alert.addButton(withTitle: "Override")
+    alert.addButton(withTitle: "Cancel")
+    alert.beginSheetModal(for: self.view.window!, completionHandler: { (response) in
       switch response {
       case NSAlertFirstButtonReturn:
         self.writeProperties(url, override: false)
@@ -170,23 +170,23 @@ class ImageDetailViewController: NSViewController, NSTableViewDelegate {
     
   }
   
-  func writeProperties(url:NSURL, override: Bool) -> NSURL?{
-    guard let directory = url.URLByDeletingLastPathComponent else { return nil }
-    guard let base = url.URLByDeletingPathExtension?.lastPathComponent else { return nil }
-    guard let ext = url.pathExtension else { return nil }
-    let newName = override ? url.lastPathComponent! : "\(base)_modified.\(ext)"
-    let newPath = directory.URLByAppendingPathComponent(newName, isDirectory: false)
+  func writeProperties(_ url:URL, override: Bool) -> URL?{
+     let directory = url.deletingLastPathComponent()
+     let base = url.deletingPathExtension().lastPathComponent
+     let ext = url.pathExtension
+    let newName = override ? url.lastPathComponent : "\(base)_modified.\(ext)"
+    let newPath = directory.appendingPathComponent(newName, isDirectory: false)
     print("writeProperties to \(newPath)")
-    guard let imageSource = CGImageSourceCreateWithURL(url, nil) else { return nil }
+    guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
     let imageType = CGImageSourceGetType(imageSource)!
     let data = NSMutableData()
     guard let imageDestination = CGImageDestinationCreateWithData(data, imageType, 1, nil) else { return nil }
     CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, saveProperties)
     CGImageDestinationFinalize(imageDestination)
-    if let _ = try? data.writeToURL(newPath, options: NSDataWritingOptions.AtomicWrite) {
+    if let _ = try? data.write(to: newPath, options: NSData.WritingOptions.atomicWrite) {
       let alert = NSAlert()
       alert.messageText = "Image Saved"
-      alert.informativeText = "Image saved to \(newPath.path!)"
+      alert.informativeText = "Image saved to \(newPath.path)"
       alert.runModal()
       return newPath
     }

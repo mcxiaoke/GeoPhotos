@@ -9,22 +9,22 @@
 import Cocoa
 
 
-class DecimalOnlyNumberFormatter: NSNumberFormatter {
+class DecimalOnlyNumberFormatter: NumberFormatter {
   
   override func awakeFromNib() {
     super.awakeFromNib()
     self.setUp()
   }
   
-  private func setUp(){
+  fileprivate func setUp(){
     self.allowsFloats = true
-    self.numberStyle = NSNumberFormatterStyle.DecimalStyle
+    self.numberStyle = NumberFormatter.Style.decimal
     self.maximumFractionDigits = 8
   }
-  
-  override func isPartialStringValid(partialStringPtr: AutoreleasingUnsafeMutablePointer<NSString?>, proposedSelectedRange proposedSelRangePtr: NSRangePointer, originalString origString: String, originalSelectedRange origSelRange: NSRange, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
-    guard let partialString = partialStringPtr.memory as? String else { return true }
-    return !partialString.isEmpty && Double(partialString) != nil
-  }
+    
+    override func isPartialStringValid(_ partialStringPtr: AutoreleasingUnsafeMutablePointer<NSString>, proposedSelectedRange proposedSelRangePtr: NSRangePointer?, originalString origString: String, originalSelectedRange origSelRange: NSRange, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+            guard let partialString = partialStringPtr.pointee as? String else { return true }
+            return !partialString.isEmpty && Double(partialString) != nil
+    }
 
 }

@@ -20,11 +20,11 @@ private let kModifiedCell = "ModifiedCell"
 private let kSizeCell = "SizeCell"
 
 let GPSEditablePropertyDictionary:[String:AnyObject] = [
-  kCGImagePropertyGPSLatitude as String: 0.0,
-  kCGImagePropertyGPSLongitude as String: 0.0,
-  kCGImagePropertyGPSAltitude as String: 0.0,
-  kCGImagePropertyGPSTimeStamp as String: "00:00:00",
-  kCGImagePropertyGPSDateStamp as String: "2016-06-06",
+  kCGImagePropertyGPSLatitude as String: 0.0 as AnyObject,
+  kCGImagePropertyGPSLongitude as String: 0.0 as AnyObject,
+  kCGImagePropertyGPSAltitude as String: 0.0 as AnyObject,
+  kCGImagePropertyGPSTimeStamp as String: "00:00:00" as AnyObject,
+  kCGImagePropertyGPSDateStamp as String: "2016-06-06" as AnyObject,
 ]
 
 class MapPoint: NSObject,MKAnnotation {
@@ -71,75 +71,75 @@ class MainWindowController: NSWindowController {
   override func windowDidLoad() {
     super.windowDidLoad()
     self.window?.delegate = self
-    self.datePicker.dateValue = NSDate()
-    self.tableView.registerForDraggedTypes([NSFilenamesPboardType])
+    self.datePicker.dateValue = Date()
+    self.tableView.register(forDraggedTypes: [NSFilenamesPboardType])
     self.addSortDescriptorsForTableView()
     updateUI()
   }
   
   func addSortDescriptorsForTableView(){
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kNameCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kNameCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "name", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kLatitudeCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kLatitudeCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "latitude", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kLongitudeCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kLongitudeCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "longitude", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kAltitudeCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kAltitudeCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "altitude", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kTimestampCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kTimestampCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "timestamp", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kModifiedCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kModifiedCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "modifiedAt", ascending: true)
     }
-    if let tableColumn = self.tableView.tableColumnWithIdentifier(kSizeCell) {
+    if let tableColumn = self.tableView.tableColumn(withIdentifier: kSizeCell) {
       tableColumn.sortDescriptorPrototype = NSSortDescriptor(key: "size", ascending: true)
     }
   }
   
-  func updateTableViewRows(index:Int){
-    let rowIndexes = NSIndexSet(indexesInRange: NSRange(location: max(index - 1, 0), length: 3))
+  func updateTableViewRows(_ index:Int){
+    let rowIndexes = IndexSet(integersIn: NSRange(location: max(index - 1, 0), length: 3).toRange() ?? 0..<0)
     let count = self.tableView.tableColumns.count
-    let columnIndexes = NSIndexSet(indexesInRange: NSRange(location: 0, length: count))
-    dispatch_async(dispatch_get_main_queue()){
-      self.tableView?.reloadDataForRowIndexes(rowIndexes, columnIndexes: columnIndexes)
+    let columnIndexes = IndexSet(integersIn: NSRange(location: 0, length: count).toRange() ?? 0..<0)
+    DispatchQueue.main.async{
+      self.tableView?.reloadData(forRowIndexes: rowIndexes, columnIndexes: columnIndexes)
       self.tableView.scrollRowToVisible(index)
     }
   }
   
   func updateUI(){
     let hasImages = self.processor.images?.count != nil
-    self.saveButton.enabled = hasImages
+    self.saveButton.isEnabled = hasImages
       && self.processor.coordinate != nil
       && self.processor.savingIndex == nil
       && self.processor.restoringIndex == nil
-    self.restoreButton.enabled = hasImages
+    self.restoreButton.isEnabled = hasImages
       && self.processor.hasBackup
       && self.processor.savingIndex == nil
       && self.processor.restoringIndex == nil
   }
   
-  func copy(sender:AnyObject?){
+  func copy(_ sender:AnyObject?){
     guard self.tableView.selectedRow >= 0 else { return }
     guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-    let pb = NSPasteboard.generalPasteboard()
+    let pb = NSPasteboard.general()
     pb.clearContents()
-    pb.setString(image.url.path!, forType: NSPasteboardTypeString)
+    pb.setString(image.url.path, forType: NSPasteboardTypeString)
   }
   
-  func paste(sender:AnyObject?){
-    readFromPasteboard(NSPasteboard.generalPasteboard())
+  func paste(_ sender:AnyObject?){
+    readFromPasteboard(NSPasteboard.general())
   }
   
-  func readFromPasteboard(pb:NSPasteboard) -> Bool{
-    let objects = pb.readObjectsForClasses(
-      [NSURL.self],options: [NSPasteboardURLReadingFileURLsOnlyKey:true]) as? [NSURL]
+  func readFromPasteboard(_ pb:NSPasteboard) -> Bool{
+    let objects = pb.readObjects(
+      forClasses: [URL.self as! AnyClass],options: [NSPasteboardURLReadingFileURLsOnlyKey:true]) as? [URL]
     guard let path = objects?.first?.path else { return false }
-    let rootURL = NSURL(fileURLWithPath:path)
+    let rootURL = URL(fileURLWithPath:path)
     self.processor.open(rootURL, completionHandler: { (success) in
       self.tableView?.reloadData()
       if let annotation = self.imageAnnotaion {
@@ -149,21 +149,21 @@ class MainWindowController: NSWindowController {
     return true
   }
   
-  func openDocument(sender:AnyObject){
+  func openDocument(_ sender:AnyObject){
     showOpenPanel()
   }
   
-  private func showOpenPanel(){
+  fileprivate func showOpenPanel(){
     let panel = NSOpenPanel()
     panel.allowsMultipleSelection = false
     panel.canChooseDirectories = true
     panel.canCreateDirectories = false
     panel.canChooseFiles = false
-    panel.beginWithCompletionHandler { (result) in
+    panel.begin { (result) in
       guard result == NSFileHandlingPanelOKButton else {
         return
       }
-      guard let rootURL = panel.URL else {
+      guard let rootURL = panel.url else {
         return
       }
 //      self.progressBar.hidden = false
@@ -175,59 +175,59 @@ class MainWindowController: NSWindowController {
     }
   }
   
-  @IBAction func doubleClickRow(sender:AnyObject){
+  @IBAction func doubleClickRow(_ sender:AnyObject){
     if self.tableView.selectedRow >= 0 {
       guard let image = self.processor.images?[self.tableView.selectedRow] else { return }
-      NSWorkspace.sharedWorkspace().openURL(image.url)
+      NSWorkspace.shared().open(image.url as URL)
     }
   }
   
   
-  @IBAction func revealInFinder(sender:AnyObject){
-    let row = self.tableView.rowForView(sender as! NSView)
+  @IBAction func revealInFinder(_ sender:AnyObject){
+    let row = self.tableView.row(for: sender as! NSView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
-        NSWorkspace.sharedWorkspace().activateFileViewerSelectingURLs([image.url])
+        NSWorkspace.shared().activateFileViewerSelecting([image.url as URL])
       }
     }
   }
   
   
-  @IBAction func openInPreview(sender:AnyObject){
+  @IBAction func openInPreview(_ sender:AnyObject){
     guard let rowView = sender as? NSView else { return }
-    let row = self.tableView.rowForView(rowView)
+    let row = self.tableView.row(for: rowView)
     if row >= 0 {
       if let image = self.processor.images?[row] {
         let controller = ImageDetailViewController()
         controller.imageURL = image.url
         let pop = NSPopover()
-        pop.behavior = .Semitransient
+        pop.behavior = .semitransient
         pop.contentViewController = controller
-        pop.showRelativeToRect(rowView.bounds, ofView: rowView, preferredEdge: NSRectEdge.MaxX)
+        pop.show(relativeTo: rowView.bounds, of: rowView, preferredEdge: NSRectEdge.maxX)
       }
     }
   }
   
-  @IBAction func performRestore(sender:AnyObject){
+  @IBAction func performRestore(_ sender:AnyObject){
     showRestoreAlert()
   }
   
   func showRestoreAlert(){
     let alert = NSAlert()
-    alert.alertStyle = .WarningAlertStyle
+    alert.alertStyle = .warning
     alert.messageText = NSLocalizedString("RESTORE_ALERT_MESSAGE_TEXT", comment: "Restore Properties")
     alert.informativeText = NSLocalizedString("RESTORE_ALERT_INFORMATIVE_TEXT", comment: "Are you sure restore to backuped original files?")
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
-    alert.beginSheetModalForWindow(self.window!) { (response) in
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
+    alert.beginSheetModal(for: self.window!, completionHandler: { (response) in
       if response == NSAlertFirstButtonReturn {
         self.restoreProperties()
       }
-    }
+    }) 
   }
   
   func restoreProperties(){
-    self.restoreButton.enabled = false
+    self.restoreButton.isEnabled = false
     self.processor.restore({ (restoredCount, message) in
       print("restoreProperties \(restoredCount) \(message)")
       self.processor.reopen({ (success) in
@@ -240,19 +240,19 @@ class MainWindowController: NSWindowController {
     }
   }
   
-  func showRestoreSuccessAlert(count:Int){
+  func showRestoreSuccessAlert(_ count:Int){
     let alert = NSAlert()
-    alert.alertStyle = .InformationalAlertStyle
+    alert.alertStyle = .informational
     alert.messageText = NSLocalizedString("RESTORE_SUCCESS_ALERT_MESSAGE_TEXT", comment: "Image Properties Restored")
     let format = NSLocalizedString("RESTORE_SUCCESS_ALERT_INFOMATIVE_TEXT", comment: "Modified images have been restored using backup files, count files affected.")
     alert.informativeText = String(format: format, count)
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.beginSheetModalForWindow(self.window!) { (response) in
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.beginSheetModal(for: self.window!, completionHandler: { (response) in
       //
-    }
+    }) 
   }
   
-  @IBAction func performSave(sender:AnyObject){
+  @IBAction func performSave(_ sender:AnyObject){
     print("performSave")
     guard self.processor.coordinate != nil else {
       showInvalidAlert()
@@ -263,22 +263,22 @@ class MainWindowController: NSWindowController {
   
   func showInvalidAlert(){
     let alert = NSAlert()
-    alert.alertStyle = .WarningAlertStyle
+    alert.alertStyle = .warning
     alert.messageText = NSLocalizedString("SAVE_INVALID_ALERT_MESSAGE_TEXT", comment: "GPS Properties Invalid")
     alert.informativeText = NSLocalizedString("SAVE_INVALID_ALERT_INFORMATIVE_TEXT", comment: "GPS coordinate is empty or invalid, please check again.")
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.beginSheetModalForWindow(self.window!) { (response) in
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.beginSheetModal(for: self.window!, completionHandler: { (response) in
       
-    }
+    }) 
   }
   
-  func showSaveAlert(sender:AnyObject?){
+  func showSaveAlert(_ sender:AnyObject?){
     if self.textAltitude.objectValue != nil {
       self.processor.altitude = self.textAltitude.doubleValue
     }
     let backup = self.backupCheckBox.state == NSOnState
     let alert = NSAlert()
-    alert.alertStyle = .InformationalAlertStyle
+    alert.alertStyle = .informational
     alert.messageText = NSLocalizedString("SAVE_ALERT_MESSAGE_TEXT", comment: "Save GPS Properties")
     var contentText = "\n"
     if let coordinate = self.processor.coordinate {
@@ -289,35 +289,35 @@ class MainWindowController: NSWindowController {
       contentText += NSLocalizedString("ALTITUDE", comment: "Altitude:") + "\t\(altitude)\n"
     }
     if let timestamp = self.processor.timestamp {
-      contentText += NSLocalizedString("TIMESTAMP", comment: "Timestamp:") + "\t\(DateFormatter.stringFromDate(timestamp))\n"
+      contentText += NSLocalizedString("TIMESTAMP", comment: "Timestamp:") + "\t\(DateFormatter.string(from: timestamp))\n"
     }
     let formatText = backup ? NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT", comment: "") : NSLocalizedString("SAVE_ALERT_INFORMATIVE_TEXT_NO_BACKUP", comment: "")
     alert.informativeText = contentText + formatText
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
-    alert.beginSheetModalForWindow(self.window!) { (response) in
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_CANCEL", comment: "Cancel"))
+    alert.beginSheetModal(for: self.window!, completionHandler: { (response) in
       if response == NSAlertFirstButtonReturn {
         self.saveProperties(backup)
       }
-    }
+    }) 
   }
   
-  func showSaveSuccessAlert(count:Int){
+  func showSaveSuccessAlert(_ count:Int){
     let alert = NSAlert()
-    alert.alertStyle = .WarningAlertStyle
+    alert.alertStyle = .warning
     alert.messageText = NSLocalizedString("SAVE_SUCCESS_ALERT_MESSAGE_TEXT", comment: "GPS Properties Saved")
     let format = NSLocalizedString("SAVE_SUCCESS_ALERT_INFORMATIVE_TEXT", comment: "GPS properties have been written back to images, count files affected.")
     alert.informativeText = String(format: format, count)
-    alert.addButtonWithTitle(NSLocalizedString("BUTTON_OK", comment: "OK"))
-    alert.beginSheetModalForWindow(self.window!) { (response) in
+    alert.addButton(withTitle: NSLocalizedString("BUTTON_OK", comment: "OK"))
+    alert.beginSheetModal(for: self.window!, completionHandler: { (response) in
       //
-    }
+    }) 
   }
   
-  func saveProperties(backup:Bool){
+  func saveProperties(_ backup:Bool){
     print("saveProperties backup=\(backup)")
     updateUI()
-    self.saveButton.enabled = false
+    self.saveButton.isEnabled = false
     let progress = ProgressWindowController()
     progress.showProgressAt(self.window!, completionHandler: nil)
     self.processor.save(backup,
@@ -329,7 +329,7 @@ class MainWindowController: NSWindowController {
         self.showSaveSuccessAlert(count)
     },
       processHandler: { (image, index, total) in
-        dispatch_async(dispatch_get_main_queue()){
+        DispatchQueue.main.async{
           let titleFormat = NSLocalizedString("SAVE_PROGRESS_TITLE_FORMAT", comment: "")
           let title = String(format: titleFormat, index+1, total)
           progress.updateProgress(title, subtitle: image.name)
@@ -340,7 +340,7 @@ class MainWindowController: NSWindowController {
     })
   }
   
-  func coordinateChanged(sender:AnyObject){
+  func coordinateChanged(_ sender:AnyObject){
     guard let latitude = self.textLatitude.objectValue as? Double,
       let longitude = self.textLongitude.objectValue as? Double else { return }
     guard latitudeRange.contains(latitude) && longitudeRange.contains(longitude) else { return }
@@ -348,31 +348,31 @@ class MainWindowController: NSWindowController {
     makeAnnotationAt(coordinate, updateMapView: true)
   }
   
-  @IBAction func textLatitudeChanged(sender: NSTextField) {
+  @IBAction func textLatitudeChanged(_ sender: NSTextField) {
     coordinateChanged(sender)
   }
   
-  @IBAction func textLogitudeChanged(sender: NSTextField) {
+  @IBAction func textLogitudeChanged(_ sender: NSTextField) {
     coordinateChanged(sender)
   }
   
   
-  @IBAction func textAltitudeChanged(sender: NSTextField) {
+  @IBAction func textAltitudeChanged(_ sender: NSTextField) {
     self.processor.altitude = sender.doubleValue
   }
   
   
-  @IBAction func chooseDate(sender: NSDatePicker) {
+  @IBAction func chooseDate(_ sender: NSDatePicker) {
     print("chooseDate \(sender.dateValue)")
     self.processor.timestamp = sender.dateValue
   }
   
-  func createAnnotation(coordinate: CLLocationCoordinate2D) -> MapPoint {
+  func createAnnotation(_ coordinate: CLLocationCoordinate2D) -> MapPoint {
     let subtitle = String(format: "Lat:%.4f, Lon:%.4f", coordinate.latitude, coordinate.longitude)
     return MapPoint(coordinate: coordinate, title: "Point", subtitle: subtitle)
   }
   
-  func makeAnnotationAt(coordinate: CLLocationCoordinate2D,
+  func makeAnnotationAt(_ coordinate: CLLocationCoordinate2D,
                         updateMapView update: Bool,
                         centerInMap center:Bool = false) -> MKAnnotation{
     print("makeAnnotationAt at \(coordinate.latitude),\(coordinate.longitude) update:\(update)")
@@ -384,7 +384,7 @@ class MainWindowController: NSWindowController {
       self.mapView.addAnnotation(newAnnotaion)
     }
     if center {
-      self.mapView.setCenterCoordinate(coordinate, animated: true)
+      self.mapView.setCenter(coordinate, animated: true)
     }
     self.annotation = newAnnotaion
     self.processor.coordinate = coordinate
@@ -395,7 +395,7 @@ class MainWindowController: NSWindowController {
     return newAnnotaion
   }
   
-  func makeImageAnnotation(image: ImageItem){
+  func makeImageAnnotation(_ image: ImageItem){
     guard let latitude = image.latitude,
       let longitude = image.longitude else { return }
     let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -415,26 +415,26 @@ class MainWindowController: NSWindowController {
     }
   }
   
-  override func rightMouseUp(theEvent: NSEvent) {
+  override func rightMouseUp(with theEvent: NSEvent) {
     guard theEvent.clickCount == 1 else { return }
-    let point = self.mapView.convertPoint(theEvent.locationInWindow, fromView: nil)
+    let point = self.mapView.convert(theEvent.locationInWindow, from: nil)
     if NSPointInRect(point, self.mapView.bounds) {
-      let coordinate = self.mapView.convertPoint(point, toCoordinateFromView: self.mapView)
+      let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
 //      print("rightMouseUp \(point.x) \(point.y) \(coordinate.latitude) \(coordinate.longitude)")
       makeAnnotationAt(coordinate, updateMapView: true)
     }
   }
   
-  func openMapForCoordinate(coordinate: CLLocationCoordinate2D) {
+  func openMapForCoordinate(_ coordinate: CLLocationCoordinate2D) {
     let distance:CLLocationDistance = 10000
     let regionSpan = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance)
     let options = [
-      MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
-      MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+      MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+      MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
     ]
     let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
     let mapItem = MKMapItem(placemark: placemark)
-    mapItem.openInMapsWithLaunchOptions(options)
+    mapItem.openInMaps(launchOptions: options)
     
   }
     
@@ -442,14 +442,14 @@ class MainWindowController: NSWindowController {
 
 extension MainWindowController:MKMapViewDelegate {
   
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     guard let annotation = annotation as? MapPoint else { return nil }
     var annotationView:MKAnnotationView?
     if let image = annotation.image {
-      annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Image")
+      annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Image")
       if annotationView == nil {
         annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Image")
-        annotationView?.draggable = false
+        annotationView?.isDraggable = false
         annotationView?.canShowCallout = true
       }else {
         annotationView?.annotation = annotation
@@ -457,10 +457,10 @@ extension MainWindowController:MKMapViewDelegate {
       annotationView?.centerOffset = NSPoint(x: -50, y: -50)
       annotationView?.image = ImageHelper.thumbFromImage(image.url, height: 30.0)
     }else{
-      annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("Pin")
+      annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
       if annotationView == nil {
         annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
-        annotationView?.draggable = true
+        annotationView?.isDraggable = true
         annotationView?.canShowCallout = true
       }else {
         annotationView?.annotation = annotation
@@ -469,7 +469,7 @@ extension MainWindowController:MKMapViewDelegate {
     return annotationView
   }
   
-  func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+  func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
 //    print("didUpdateUserLocation \(userLocation.location)")
     //    CLLocationCoordinate2D loc = userLocation.coordinate    //放大地图到自身的经纬度位置。
     //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
@@ -483,14 +483,14 @@ extension MainWindowController:MKMapViewDelegate {
 //    }
   }
   
-  func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+  func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
     if self.annotation == nil {
       makeAnnotationAt(mapView.centerCoordinate, updateMapView: true, centerInMap: true)
     }
   }
   
-  func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-    if newState == MKAnnotationViewDragState.Ending {
+  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+    if newState == MKAnnotationViewDragState.ending {
       print("didChangeDragState moved to \(view.annotation?.coordinate) \(view.annotation?.title)")
       if let coordinate = view.annotation?.coordinate {
         view.annotation = makeAnnotationAt(coordinate, updateMapView: true)
@@ -502,45 +502,45 @@ extension MainWindowController:MKMapViewDelegate {
 
 extension MainWindowController: NSTableViewDelegate {
   
-  func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     guard let image = self.processor.images?[row] else { return nil }
     var cellIdentifier = ""
     var stringValue:String = ""
-    if tableColumn == tableView.tableColumnWithIdentifier(kNameCell) {
+    if tableColumn == tableView.tableColumn(withIdentifier: kNameCell) {
       cellIdentifier = kNameCell
       stringValue = image.name
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kLatitudeCell) {
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kLatitudeCell) {
       cellIdentifier = kLatitudeCell
       if let latitude = image.latitude {
 //        stringValue = "\(latitude)"
         stringValue = ExifUtils.formatDegreeValue(latitude,latitude: true)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kLongitudeCell) {
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kLongitudeCell) {
       cellIdentifier = kLongitudeCell
       if let longitude = image.longitude {
 //        stringValue = "\(longitude)"
         stringValue = ExifUtils.formatDegreeValue(longitude,latitude: false)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kAltitudeCell) {
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kAltitudeCell) {
       cellIdentifier = kAltitudeCell
       if let altitude = image.altitude {
         stringValue = String(format: "%.2f", altitude)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kTimestampCell) {
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kTimestampCell) {
       cellIdentifier = kTimestampCell
       if let dateTime = image.timestamp {
-        stringValue = DateFormatter.stringFromDate(dateTime)
+        stringValue = DateFormatter.string(from: dateTime)
       }
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kModifiedCell) {
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kModifiedCell) {
       cellIdentifier = kModifiedCell
-      stringValue = DateFormatter.stringFromDate(image.exifDate ?? image.modifiedAt)
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kSizeCell) {
+      stringValue = DateFormatter.string(from: image.exifDate ?? image.modifiedAt)
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kSizeCell) {
       cellIdentifier = kSizeCell
-      stringValue = self.processor.sizeFormatter.stringFromByteCount(Int64(image.size))
-    }else if tableColumn == tableView.tableColumnWithIdentifier(kActionCell) {
+      stringValue = self.processor.sizeFormatter.string(fromByteCount: Int64(image.size))
+    }else if tableColumn == tableView.tableColumn(withIdentifier: kActionCell) {
       cellIdentifier = kActionCell
     }
-    guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
+    guard let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
     if let button = cell.viewWithTag(0) as? NSButton {
       button.target = self
@@ -557,11 +557,11 @@ extension MainWindowController: NSTableViewDelegate {
     cell.textField?.stringValue = stringValue
     
     if self.processor.savingIndex == row {
-      cell.textField?.textColor = NSColor.redColor()
+      cell.textField?.textColor = NSColor.red
     } else if self.processor.restoringIndex == row{
-      cell.textField?.textColor = NSColor.redColor()
+      cell.textField?.textColor = NSColor.red
     }  else {
-      cell.textField?.textColor = image.modified ? NSColor.blueColor() : NSColor.blackColor()
+      cell.textField?.textColor = image.modified ? NSColor.blue : NSColor.black
     }
     return cell
   }
@@ -569,17 +569,17 @@ extension MainWindowController: NSTableViewDelegate {
   // drag and drop
   // http://stackoverflow.com/questions/4839561/nstableview-drop-app-file-whats-going-wrong
   
-  func tableView(tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
-    return NSDragOperation.Copy
+  func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    return NSDragOperation.copy
   }
   
-  func tableView(tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+  func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
     print("acceptDrop row=\(row) info=\(info)")
     return readFromPasteboard(info.draggingPasteboard())
   }
   
   
-  func tableViewSelectionDidChange(notification: NSNotification) {
+  func tableViewSelectionDidChange(_ notification: Notification) {
     if let annotation = self.imageAnnotaion {
       self.mapView.removeAnnotation(annotation)
     }
@@ -594,9 +594,9 @@ extension MainWindowController: NSTableViewDelegate {
 
 extension MainWindowController: NSTableViewDataSource {
   
-  func tableView(tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+  func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
     if let images = self.processor.images{
-      if let sortedImages = (images as NSArray).sortedArrayUsingDescriptors(tableView.sortDescriptors) as? [ImageItem] {
+      if let sortedImages = (images as NSArray).sortedArray(using: tableView.sortDescriptors) as? [ImageItem] {
         self.processor.images = sortedImages
         tableView.reloadData()
       }
@@ -604,17 +604,17 @@ extension MainWindowController: NSTableViewDataSource {
   }
   
   
-  func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+  func numberOfRows(in tableView: NSTableView) -> Int {
     return self.processor.images?.count ?? 0
   }
 }
 
 extension MainWindowController:NSWindowDelegate {
   
-  func windowDidResize(notification: NSNotification) {
+  func windowDidResize(_ notification: Notification) {
   }
   
-  func windowShouldClose(sender: AnyObject) -> Bool {
+  func windowShouldClose(_ sender: Any) -> Bool {
     return self.processor.savingIndex == nil && self.processor.restoringIndex == nil
   }
 }

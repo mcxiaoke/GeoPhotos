@@ -8,12 +8,12 @@
 
 import Foundation
 
-let imageIOBundle = NSBundle(identifier:"com.apple.ImageIO.framework")
+let imageIOBundle = Bundle(identifier:"com.apple.ImageIO.framework")
 
 enum PropertyValueType:Int{
-  case Number
-  case String
-  case Array
+  case number
+  case string
+  case array
 }
 
 class ImagePropertyItem : NSObject {
@@ -28,15 +28,15 @@ class ImagePropertyItem : NSObject {
   
   var editable:Bool {
     return AllEditablePropertyKeys.contains(self.rawKey)
-      && [.Number, .String].contains(self.type)
+      && [.number, .string].contains(self.type)
   }
   
   var objectValue:AnyObject {
     switch self.type {
-    case .Number:
-      return Float(self.textValue) ?? 0
+    case .number:
+      return Float(self.textValue) as AnyObject ?? 0 as AnyObject
     default:
-      return self.textValue
+      return self.textValue as AnyObject
     }
   }
   
@@ -57,28 +57,28 @@ class ImagePropertyItem : NSObject {
       self.cat = nil
     }
     if rawValue is NSNumber {
-      self.type = .Number
+      self.type = .number
     }else if rawValue is NSString {
-      self.type = .String
+      self.type = .string
     }else if rawValue is NSArray {
-      self.type = .Array
+      self.type = .array
     }else {
-      self.type = .String
+      self.type = .string
     }
     super.init()
   }
   
-  func validateTextValue(textValuePointer: AutoreleasingUnsafeMutablePointer<String?>,
+  func validateTextValue(_ textValuePointer: AutoreleasingUnsafeMutablePointer<String?>,
                      error outError: NSErrorPointer) -> Bool {
-    print("validateTextValue \(textValuePointer.memory)")
-    if self.type == .String {
+    print("validateTextValue \(textValuePointer.pointee)")
+    if self.type == .string {
       return true
     }
-    guard let newValue = textValuePointer.memory else { return true }
-    return self.type == .Number && Float(newValue) != nil
+    guard let newValue = textValuePointer.pointee else { return true }
+    return self.type == .number && Float(newValue) != nil
   }
   
-  class func normalizeKey(rawKey: String, rawCat:String?) -> String {
+  class func normalizeKey(_ rawKey: String, rawCat:String?) -> String {
     let key = getImageIOLocalizedString(rawKey)
     if let prefix = getCategoryPrefix(rawCat) {
       return "\(prefix) \(key)"
@@ -87,23 +87,23 @@ class ImagePropertyItem : NSObject {
     }
   }
   
-  class func normalizeValue(value:AnyObject) -> String {
+  class func normalizeValue(_ value:AnyObject) -> String {
     let valueStr:String
     if let value = value as? NSArray {
       //  + " \(value.dynamicType)"
-      valueStr = value.componentsJoinedByString(", ")
+      valueStr = value.componentsJoined(by: ", ")
     }else {
       valueStr = "\(value)"
     }
     return valueStr
   }
   
-  class func getImageIOLocalizedString(key: String) -> String
+  class func getImageIOLocalizedString(_ key: String) -> String
   {
-    return imageIOBundle?.localizedStringForKey(key, value: key, table: "CGImageSource") ?? key
+    return imageIOBundle?.localizedString(forKey: key, value: key, table: "CGImageSource") ?? key
   }
   
-  class func getCategoryPrefix(category: String?) -> String? {
+  class func getCategoryPrefix(_ category: String?) -> String? {
     if let category = category {
       if let prefix = ImageCategoryPrefixKeys[category]{
         return "\(prefix) "
@@ -112,7 +112,7 @@ class ImagePropertyItem : NSObject {
     return nil
   }
   
-  class func parse(properties: Dictionary<String,AnyObject>, category:String? = nil) -> [ImagePropertyItem]{
+  class func parse(_ properties: Dictionary<String,AnyObject>, category:String? = nil) -> [ImagePropertyItem]{
     var items:[ImagePropertyItem] = []
     var subItems:[ImagePropertyItem] = []
     properties.forEach { (key, value) in
@@ -123,15 +123,15 @@ class ImagePropertyItem : NSObject {
         items.append(newItem)
       }
     }
-    return items.sort { $0.key < $1.key } + subItems.sort{ $0.key < $1.key }
+    return items.sorted { $0.key < $1.key } + subItems.sorted{ $0.key < $1.key }
   }
   
-  class func getObjectValue(item:ImagePropertyItem, value:String) -> AnyObject {
+  class func getObjectValue(_ item:ImagePropertyItem, value:String) -> AnyObject {
     switch item.type {
-    case .Number:
-      return Float(value) ?? 0
+    case .number:
+      return Float(value) as AnyObject ?? 0 as AnyObject
     default:
-      return value
+      return value as AnyObject
     }
   }
 }

@@ -10,7 +10,7 @@ import Cocoa
 
 class DetailTabViewController: NSTabViewController {
 
-  var imageURL:NSURL?
+  var imageURL:URL?
   var imageProperties:[String:[ImagePropertyItem]]? {
     didSet {
       updateUI()
@@ -39,7 +39,7 @@ class DetailTabViewController: NSTabViewController {
       tabViewItem.label = "Image"
       self.addTabViewItem(tabViewItem)
       
-      imageProperties.keys.sort { $0 < $1}.forEach({ (key) in
+      imageProperties.keys.sorted { $0 < $1}.forEach({ (key) in
         let controller = TabInfoViewController()
         controller.properties = imageProperties[key]
         let tabViewItem = NSTabViewItem(viewController:controller)
@@ -49,14 +49,14 @@ class DetailTabViewController: NSTabViewController {
     }else {
       self.title = ""
       for i in 0..<self.childViewControllers.count {
-        self.removeChildViewControllerAtIndex(i)
+        self.removeChildViewController(at: i)
       }
     }
   }
   
-  func loadImageProperties(url: NSURL){
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-      guard let imageSource = CGImageSourceCreateWithURL(url, nil) else { return }
+  func loadImageProperties(_ url: URL){
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+      guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else { return }
       guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? else { return }
       guard let props  = imageProperties as? Dictionary<String,AnyObject> else { return }
       var properties:[String:[ImagePropertyItem]] = [:]
@@ -66,14 +66,14 @@ class DetailTabViewController: NSTabViewController {
           properties[key] = self.parseProperties(child, category: key)
         }
       })
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         self.imageProperties = properties
       }
     }
   }
   
   
-  func parseProperties(properties: Dictionary<String,AnyObject>, category:String?)
+  func parseProperties(_ properties: Dictionary<String,AnyObject>, category:String?)
     -> [ImagePropertyItem] {
     var items:[ImagePropertyItem] = []
     properties.forEach { (key, value) in
@@ -84,7 +84,7 @@ class DetailTabViewController: NSTabViewController {
         items.append(newItem)
       }
     }
-      return items.sort { $0.key < $1.key }
+      return items.sorted { $0.key < $1.key }
   }
   
 }

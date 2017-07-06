@@ -24,8 +24,8 @@ class TabInfoViewController: NSViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.setDataSource(self)
-    self.tableView.setDelegate(self)
+    self.tableView.dataSource = self
+    self.tableView.delegate = self
     
     if properties != nil {
       self.tableView.reloadData()
@@ -36,7 +36,7 @@ class TabInfoViewController: NSViewController {
 
 extension TabInfoViewController: NSTableViewDataSource {
   
-  func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+  func numberOfRows(in tableView: NSTableView) -> Int {
     return self.properties?.count ?? 0
   }
   
@@ -45,18 +45,18 @@ extension TabInfoViewController: NSTableViewDataSource {
 extension TabInfoViewController: NSTableViewDelegate {
   
   
-  func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     guard let item = self.properties?[row] else { return nil }
     var cellIdentifier = ""
     var stringValue = ""
-    if tableView.tableColumnWithIdentifier("KeyCell") == tableColumn {
+    if tableView.tableColumn(withIdentifier: "KeyCell") == tableColumn {
       cellIdentifier = "KeyCell"
       stringValue = item.key2
-    }else if tableView.tableColumnWithIdentifier("ValueCell") == tableColumn {
+    }else if tableView.tableColumn(withIdentifier: "ValueCell") == tableColumn {
       cellIdentifier = "ValueCell"
       stringValue = item.textValue
     }
-    guard let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil)
+    guard let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil)
       as? NSTableCellView else { return nil }
     cell.textField?.stringValue = stringValue
     return cell

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let DateFormatter = NSDateFormatter(dateFormat:"yyyy:MM:dd HH:mm:ss")
+let DateFormatter = Foundation.DateFormatter(dateFormat:"yyyy:MM:dd HH:mm:ss")
 let ImageExtensions = ["jpg", "jpeg", "png", "gif"]
 
 

@@ -31,16 +31,16 @@ class ProgressWindowController: NSWindowController {
     self.progressBar.startAnimation(nil)
   }
   
-  private func setUpWindow(){
-    self.window?.backgroundColor = NSColor.clearColor()
-    self.window?.opaque = false
+  fileprivate func setUpWindow(){
+    self.window?.backgroundColor = NSColor.clear
+    self.window?.isOpaque = false
     self.view.wantsLayer = true
     self.view.layer?.masksToBounds = true
     self.view.layer?.cornerRadius = 10
-    self.view.layer?.backgroundColor = NSColor.blackColor().colorWithAlphaComponent(0.4).CGColor
+    self.view.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.4).cgColor
   }
   
-  func showProgressAt(window:NSWindow, completionHandler handler: ((NSModalResponse) -> Void)?){
+  func showProgressAt(_ window:NSWindow, completionHandler handler: ((NSModalResponse) -> Void)?){
     if self.displayed {
       return
     }
@@ -51,12 +51,12 @@ class ProgressWindowController: NSWindowController {
     }
   }
   
-  func dismissProgressAt(window:NSWindow){
+  func dismissProgressAt(_ window:NSWindow){
     self.displayed = false
     window.endSheet(self.window!)
   }
   
-  func updateProgress(title:String, subtitle:String){
+  func updateProgress(_ title:String, subtitle:String){
     self.titleView.stringValue = title
     self.subtitleView.stringValue = subtitle
   }

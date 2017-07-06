@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSURL {
+extension URL {
   //  func isDirectory2() -> Bool {
   //    var isDirectory: ObjCBool = false
   //    if let path = self.path {
@@ -21,7 +21,7 @@ extension NSURL {
   func isTypeDirectory() -> Bool {
     do{
       var value: AnyObject?
-      try self.getResourceValue(&value, forKey: NSURLIsDirectoryKey)
+      try (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.isDirectoryKey)
       if let value = value as? NSNumber {
         return value.boolValue
       }
@@ -34,7 +34,7 @@ extension NSURL {
   func isTypeRegularFile() -> Bool {
     do{
       var value: AnyObject?
-      try self.getResourceValue(&value, forKey: NSURLIsRegularFileKey)
+      try (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.isRegularFileKey)
       if let value = value as? NSNumber {
         return value.boolValue
       }
@@ -47,7 +47,7 @@ extension NSURL {
   func isTypeSymbolicLink() -> Bool {
     do{
       var value: AnyObject?
-      try self.getResourceValue(&value, forKey: NSURLIsSymbolicLinkKey)
+      try (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.isSymbolicLinkKey)
       if let value = value as? NSNumber {
         return value == true
       }

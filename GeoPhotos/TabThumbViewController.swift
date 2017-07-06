@@ -10,7 +10,7 @@ import Cocoa
 
 class TabThumbViewController: NSViewController {
   
-  var imageURL:NSURL?
+  var imageURL:URL?
   @IBOutlet weak var imageView: NSImageView!
   
   override var nibName: String?{
@@ -20,14 +20,14 @@ class TabThumbViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     if let url = imageURL {
-      self.imageView?.image = NSImage(contentsOfURL:url)
+      self.imageView?.image = NSImage(contentsOf:url)
     }
   }
   
-  func loadImageThumb(url:NSURL){
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+  func loadImageThumb(_ url:URL){
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
       let image = ImageHelper.thumbFromImage(url)
-      dispatch_async(dispatch_get_main_queue(), {
+      DispatchQueue.main.async(execute: {
         self.imageView?.image = image
       })
     }

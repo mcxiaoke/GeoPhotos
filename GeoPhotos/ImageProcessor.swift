@@ -11,18 +11,18 @@ import CoreLocation
 
 class ImageProcessor {
   let geocoder = CLGeocoder()
-  let sizeFormatter = NSByteCountFormatter()
+  let sizeFormatter = ByteCountFormatter()
   
-  var rootURL:NSURL?
+  var rootURL:URL?
   var images:[ImageItem]?
-  var timestamp:NSDate?
+  var timestamp:Date?
   var coordinate:CLLocationCoordinate2D?
   var altitude: Double?
   var savingIndex:Int?
   var restoringIndex:Int?
   var hasBackup = false
   
-  func geocode(completionHandler:(CLPlacemark?) -> Void) {
+  func geocode(_ completionHandler:@escaping (CLPlacemark?) -> Void) {
     guard let coordinate = self.coordinate else { return }
     let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
     geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
@@ -31,7 +31,7 @@ class ImageProcessor {
     }
   }
   
-  func save(backupOriginal: Bool, completionHandler: (Int, String) -> Void, processHandler:((ImageItem, Int, Int) -> Void)? = nil){
+  func save(_ backupOriginal: Bool, completionHandler: @escaping (Int, String) -> Void, processHandler:((ImageItem, Int, Int) -> Void)? = nil){
     print("save timestamp:\(self.timestamp)")
     print("save altitude:\(self.altitude)")
     print("save coordinate:\(self.coordinate)")
@@ -39,57 +39,57 @@ class ImageProcessor {
     guard let coordinate = self.coordinate else { completionHandler(-1, "coordinate is nil"); return }
     guard let images = self.images else { completionHandler(-1, "No images found"); return }
     let properties:[String:AnyObject] = [
-      kCGImagePropertyGPSSpeed as String : 0,
-      kCGImagePropertyGPSSpeedRef as String : "K",
-      kCGImagePropertyGPSAltitudeRef as String : 0,
-      kCGImagePropertyGPSImgDirection as String : 0.0,
-      kCGImagePropertyGPSImgDirectionRef as String : "T",
-      kCGImagePropertyGPSLatitude as String : Double.abs(coordinate.latitude),
-      kCGImagePropertyGPSLatitudeRef as String : coordinate.latitude > 0 ? "N" : "S",
-      kCGImagePropertyGPSLongitude as String : Double.abs(coordinate.longitude),
-      kCGImagePropertyGPSLongitudeRef as String : coordinate.longitude > 0 ? "E" : "W",
+      kCGImagePropertyGPSSpeed as String : 0 as AnyObject,
+      kCGImagePropertyGPSSpeedRef as String : "K" as AnyObject,
+      kCGImagePropertyGPSAltitudeRef as String : 0 as AnyObject,
+      kCGImagePropertyGPSImgDirection as String : 0.0 as AnyObject,
+      kCGImagePropertyGPSImgDirectionRef as String : "T" as AnyObject,
+      kCGImagePropertyGPSLatitude as String : abs(coordinate.latitude) as AnyObject,
+      kCGImagePropertyGPSLatitudeRef as String : (coordinate.latitude > 0 ? "N" : "S") as AnyObject,
+      kCGImagePropertyGPSLongitude as String : abs(coordinate.longitude) as AnyObject,
+      kCGImagePropertyGPSLongitudeRef as String : (coordinate.longitude > 0 ? "E" : "W") as AnyObject,
     ]
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-      let fileManager = NSFileManager()
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+      let fileManager = FileManager()
       let total = images.count
       var savedCount = 0
       self.savingIndex = nil
-      images.enumerate().forEach({ (index, image) in
+      images.enumerated().forEach({ (index, image) in
         print("processing \(image.name) at \(index)")
         self.savingIndex = index
         processHandler?(image, index, total)
-        let date = self.timestamp ?? image.timestamp
-          ?? image.exifDate ?? image.createdAt
+        let date = self.timestamp ?? (image.timestamp
+          ?? image.exifDate ?? image.createdAt) as Date
         var gpsProperties = properties
-        let dateStr = DateFormatter.stringFromDate(date)
-        let dateTime = dateStr.componentsSeparatedByString(" ")
-        gpsProperties[kCGImagePropertyGPSDateStamp as String] = dateTime[0]
-        gpsProperties[kCGImagePropertyGPSTimeStamp as String] = dateTime[1]
+        let dateStr = DateFormatter.string(from: date)
+        let dateTime = dateStr.components(separatedBy: " ")
+        gpsProperties[kCGImagePropertyGPSDateStamp as String] = dateTime[0] as AnyObject
+        gpsProperties[kCGImagePropertyGPSTimeStamp as String] = dateTime[1] as AnyObject
         if let altitude = self.altitude {
-          gpsProperties[kCGImagePropertyGPSAltitude as String] = altitude
+          gpsProperties[kCGImagePropertyGPSAltitude as String] = altitude as AnyObject
         }
-        guard let imageSource = CGImageSourceCreateWithURL(image.url, nil) else { return }
+        guard let imageSource = CGImageSourceCreateWithURL(image.url as CFURL, nil) else { return }
         let imageType = CGImageSourceGetType(imageSource)!
 //        let imageType = image.mimeType ?? ""
         let data = NSMutableData()
         guard let imageDestination = CGImageDestinationCreateWithData(data, imageType, 1, nil) else { return }
         let metaData = [kCGImagePropertyGPSDictionary as String : gpsProperties]
-        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metaData)
+        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metaData as CFDictionary)
         CGImageDestinationFinalize(imageDestination)
         if backupOriginal {
-          let backupURL = image.url.URLByAppendingPathExtension("bak")
-          let backupName = backupURL.lastPathComponent ?? ""
+          let backupURL = image.url.appendingPathExtension("bak")
+          let backupName = backupURL.lastPathComponent 
           do{
-            try fileManager.replaceItemAtURL(backupURL, withItemAtURL: image.url,
-              backupItemName: nil, options: .WithoutDeletingBackupItem, resultingItemURL: nil)
+            try fileManager.replaceItem(at: backupURL, withItemAt: image.url as URL,
+              backupItemName: nil, options: .withoutDeletingBackupItem, resultingItemURL: nil)
             image.backuped = true
             print("backup \(backupName)")
           }catch let error as NSError {
               print("backup \(error)")
           }
         }
-        if let _ = try? data.writeToURL(image.url, options: NSDataWritingOptions.AtomicWrite) {
+        if let _ = try? data.write(to: image.url as URL, options: NSData.WritingOptions.atomicWrite) {
           print("processed \(image.name)")
           savedCount += 1
           image.updateProperties()
@@ -100,31 +100,31 @@ class ImageProcessor {
       if backupOriginal {
         self.hasBackup = true
       }
-      dispatch_async(dispatch_get_main_queue()){
+      DispatchQueue.main.async{
         completionHandler(savedCount, "OK")
       }
     }
   }
   
-  func restore(completionHandler: (Int, String) -> Void,
+  func restore(_ completionHandler: @escaping (Int, String) -> Void,
                processHandler:((ImageItem, Int, Int) -> Void)? = nil){
     guard self.rootURL != nil else { completionHandler(-1, "ERROR"); return }
     guard let images = self.images else { completionHandler(-1, "ERROR"); return }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
       let total = images.count
-      let fileManager = NSFileManager()
+      let fileManager = FileManager()
       var restoredCount = 0
       self.restoringIndex = nil
-      images.enumerate().forEach { (index, image) in
+      images.enumerated().forEach { (index, image) in
         self.restoringIndex = index
         processHandler?(image, index, total)
-        let backupURL = image.url.URLByAppendingPathExtension("bak")
+        let backupURL = image.url.appendingPathExtension("bak")
         var isDirectory = ObjCBool(false)
-        let fileExists = fileManager.fileExistsAtPath(backupURL.path!, isDirectory: &isDirectory)
+        let fileExists = fileManager.fileExists(atPath: backupURL.path, isDirectory: &isDirectory)
         if fileExists && !isDirectory.boolValue {
           do{
-            try fileManager.replaceItemAtURL(image.url, withItemAtURL: backupURL,
-              backupItemName: nil, options: .WithoutDeletingBackupItem, resultingItemURL: nil)
+            try fileManager.replaceItem(at: image.url as URL, withItemAt: backupURL,
+              backupItemName: nil, options: .withoutDeletingBackupItem, resultingItemURL: nil)
             restoredCount += 1
             image.backuped = false
             image.modified = false
@@ -136,28 +136,28 @@ class ImageProcessor {
       }
       self.restoringIndex = nil
       self.hasBackup = false
-      dispatch_async(dispatch_get_main_queue()){
+      DispatchQueue.main.async{
         completionHandler(restoredCount, "OK")
       }
     }
   }
   
-  func reopen(completionHandler: (Bool) -> Void){
+  func reopen(_ completionHandler: @escaping (Bool) -> Void){
     print("reopen: \(self.rootURL)")
     guard let url = self.rootURL else { completionHandler(false); return }
     self.loadImage(url, completionHandler: completionHandler)
   }
   
-  func open(url:NSURL, completionHandler: (Bool) -> Void){
+  func open(_ url:URL, completionHandler: @escaping (Bool) -> Void){
     print("open: \(url)")
     self.loadImage(url, completionHandler: completionHandler)
   }
   
-  func loadImage(url:NSURL, completionHandler: (Bool) -> Void){
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+  func loadImage(_ url:URL, completionHandler: @escaping (Bool) -> Void){
+    DispatchQueue.global().async {
       guard let urls = ExifUtils.parseFiles(url) else { return }
-      let images = ExifUtils.parseURLs(urls).sort{ $0.name < $1.name }
-      dispatch_async(dispatch_get_main_queue()){
+      let images = ExifUtils.parseURLs(urls).sorted{ $0.name < $1.name }
+      DispatchQueue.main.async{
         self.savingIndex = nil
         self.restoringIndex = nil
         self.hasBackup = false

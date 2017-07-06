@@ -1,5 +1,5 @@
 #source 'https://github.com/CocoaPods/Specs.git'
-platform :osx, '10.10'
+platform :osx, '10.11'
 use_frameworks!
 
 target 'GeoPhotos' do
@@ -7,7 +7,7 @@ target 'GeoPhotos' do
   use_frameworks!
 
   # Pods for GeoPhotos
-  pod 'SnapKit', '~> 0.15.0'
+  pod 'SnapKit', '~> 3.2.0'
 
   target 'GeoPhotosTests' do
     inherit! :search_paths
